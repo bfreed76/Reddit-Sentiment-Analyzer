@@ -47,11 +47,13 @@
         Share?
 
 # Models
+
     user
     user_post
-    results
-    search_term_1
-    search_term_2
-    search_domain
+    result_join
+    search_term
+    subreddit
+    author
+    search_results
+    (stretch) likes
 
-    User, result, search term. Search domain, likes then user post. Likes = Optimistic Rendering...don't wait for response to render!
