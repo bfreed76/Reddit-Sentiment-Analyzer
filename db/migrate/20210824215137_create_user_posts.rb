@@ -1,8 +1,8 @@
 class CreateUserPosts < ActiveRecord::Migration[6.1]
   def change
     create_table :user_posts do |t|
-      t.int :user_id
-      t.string :postContent
+      t.integer :user_id
+      t.string :post_content
       t.float :sadness
       t.float :joy
       t.float :fear

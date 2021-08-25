@@ -1,7 +1,7 @@
 class CreateSearchResults < ActiveRecord::Migration[6.1]
   def change
     create_table :search_results do |t|
-      t.int :result_id
+      t.integer :result_id
       t.text :result_text
       t.float :anger
       t.float :disgust
