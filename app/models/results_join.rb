@@ -1,0 +1,2 @@
+class ResultsJoin < ApplicationRecord
+end

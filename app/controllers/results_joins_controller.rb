@@ -1,0 +1,2 @@
+class ResultsJoinsController < ApplicationController
+end
