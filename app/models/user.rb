@@ -4,4 +4,9 @@ class User < ApplicationRecord
     has_many :search_results, through: :result_join
     
     has_secure_password
+
+    validates :username, presence: true
+    # validates (more than)
+    validates :email, presence: true
+    validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
 end
