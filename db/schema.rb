@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_231918) do
+ActiveRecord::Schema.define(version: 2021_08_26_155633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_231918) do
   end
 
   create_table "search_results", force: :cascade do |t|
-    t.integer "result_id"
+    t.integer "results_join_id"
     t.text "result_text"
     t.float "anger"
     t.float "disgust"

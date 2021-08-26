@@ -100,7 +100,7 @@ puts "RESULTS SEEDED"
 # Search Results
 
 sear1 = SearchResult.create({
-    result_id: r1.id,
+    results_join_id: r1.id,
     result_text: "Testing 1",
     anger: 0.2,
     disgust: 0.5,
@@ -109,7 +109,7 @@ sear1 = SearchResult.create({
     sadness: 0.3
 })
 sear2 = SearchResult.create({
-    result_id: r2.id,
+    results_join_id: r2.id,
     result_text: "Testing 2",
     anger: 0.99,
     disgust: 0.3,
@@ -118,7 +118,7 @@ sear2 = SearchResult.create({
     sadness: 0.4
 })
 sear3 = SearchResult.create({
-    result_id: r3.id,
+    results_join_id: r3.id,
     result_text: "Testing 3",
     anger: 0.4,
     disgust: 0.3,
@@ -127,7 +127,7 @@ sear3 = SearchResult.create({
     sadness: 0.9
 })
 sear4 = SearchResult.create({
-    result_id: r3.id,
+    results_join_id: r3.id,
     result_text: "Testing 4",
     anger: 0.3,
     disgust: 0.1,
@@ -136,7 +136,7 @@ sear4 = SearchResult.create({
     sadness: 0.8
 })
 sear5 = SearchResult.create({
-    result_id: r4.id,
+    results_join_id: r4.id,
     result_text: "Testing 5",
     anger: 0.12,
     disgust: 0.5,
@@ -145,4 +145,4 @@ sear5 = SearchResult.create({
     sadness: 0.22
 })
 
-puts "SEARCH RESULTS SEEDED"
+puts "DONE SEEDING"

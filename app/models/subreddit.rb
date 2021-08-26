@@ -1,3 +1,3 @@
 class Subreddit < ApplicationRecord
-    has_many :result_joins
+    has_many :results_joins
 end

@@ -1,3 +1,3 @@
 class SearchResult < ApplicationRecord
-    belongs_to :result_join
+    belongs_to :results_join
 end
