@@ -8,7 +8,7 @@ class UserPostsController < ApplicationController
 
     def show
         user_posts = find_user_posts
-        render json: user_posts, include: :user_posts
+        render json: user_posts
     end
 
     private

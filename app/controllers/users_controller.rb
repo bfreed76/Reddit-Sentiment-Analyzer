@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     def show
         user = find_user
-        render json: user, include: :user
+        render json: user
     end
 
     def me
