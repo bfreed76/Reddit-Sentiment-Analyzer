@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   resources :results_joins
   resources :user_posts
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # Remember to restrict routes as a last step!
+
+  get '/me', to: 'users#me'
+  post '/login', to: 'session#login'
+  post '/signup', to: 'users#signup'
+  delete '/logout', to: 'users#logout'
+
 end

@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Header, Icon, List } from "semantic-ui-react";
+import Login from "./Components/Login";
+import { useState } from "react";
 
 const App = () => {
-  
+  const [user, setUser] = useState(null);
+
+  const onLogin = (user) => {
+    setUser(user);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome to my App!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header as="h2">
+        <Icon name="reddit" />
+        <Header.Content>This is app</Header.Content>
+      </Header>
+      <List items={["Apples", "Pears", "Oranges"]} />
+      <Login onLogin={onLogin} />
     </div>
   );
-}
+};
 
 export default App;
+
