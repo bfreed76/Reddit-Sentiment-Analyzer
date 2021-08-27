@@ -3,17 +3,18 @@ class SessionsController < ApplicationController
     def create
         #login
         #if username and password, save userID is session hash
-        user = User.find_by(username: params[:username])
+        user = User.find_by(email: params[:email])
+        if user&.authenticate(params[:password])
         session[:user_id] = user.id
-        render json: user
-        #return json response with userID, username, etc
-        #else status 401
+        render json: user, status: :accepted
+        else
+            render json: { error: "Wrong email or password" }, status: :unauthorized
+        end
     end
 
     def destroy
-        #delete/logout
-        #if user loggedin (id in session hash), remove userID from session hash, return empty response with HTTP code 204
-        #if not logged in , return json response with 401
+        session.delete :user_id
+        render json: { message: "Logged Out"}
     end
 
 end

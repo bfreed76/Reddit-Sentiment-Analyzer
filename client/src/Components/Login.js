@@ -2,34 +2,36 @@ import React from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useState } from "react";
 
-const Login = (onLogin) => {
-  const [username, setUsername] = useState("");
+const Login = ({onLogin}) => {
+  const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault()
     fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username }),
-    }).then(((res) => res.json()).then((user) => onLogin(user))); //onLogin CB to app
-  };
+      body: JSON.stringify({ email }),
+    })
+      .then((r) => r.json())
+      .then((user) => onLogin(user));
+  }
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Field>
-          <label>Username</label>
+          <label>Email</label>
           <input
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Field>
         <Form.Field>
-          <label>Email</label>
-          <input placeholder="someone@somewhere.com" />
+          <label>Password</label>
+          <input placeholder="password" />
         </Form.Field>
         <Form.Field></Form.Field>
         <Button type="submit">Submit</Button>
