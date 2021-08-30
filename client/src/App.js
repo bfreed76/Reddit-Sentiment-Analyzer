@@ -1,18 +1,29 @@
-import "./App.css"
-import { Header, Icon } from "semantic-ui-react"
-import Login from "./Components/Login"
-import { useState, useEffect } from "react"
-import Signup from "./Components/Signup"
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
-import Profile from "./Components/Profile"
+import "./App.css";
+import { Header, Icon, Button } from "semantic-ui-react";
+import Login from "./Components/Login";
+import { useState, useEffect } from "react";
+import Signup from "./Components/Signup";
+import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
+import Profile from "./Components/Profile";
 
 const App = () => {
-  const [user, setUser] = useState({})
-  const [loggedin, setLoggedin] = useState(false)
+  const [user, setUser] = useState({});
+  const [loggedin, setLoggedin] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, [])
+  const handleLogout = (e) => {
+    fetch("/logout", {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Logged out: ", user);
+        setLoggedin(false);
+        setUser({});
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="App">
@@ -23,19 +34,23 @@ const App = () => {
           <Link to="/login">Login</Link>
           <br></br>
           <Link to="/signup">Signup</Link>
+          <br></br>
+          <Link to="/profile">Profile</Link>
+          <br></br>
+          <Button onClick={handleLogout}>Logout</Button>
         </Header>
-          <Switch>
-           <Route exact path='/login'>
-             <Login setUser={setUser} setLoggedin={setLoggedin}/>
-          </Route> 
-          <Route exact path='/signup'>
-              <Signup setUser={setUser} setLoggedin={setLoggedin}/>
+        <Switch>
+          <Route exact path="/login">
+            <Login setUser={setUser} setLoggedin={setLoggedin} />
           </Route>
-              {loggedin ? 
-                <Route exact path='/profile'>
-                  <Profile user={user}
-              }
+          <Route exact path="/signup">
+            <Signup setUser={setUser} setLoggedin={setLoggedin} />
           </Route>
+          {loggedin ? (
+            <Route exact path="/profile" component={Profile} />
+          ) : (
+            <Redirect to="/login" component={Login} />
+          )}
         </Switch>
       </BrowserRouter>
     </div>
@@ -43,4 +58,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -1,25 +1,29 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 import { Button, Form } from "semantic-ui-react";
 
 
 const Signup = ({ setUser, setLoggedin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const history = useHistory()
   
-    const handleLogin = (e) => {
+    const handleSignup = (e) => {
       e.preventDefault()
-      fetch("/login", {
+      fetch("/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       })
         .then((r) => r.json())
         .then((user) => {
+            console.log(user)
           setUser(user)
           setLoggedin(true)
-          //history.push(?) See lesson
+          history.push('/profile')
         })
         .catch((err) => console.log(err))
     }
@@ -27,7 +31,15 @@ const Signup = ({ setUser, setLoggedin }) => {
   return (
     // Username, email and password required!
     <div>
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleSignup}>
+        <Form.Field>
+          <label>Username</label>
+          <input
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </Form.Field>
         <Form.Field>
           <label>Email</label>
           <input
