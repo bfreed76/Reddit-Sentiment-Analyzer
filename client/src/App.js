@@ -1,6 +1,7 @@
 import "./App.css";
 import { Header, Icon, Button } from "semantic-ui-react";
 import Login from "./Components/Login";
+import Home from "./Components/Home"
 import { useState, useEffect } from "react";
 import Signup from "./Components/Signup";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
@@ -49,6 +50,9 @@ const App = () => {
           <Button onClick={handleLogout}>Logout</Button>
         </Header>
         <Switch>
+          <Route exact path="/">
+            <Home setUser={setUser} setLoggedin={setLoggedin} />
+          </Route>
           <Route exact path="/login">
             <Login setUser={setUser} setLoggedin={setLoggedin} />
           </Route>
