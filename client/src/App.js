@@ -10,7 +10,16 @@ const App = () => {
   const [user, setUser] = useState({});
   const [loggedin, setLoggedin] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setUser(user);
+          setLoggedin(true);
+        });
+      }
+    });
+  }, []); // NOT WORKING ON REFRESH!!
 
   const handleLogout = (e) => {
     fetch("/logout", {
@@ -18,7 +27,7 @@ const App = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Logged out: ", user);
+        console.log("Logged out.");
         setLoggedin(false);
         setUser({});
       })
