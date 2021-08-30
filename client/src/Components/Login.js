@@ -1,26 +1,32 @@
-import React from "react";
 import { Button, Form } from "semantic-ui-react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Login = ({onLogin}) => {
+const Login = ({ setUser, setLoggedin }) => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  function handleSubmit(e) {
+  const handleLogin = (e) => {
     e.preventDefault()
     fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, password }),
     })
       .then((r) => r.json())
-      .then((user) => onLogin(user));
+      .then((user) => {
+        if (!!user.id) {
+        setUser(user)
+        setLoggedin(true)
+        //history.push(?) See lesson
+      }})
+      .catch((err) => console.log(err))
   }
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleLogin}>
         <Form.Field>
           <label>Email</label>
           <input
@@ -31,10 +37,13 @@ const Login = ({onLogin}) => {
         </Form.Field>
         <Form.Field>
           <label>Password</label>
-          <input placeholder="password" />
+          <input 
+          placeholder="password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}/>
         </Form.Field>
         <Form.Field></Form.Field>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Login</Button>
       </Form>
     </div>
   );

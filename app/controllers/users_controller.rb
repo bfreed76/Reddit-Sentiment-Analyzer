@@ -6,9 +6,15 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    # Profile Page or show current user
     def show
         user = find_user
         render json: user
+    end
+
+    # Signup
+    def create
+        byebug
     end
 
     def me
