@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter } from 'react-router-dom'
+import ContextProvider from './context/Context';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <ContextProvider>
     <App />
+    </ContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

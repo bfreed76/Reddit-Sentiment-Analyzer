@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   # Remember to restrict routes as a last step!
 
   get '/me', to: 'users#me'
-  post '/login', to: 'session#login'
-  post '/signup', to: 'users#signup'
-  delete '/logout', to: 'users#logout'
+  post '/signup', to: 'users#create'
+  
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
 end

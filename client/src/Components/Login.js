@@ -1,38 +1,54 @@
-import React from "react";
-import { Button, Form } from "semantic-ui-react";
-import { useState } from "react";
+import React, { useState, useContext } from "react"
+import { useHistory } from 'react-router-dom'
+import { Button, Form } from "semantic-ui-react"
+import {Context } from '../context/Context'
 
-const Login = (onLogin) => {
-  const [username, setUsername] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const { user, setUser, loggedin, setLoggedin} = useContext(Context)
+  let history = useHistory()
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault()
     fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username }),
-    }).then(((res) => res.json()).then((user) => onLogin(user))); //onLogin CB to app
-  };
+      body: JSON.stringify({ email, password }),
+    })
+      .then((r) => r.json())
+      .then((user) => {
+        if (!!user.id) {
+        console.log("Log in: ", user)
+        setUser(user)
+        setLoggedin(true)
+        history.push('/profile')
+      }})
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleLogin}>
         <Form.Field>
-          <label>Username</label>
+          <label>Email</label>
           <input
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Field>
         <Form.Field>
-          <label>Email</label>
-          <input placeholder="someone@somewhere.com" />
+          <label>Password</label>
+          <input 
+          placeholder="password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}/>
         </Form.Field>
         <Form.Field></Form.Field>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Login</Button>
       </Form>
     </div>
   );
