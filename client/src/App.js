@@ -1,5 +1,5 @@
 import "./App.css";
-import { Header, Icon, Button } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Signup from "./Components/Signup";
@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
+import Header from "./Components/Header"
 
 const App = () => {
   const context = useContext(Context);
@@ -39,17 +40,21 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header as="h2">
-          <Icon name="reddit" />
-          <Header.Content>Welcome to Emo Reddit</Header.Content>
-          <Link to="/login">Login</Link>
-          <br></br>
-          <Link to="/signup">Signup</Link>
-          <br></br>
-          <Link to="/profile">Profile</Link>
-          <br></br>
-          <Button onClick={handleLogout}>Logout</Button>
-        </Header>
+      <br></br>
+        <Header />
+        <div>
+        <Button>Search</Button><Button>Feed</Button>
+        </div>
+
+
+
+        <Link to="/login">Login</Link>
+        <br></br>
+        <Link to="/signup">Signup</Link>
+        <br></br>
+        <Link to="/profile">Profile</Link>
+        <br></br>
+        <Button onClick={handleLogout}>Logout</Button>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
