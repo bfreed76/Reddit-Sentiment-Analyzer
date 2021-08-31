@@ -1,15 +1,16 @@
 import "./App.css";
 import { Header, Icon, Button } from "semantic-ui-react";
 import Login from "./Components/Login";
-import Home from "./Components/Home"
-import { useState, useEffect } from "react";
+import Home from "./Components/Home";
 import Signup from "./Components/Signup";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import Profile from "./Components/Profile";
+import { Context } from "./context/Context";
+import { useContext, useEffect } from "react";
 
 const App = () => {
-  const [user, setUser] = useState({});
-  const [loggedin, setLoggedin] = useState(false);
+  const context = useContext(Context);
+  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -50,15 +51,9 @@ const App = () => {
           <Button onClick={handleLogout}>Logout</Button>
         </Header>
         <Switch>
-          <Route exact path="/">
-            <Home setUser={setUser} setLoggedin={setLoggedin} />
-          </Route>
-          <Route exact path="/login">
-            <Login setUser={setUser} setLoggedin={setLoggedin} />
-          </Route>
-          <Route exact path="/signup">
-            <Signup setUser={setUser} setLoggedin={setLoggedin} />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
           {loggedin ? (
             <Route exact path="/profile" component={Profile} />
           ) : (

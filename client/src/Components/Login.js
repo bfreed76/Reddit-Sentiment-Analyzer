@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useHistory } from 'react-router-dom'
 import { Button, Form } from "semantic-ui-react"
+import {Context } from '../context/Context'
 
-const Login = ({ setUser, setLoggedin }) => {
+const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { user, setUser, loggedin, setLoggedin} = useContext(Context)
   let history = useHistory()
 
   const handleLogin = (e) => {

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../context/Context";
 import { useHistory } from 'react-router-dom'
 import { Button, Form } from "semantic-ui-react";
 
 
-const Signup = ({ setUser, setLoggedin }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+const Signup = () => {
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const history = useHistory()
+    const { user, setUser, loggedin, setLoggedin} = useContext(Context)
   
     const handleSignup = (e) => {
       e.preventDefault()
