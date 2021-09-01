@@ -1,11 +1,11 @@
 import React from 'react'
 import {Button} from 'semantic-ui-react'
 
-const Footer = () => {
+const Footer = ({handleLogout}) => {
     return (
         <div>
             <Button 
-            // onClick={handleLogout}
+            onClick={handleLogout}
             >Logout</Button>
         </div>
     )

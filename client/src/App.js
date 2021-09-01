@@ -1,14 +1,23 @@
 import "./App.css";
-import { Button } from "semantic-ui-react";
+import { Button, Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Signup from "./Components/Signup";
-import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+  Redirect,
+  matchPath,
+  NavLink,
+} from "react-router-dom";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import Header from "./Components/HeaderComp";
-import Footer from "./Components/Footer"
+import Footer from "./Components/Footer";
+import Tabs from "./Components/Tabs";
 
 //Don't forget! Ensure a max width of 414px, small size 360px for MOBILE (to ensure responsive design)
 
@@ -16,17 +25,22 @@ const App = () => {
   const context = useContext(Context);
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
 
-  //Check backend for user auth
   useEffect(() => {
-    fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          setUser(user);
-          setLoggedin(true);
-        });
-      }
-    });
+    findMe()
   }, []); // NOT WORKING ON REFRESH!!
+
+  const findMe = () => {
+    fetch("/me")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("current user: ", data);
+        if (!data.error) {
+          setUser(data);
+          setLoggedin(true);
+        }
+      })
+      .catch((err) => console.log("error =", err));
+  };
 
   const handleLogout = (e) => {
     fetch("/logout", {
@@ -44,24 +58,58 @@ const App = () => {
   //Header, Tab 1 (Feed/login/Register), Tab 2 (Search and Search Results), Footer
   //See URL: Loading tab: https://react.semantic-ui.com/modules/tab/#states-loading
 
+  const panes = [
+    {
+      menuItem: {
+        as: NavLink,
+        content: "Feed",
+        to: "/feed",
+        exact: true,
+        key: "feed"
+      },
+      render: () => (
+        <Route path="/feed" exact>
+          <Tab.Pane>
+            <div>Authentication content or feed here</div>
+          </Tab.Pane>
+        </Route>
+      ),
+    },
+    {
+      menuItem: {
+        as: NavLink,
+        content: "Search",
+        to: "/",
+        exact: true,
+        key: "home",
+      },
+      render: () => (
+        <Route path="/" exact>
+          <Tab.Pane>
+            <div>Search Component Here</div>
+          </Tab.Pane>
+        </Route>
+      ),
+    },
+  ];
+
+  const defaultActiveIndex = panes.findIndex(pane => {
+    return !!matchPath(window.location.pathname, {
+      path: pane.menuItem.to,
+      exact: true
+    });
+  });
 
   return (
+    <BrowserRouter>
     <div className="App">
-      <BrowserRouter>
-        <br></br> 
+        <br></br>
         <Header />
         <div>
-          <Button>Search</Button>
-          <Button>Feed</Button>
-        </div>
-        <br></br>
-        <Link to="/login">Login</Link>
-        <br></br>
-        <Link to="/signup">Signup</Link>
-        <br></br>
-        <Link to="/profile">Profile</Link>
-        <br></br>
-        <Switch>
+          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
+          </div>
+
+        {/* <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
@@ -70,10 +118,10 @@ const App = () => {
             ) : (
               <Redirect to="/login" component={Login} />
               )}
-        </Switch>
-        <Footer />  
-      </BrowserRouter>
+        </Switch> */}
+        <Footer />
     </div>
+      </BrowserRouter>
   );
 };
 
