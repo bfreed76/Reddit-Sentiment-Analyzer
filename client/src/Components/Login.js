@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import { Modal, Form, Header, Button } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import SampleContent from "./SampleContent";
+import LoginErr from "./LoginErr";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [success, setSuccess] =useState(true)
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
   let history = useHistory();
 
@@ -25,7 +27,10 @@ const Login = () => {
           console.log("Log in: ", user);
           setUser(user);
           setLoggedin(true);
+          setSuccess(true)
           history.push("/top_content")
+        } else {
+          setSuccess(false)
         }
       })
       .catch((err) => console.log(err));
@@ -50,6 +55,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}/>
         </Form.Field>
         <Form.Field></Form.Field>
+        {success ? null : <h3 className="Alert">Wrong email or password.</h3>}
         <Button primary type="submit">Login</Button>
       </Form>
     </div>

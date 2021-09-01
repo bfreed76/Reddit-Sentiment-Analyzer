@@ -25,7 +25,7 @@ const Signup = () => {
             console.log(user)
           setUser(user)
           setLoggedin(true)
-          history.push('/profile')
+          history.push('/top_content')
         })
         .catch((err) => console.log(err))
     }
