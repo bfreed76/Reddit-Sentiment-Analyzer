@@ -1,13 +1,13 @@
 import React from "react";
-import {Icon} from "semantic-ui-react"
+import {Icon, Header} from "semantic-ui-react"
 
-const Header = () => {
+const HeaderComp = () => {
   return (
     <div>
       <Header as="h1" textAlign="center">
         <Header.Content>
           Welcome to r/Emo 
-          {/* <Icon name="reddit" /> */}
+          <Icon name="reddit" />
         </Header.Content>
         {/* <Icon name="reddit" /> */}
       </Header>
@@ -15,4 +15,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderComp;
