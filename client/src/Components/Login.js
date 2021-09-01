@@ -25,6 +25,7 @@ const Login = () => {
           console.log("Log in: ", user);
           setUser(user);
           setLoggedin(true);
+          history.push("/top_content")
         }
       })
       .catch((err) => console.log(err));
@@ -49,7 +50,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}/>
         </Form.Field>
         <Form.Field></Form.Field>
-        <Button type="submit">Login</Button>
+        <Button primary type="submit">Login</Button>
       </Form>
     </div>
   );

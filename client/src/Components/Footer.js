@@ -1,15 +1,20 @@
-import React from 'react'
-import {Button} from 'semantic-ui-react'
+import { useContext } from "react";
+import { Button } from "semantic-ui-react";
+import { Context } from "../context/Context";
 
-const Footer = ({handleLogout}) => {
-    return (
-        <div>
-            {/* <Button className="FooterBtn"
-            onClick={handleLogout}
-            >Logout</Button> */}
-            <small>Powered by IBM Watson and Pushshift API. Brinton Reed 2021.</small>
-        </div>
-    )
-}
+const Footer = ({ handleLogout }) => {
+  const { loggedin } = useContext(Context);
 
-export default Footer
+  return (
+    <div>
+      {loggedin ? (
+        <Button secondary className="FooterBtn" onClick={handleLogout}>
+          Logout
+        </Button>
+      ) : null}
+      <small>Powered by IBM Watson and Pushshift API. Brinton Reed 2021.</small>
+    </div>
+  );
+};
+
+export default Footer;

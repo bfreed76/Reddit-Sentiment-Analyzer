@@ -22,8 +22,6 @@ import {
   NavLink,
 } from "react-router-dom";
 
-//Don't forget! Ensure a max width of 414px, small size 360px for MOBILE (to ensure responsive design)
-
 const App = () => {
   const context = useContext(Context);
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
@@ -120,7 +118,7 @@ const App = () => {
         <div>
           <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         </div>
-        <Footer />
+        <Footer handleLogout={handleLogout}/>
       </div>
     </BrowserRouter>
   );
