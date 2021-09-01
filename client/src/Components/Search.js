@@ -5,7 +5,6 @@ const Search = () => {
         <div>
             <h3>Search by Reddit username, subreddit or search terms</h3>
             <br></br>
-            
         
         
         </div>
