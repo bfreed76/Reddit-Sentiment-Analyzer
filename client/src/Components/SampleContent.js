@@ -1,6 +1,7 @@
 import React from "react";
 import SampleTopContent from "../SampleTopContent.jpg";
 import { Image } from "semantic-ui-react"
+import {Link} from "react-router-dom"
 
 const SampleContent = () => {
   return (
@@ -9,8 +10,12 @@ const SampleContent = () => {
         <h2>Sample content...</h2>
       <Image src={SampleTopContent} fluid />
 
-      <h1>Sign Up or Login to see more!</h1>
-      
+      <h1>Sign in to see more!</h1> 
+      <div className="Link">
+      <Link to='/login'>Login</Link>
+      <p>-or-</p>
+      <Link to='/signup'>Sign Up</Link>
+      </div>
     </div>
   );
 };

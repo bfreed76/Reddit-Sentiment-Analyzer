@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
+import SampleContent from "./Components/SampleContent";
 import {
   BrowserRouter,
   Route,
@@ -57,9 +58,6 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  //Header, Tab 1 (Feed/login/Register), Tab 2 (Search and Search Results), Footer
-  //See URL: Loading tab: https://react.semantic-ui.com/modules/tab/#states-loading
-
   const panes = [
     {
       menuItem: {
@@ -76,7 +74,7 @@ const App = () => {
               {loggedin ? (
             <TopContent />
             ) : (
-              <Login />
+              <SampleContent />
               )}
               </div>
           </Tab.Pane>
@@ -115,6 +113,10 @@ const App = () => {
         <Header />
         <hr></hr>
         <br></br>
+        <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        </Switch>
         <div>
           <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         </div>

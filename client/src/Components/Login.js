@@ -1,18 +1,17 @@
-import React, { useState, useContext } from "react"
-import { useHistory } from 'react-router-dom'
-import { Button, Form } from "semantic-ui-react"
-import {Context } from '../context/Context'
-import SampleContent from "./SampleContent"
-
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { Modal, Form, Header, Button } from "semantic-ui-react";
+import { Context } from "../context/Context";
+import SampleContent from "./SampleContent";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const { user, setUser, loggedin, setLoggedin} = useContext(Context)
-  let history = useHistory()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
+  let history = useHistory();
 
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     fetch("/login", {
       method: "POST",
       headers: {
@@ -23,17 +22,16 @@ const Login = () => {
       .then((r) => r.json())
       .then((user) => {
         if (!!user.id) {
-        console.log("Log in: ", user)
-        setUser(user)
-        setLoggedin(true)
-        history.push('/profile')
-      }})
-      .catch((err) => console.log(err))
-  }
+          console.log("Log in: ", user);
+          setUser(user);
+          setLoggedin(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
-      <SampleContent />
       <Form onSubmit={handleLogin}>
         <Form.Field>
           <label>Email</label>
