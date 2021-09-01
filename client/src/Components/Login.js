@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react"
 import { useHistory } from 'react-router-dom'
 import { Button, Form } from "semantic-ui-react"
 import {Context } from '../context/Context'
+import SampleContent from "./SampleContent"
+
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -31,6 +33,7 @@ const Login = () => {
 
   return (
     <div>
+      <SampleContent />
       <Form onSubmit={handleLogin}>
         <Form.Field>
           <label>Email</label>

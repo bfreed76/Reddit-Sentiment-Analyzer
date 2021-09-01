@@ -30,6 +30,18 @@
   color: #61dafb;
 }
 
+.FooterBtn {
+position:fixed;
+align-items: center;
+left: 40px;
+bottom:0;
+right:0;
+}
+
+.img {
+  width: 
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -3,6 +3,14 @@ import { Button, Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
 import Signup from "./Components/Signup";
+import Profile from "./Components/Profile";
+import { Context } from "./context/Context";
+import { useContext, useEffect } from "react";
+import Header from "./Components/HeaderComp";
+import Footer from "./Components/Footer";
+import Tabs from "./Components/Tabs";
+import Search from "./Components/Search";
+import TopContent from "./Components/TopContent";
 import {
   BrowserRouter,
   Route,
@@ -12,12 +20,6 @@ import {
   matchPath,
   NavLink,
 } from "react-router-dom";
-import Profile from "./Components/Profile";
-import { Context } from "./context/Context";
-import { useContext, useEffect } from "react";
-import Header from "./Components/HeaderComp";
-import Footer from "./Components/Footer";
-import Tabs from "./Components/Tabs";
 
 //Don't forget! Ensure a max width of 414px, small size 360px for MOBILE (to ensure responsive design)
 
@@ -26,7 +28,7 @@ const App = () => {
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
 
   useEffect(() => {
-    findMe()
+    findMe();
   }, []); // NOT WORKING ON REFRESH!!
 
   const findMe = () => {
@@ -62,15 +64,21 @@ const App = () => {
     {
       menuItem: {
         as: NavLink,
-        content: "Feed",
-        to: "/feed",
+        content: "Top Content",
+        to: "/top_content",
         exact: true,
-        key: "feed"
+        key: "top_content",
       },
       render: () => (
-        <Route path="/feed" exact>
+        <Route path="/top_content" exact>
           <Tab.Pane>
-            <div>Authentication content or feed here</div>
+            <div>
+              {loggedin ? (
+            <TopContent />
+            ) : (
+              <Login />
+              )}
+              </div>
           </Tab.Pane>
         </Route>
       ),
@@ -78,7 +86,7 @@ const App = () => {
     {
       menuItem: {
         as: NavLink,
-        content: "Search",
+        content: "My Searches",
         to: "/",
         exact: true,
         key: "home",
@@ -86,42 +94,33 @@ const App = () => {
       render: () => (
         <Route path="/" exact>
           <Tab.Pane>
-            <div>Search Component Here</div>
+            <div> <Search /></div>
           </Tab.Pane>
         </Route>
       ),
     },
   ];
 
-  const defaultActiveIndex = panes.findIndex(pane => {
+  const defaultActiveIndex = panes.findIndex((pane) => {
     return !!matchPath(window.location.pathname, {
       path: pane.menuItem.to,
-      exact: true
+      exact: true,
     });
   });
 
   return (
     <BrowserRouter>
-    <div className="App">
+      <div className="App">
         <br></br>
         <Header />
+        <hr></hr>
+        <br></br>
         <div>
           <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
-          </div>
-
-        {/* <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          {loggedin ? (
-            <Route exact path="/profile" component={Profile} />
-            ) : (
-              <Redirect to="/login" component={Login} />
-              )}
-        </Switch> */}
+        </div>
         <Footer />
-    </div>
-      </BrowserRouter>
+      </div>
+    </BrowserRouter>
   );
 };
 
