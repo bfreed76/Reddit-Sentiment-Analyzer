@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         render json: user
     end
 
+
     # Signup
     def create
         user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
         #if userID in session hash, return userID, username, etc
         # else unauthorized
         user = User.find_by(id: session[:user_id])
+        p session
         if user
             render json: user
         else

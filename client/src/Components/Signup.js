@@ -25,7 +25,7 @@ const Signup = () => {
             console.log(user)
           setUser(user)
           setLoggedin(true)
-          history.push('/profile')
+          history.push('/top_content')
         })
         .catch((err) => console.log(err))
     }
@@ -59,7 +59,7 @@ const Signup = () => {
           />
         </Form.Field>
         <Form.Field></Form.Field>
-        <Button type="submit">Signup</Button>
+        <Button primary type="submit">Signup</Button>
       </Form>
     </div>
   );
