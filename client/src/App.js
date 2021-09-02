@@ -72,7 +72,9 @@ const App = () => {
               {loggedin ? (
             <TopContent />
             ) : (
+              <div> 
               <SampleContent />
+              </div>
               )}
               </div>
           </Tab.Pane>
@@ -110,14 +112,15 @@ const App = () => {
         <br></br>
         <Header />
         <hr></hr>
+          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
+        <div>
+        </div>
         <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/profile" component={Profile} />
         </Switch>
-        <div>
-          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
-        </div>
         <Footer handleLogout={handleLogout}/>
       </div>
     </BrowserRouter>
