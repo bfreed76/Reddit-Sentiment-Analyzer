@@ -8,7 +8,7 @@ import LoginOrSignup from "./LoginOrSignup";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 
-const HeaderComp = () => {
+const HeaderComp = ({ handleLogout }) => {
   let history = useHistory();
   const context = useContext(Context);
   const { loggedin } = useContext(Context);
@@ -36,7 +36,11 @@ const HeaderComp = () => {
       <Divider hidden />
       <Transition visible={visible} animation="fade" duration={300}>
         <div>
-          {loggedin ? history.push("/profile") : <LoginOrSignup />}
+          {loggedin ? (
+            <Profile handleLogout={handleLogout} />
+          ) : (
+            <LoginOrSignup/>
+          )}
         </div>
       </Transition>
     </div>

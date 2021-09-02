@@ -4,7 +4,8 @@
 
 .App {
   text-align: center;
-  /* vertical-align: center; */
+  /* max-width: 450px; */
+  vertical-align: center;
   padding: 10px;
 }
 

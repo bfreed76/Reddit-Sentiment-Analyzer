@@ -11,7 +11,7 @@ const SampleContent = () => {
       <h2>Sample content...</h2>
       <Image src={SampleTopContent} fluid />
 
-      <h1>Sign in to see more!</h1>
+      <h1>Login to see more!</h1>
     <LoginOrSignup />
     </div>
   );
