@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 
 const Search = () => {
-    return (
-        <div>
-            <h3>Search by Reddit username, subreddit or search terms</h3>
-            <br></br>
-        
-        
-        </div>
-    )
-}
+  const [sUsername, setSUsername] = useState("");
+  const [subreddit, setSubreddit] = useState("");
+  const [searchTerms, setsearchTerms] = useState(true);
 
-export default Search
+  return (
+    <Form>
+      <h2>Search Reddit to discover emotional stuff</h2>
+      <Form.Field>
+        <>Show: </> <Checkbox label="Comments" /> <Checkbox label="Posts" />
+      </Form.Field>
+      <Form.Field>
+        <Input icon="search" iconPosition="left" placeholder="u/ username" />
+      </Form.Field>
+      <Form.Field>
+        <Input icon="search" iconPosition="left" placeholder="r/ subreddit" />
+      </Form.Field>
+      <Form.Field>
+        <Input
+          icon="search"
+          iconPosition="left"
+          placeholder="search terms"
+        />
+      </Form.Field>
+      <Button primary type="submit">
+        Go
+      </Button>
+    </Form>
+  );
+};
+
+export default Search;

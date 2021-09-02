@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { Modal, Form, Header, Button } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import SampleContent from "./SampleContent";
-import LoginErr from "./LoginErr";
 
 const Login = () => {
   const [email, setEmail] = useState("");
