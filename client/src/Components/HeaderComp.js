@@ -1,13 +1,21 @@
 import React from "react";
 import { Icon, Header } from "semantic-ui-react";
+import { Button, Divider, Image, Transition } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import Profile from "./Profile";
+import LoginOrSignup from "./LoginOrSignup";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 const HeaderComp = () => {
   let history = useHistory();
+  const context = useContext(Context);
+  const { loggedin } = useContext(Context);
+  const [visible, setVisible] = useState(false);
 
-  const handleClick = () => {
-    console.log("icon clicked");
-    history.push("/profile")
+  const toggleVisibility = () => {
+    setVisible(!visible);
   };
 
   return (
@@ -17,10 +25,20 @@ const HeaderComp = () => {
           <div>
             <Icon name="reddit" />
             <big>Emot/r</big>
-            <Icon id="userIcon" name="user outline" onClick={handleClick} />
+            <Icon
+              id="userIcon"
+              name="user outline"
+              onClick={toggleVisibility}
+            />
           </div>
         </Header.Content>
       </Header>
+      <Divider hidden />
+      <Transition visible={visible} animation="fade" duration={300}>
+        <div>
+          {loggedin ? history.push("/profile") : <LoginOrSignup />}
+        </div>
+      </Transition>
     </div>
   );
 };

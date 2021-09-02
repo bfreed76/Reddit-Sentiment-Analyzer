@@ -70,13 +70,13 @@ const App = () => {
           <Tab.Pane>
             <div>
               {loggedin ? (
-            <TopContent />
-            ) : (
-              <div> 
-              <SampleContent />
-              </div>
+                <TopContent />
+              ) : (
+                <div>
+                  <SampleContent />
+                </div>
               )}
-              </div>
+            </div>
           </Tab.Pane>
         </Route>
       ),
@@ -92,7 +92,10 @@ const App = () => {
       render: () => (
         <Route path="/" exact>
           <Tab.Pane>
-            <div> <Search /></div>
+            <div>
+              {" "}
+              <Search />
+            </div>
           </Tab.Pane>
         </Route>
       ),
@@ -110,18 +113,23 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <br></br>
-        <Header />
+        <Header handleLogout={handleLogout}/>
         <hr></hr>
-          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
+        <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
-        <div>
-        </div>
+        <div></div>
         <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/profile" component={Profile} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route
+            exact
+            path="/profile"
+            render={(handleLogout) => (
+              <Profile {...handleLogout}/>
+            )} 
+          />
         </Switch>
-        <Footer handleLogout={handleLogout}/>
+        <Footer handleLogout={handleLogout} />
       </div>
     </BrowserRouter>
   );

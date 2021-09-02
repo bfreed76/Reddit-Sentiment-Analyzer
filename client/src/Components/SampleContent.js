@@ -1,7 +1,8 @@
 import React from "react";
 import SampleTopContent from "../SampleTopContent.jpg";
 import { Image } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+
+import LoginOrSignup from "./LoginOrSignup";
 
 const SampleContent = () => {
   return (
@@ -11,11 +12,7 @@ const SampleContent = () => {
       <Image src={SampleTopContent} fluid />
 
       <h1>Sign in to see more!</h1>
-      <div className="Link">
-        <Link to="/login">Login</Link>
-        <p style={{marginBottom: "0px"}}>-or-</p>
-        <Link to="/signup">Sign Up</Link>
-      </div>
+    <LoginOrSignup />
     </div>
   );
 };

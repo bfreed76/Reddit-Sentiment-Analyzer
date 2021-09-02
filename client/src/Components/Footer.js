@@ -7,16 +7,7 @@ const Footer = ({ handleLogout }) => {
 
   return (
     <div>
-      <div style={{textAlign:"center"}}> 
-        {loggedin ? (
-          <div>
-          <Button secondary className="FooterBtn" onClick={handleLogout}>
-            Logout
-          </Button> 
-          {/* <Button secondary className="FooterBtn">Profile</Button> */}
-          </div>
-        ) : null}
-      </div>
+      <div style={{ textAlign: "center" }}></div>
       <small>Powered by IBM Watson and Pushshift API. Brinton Reed 2021.</small>
     </div>
   );
