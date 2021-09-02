@@ -35,6 +35,18 @@ right:0;
   font-size:150%;
 }
 
+.p {
+  margin-bottom: 0px
+}
+
+#userIcon {
+  /* float:right */
+  position: absolute;
+  top: 20;
+  right: 0;
+  margin-right: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

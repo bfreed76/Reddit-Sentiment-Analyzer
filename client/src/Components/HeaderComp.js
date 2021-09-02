@@ -1,15 +1,18 @@
 import React from "react";
-import {Icon, Header} from "semantic-ui-react"
+import { Icon, Header } from "semantic-ui-react";
 
 const HeaderComp = () => {
   return (
     <div>
       <Header as="h1" textAlign="center">
         <Header.Content>
-          Welcome to r/Emo 
-          <Icon name="reddit" />
+        <div>
+          <Icon name="reddit" />        
+          <big>Emot/r</big>
+           <Icon id="userIcon" name="user outline" />
+        </div>
         </Header.Content>
-        {/* <Icon name="reddit" /> */}
+
       </Header>
     </div>
   );
