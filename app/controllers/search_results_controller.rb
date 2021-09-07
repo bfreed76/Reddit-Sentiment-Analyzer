@@ -1,3 +1,5 @@
+require 'httparty'
+
 class SearchResultsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     
@@ -9,6 +11,15 @@ class SearchResultsController < ApplicationController
     def show
         search_result = find_search_results
         render json: search_result
+    end
+
+    def get_reddit
+        response = HTTParty.get("https://api.pushshift.io/reddit/search/comment/?q=science&subreddit=askscience")
+        if response.code == 200
+            res = response.parsed_response
+            render json: res
+        end
+        byebug
     end
 
     private

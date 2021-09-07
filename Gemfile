@@ -44,3 +44,6 @@ gem "active_model_serializers", "~> 0.10.12"
 
 # Validates email submissions
 gem 'email_validator'  
+
+# Enables simple backend fetching
+gem 'httparty'

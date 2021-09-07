@@ -20,9 +20,27 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // console.log(sUsername, subreddit, searchTerms, searchTarget);
-    console.log(pushShiftURL);
-  };
+    // console.log(pushShiftURL);
+   const postObj = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          url: pushShiftURL,
+          sUsername,
+          subreddit,
+          searchTerms
+        }),
+      };
+      fetch("/reddit", postObj)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          // window.location.reload();
+        })
+        .catch((err) => console.log("reddit get err = ", err));
+    };
 
   const handleCheck = (e) => {
     setSearchTarget(e.target.value);
