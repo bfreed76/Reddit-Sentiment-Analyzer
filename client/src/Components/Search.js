@@ -5,17 +5,37 @@ const Search = () => {
   const [sUsername, setSUsername] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState(true);
+  const [searchTarget, setSearchTarget] = useState("submission");
 
-const handleSearch = (e) => {
-    e.preventDefault()
-    console.log(sUsername, subreddit, searchTerms)
-}
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(sUsername, subreddit, searchTerms, searchTarget);
+  };
+
+  const handleCheck = (e) => {
+    setSearchTarget(e.target.value);
+  };
 
   return (
     <Form onSubmit={handleSearch}>
       <h2>Search Reddit to discover emotional stuff</h2>
       <Form.Field>
-        <>Show: </> <Checkbox label="Comments" checked="true" /> <Checkbox label="Posts" />
+        <Checkbox
+          label="Comments"
+          radio
+          id="comment"
+          value="comment"
+          checked={searchTarget === "comment"}
+          onChange={handleCheck}
+        />
+        <Checkbox
+          label="Submissions"
+          radio
+          id="submission"
+          value="submission"
+          checked={searchTarget == "submission"}
+          onChange={handleCheck}
+        />
       </Form.Field>
       <Form.Field>
         <Input

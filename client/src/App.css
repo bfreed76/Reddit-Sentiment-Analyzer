@@ -4,7 +4,7 @@
 
 .App {
   text-align: center;
-  /* max-width: 450px; */
+  max-width: 600px;
   vertical-align: center;
   padding: 10px;
 }
@@ -41,11 +41,11 @@ right:0;
 }
 
 #userIcon {
-  /* float:right */
-  position: absolute;
+  float: right;
+  /* position: absolute;
   top: 20;
   right: 0;
-  margin-right: 10px;
+  margin-right: 10px; */
 }
 
 @keyframes App-logo-spin {

@@ -31,7 +31,6 @@ const Signup = () => {
     }
 
   return (
-    // Username, email and password required!
     <div>
       <Form onSubmit={handleSignup}>
         <Form.Field>

@@ -6,7 +6,7 @@ import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
-import Header from "./Components/HeaderComp";
+import HeaderComp from "./Components/HeaderComp";
 import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     findMe();
-  }, []); // NOT WORKING ON REFRESH!!
+  }, []); 
 
   const findMe = () => {
     fetch("/me")
@@ -110,10 +110,10 @@ const App = () => {
   });
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <div className="App">
         <br></br>
-        <Header handleLogout={handleLogout}/>
+        <HeaderComp handleLogout={handleLogout}/>
         <hr></hr>
         <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
