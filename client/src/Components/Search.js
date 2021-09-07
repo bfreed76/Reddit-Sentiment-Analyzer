@@ -6,10 +6,22 @@ const Search = () => {
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState(true);
   const [searchTarget, setSearchTarget] = useState("submission");
+  let pushShiftURL =
+    "https://api.pushshift.io/reddit/search/" +
+    searchTarget +
+    "/?q=" +
+    searchTerms +
+    "&subreddit=" +
+    subreddit +
+    "&author=" +
+    sUsername +
+    "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
+    "&size=100";
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(sUsername, subreddit, searchTerms, searchTarget);
+    // console.log(sUsername, subreddit, searchTerms, searchTarget);
+    console.log(pushShiftURL);
   };
 
   const handleCheck = (e) => {
