@@ -16,7 +16,8 @@ const Search = () => {
     "&author=" +
     sUsername +
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
-    "&size=" +"1";
+    "&size=" +
+    "1";
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -29,18 +30,18 @@ const Search = () => {
         url: pushShiftURL,
         sUsername,
         subreddit,
-        searchTerms
+        searchTerms,
       }),
     };
     fetch("/reddit", postObj)
-    .then((res) => res.json())
-    .then((res) => {
-      // console.log(res);
-      // window.location.reload();
-      console.log(pushShiftURL);
-        })
-        .catch((err) => console.log("reddit get err = ", err));
-    };
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        // window.location.reload();
+        console.log(pushShiftURL);
+      })
+      .catch((err) => console.log("reddit get err = ", err));
+  };
 
   const handleCheck = (e) => {
     setSearchTarget(e.target.value);

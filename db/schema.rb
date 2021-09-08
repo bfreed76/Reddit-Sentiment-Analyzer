@@ -11,70 +11,68 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_08_26_155633) do
-
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "authors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'authors', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "results_joins", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "search_term_id"
-    t.integer "subreddit_id"
-    t.integer "author_id"
-    t.integer "days_before"
-    t.integer "days_after"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'results_joins', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'search_term_id'
+    t.integer 'subreddit_id'
+    t.integer 'author_id'
+    t.integer 'days_before'
+    t.integer 'days_after'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "search_results", force: :cascade do |t|
-    t.integer "results_join_id"
-    t.text "result_text"
-    t.float "anger"
-    t.float "disgust"
-    t.float "fear"
-    t.float "joy"
-    t.float "sadness"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'search_results', force: :cascade do |t|
+    t.integer 'results_join_id'
+    t.text 'result_text'
+    t.float 'anger'
+    t.float 'disgust'
+    t.float 'fear'
+    t.float 'joy'
+    t.float 'sadness'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "search_terms", force: :cascade do |t|
-    t.text "search_term"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'search_terms', force: :cascade do |t|
+    t.text 'search_term'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "subreddits", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'subreddits', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "user_posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "post_content"
-    t.float "sadness"
-    t.float "joy"
-    t.float "fear"
-    t.float "disgust"
-    t.float "anger"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'user_posts', force: :cascade do |t|
+    t.integer 'user_id'
+    t.string 'post_content'
+    t.float 'sadness'
+    t.float 'joy'
+    t.float 'fear'
+    t.float 'disgust'
+    t.float 'anger'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "profile_pic"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'username'
+    t.string 'email'
+    t.string 'profile_pic'
+    t.string 'password_digest'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
-
 end

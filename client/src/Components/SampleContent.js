@@ -12,7 +12,7 @@ const SampleContent = () => {
       <Image src={SampleTopContent} fluid />
 
       <h1>Login to see more!</h1>
-    <LoginOrSignup />
+      <LoginOrSignup />
     </div>
   );
 };

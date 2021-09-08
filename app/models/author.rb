@@ -1,3 +1,3 @@
 class Author < ApplicationRecord
-    has_many :result_joins
+  has_many :result_joins
 end

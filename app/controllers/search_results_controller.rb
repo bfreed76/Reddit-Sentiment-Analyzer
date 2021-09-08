@@ -1,13 +1,48 @@
 require 'httparty'
-include IBMWatson
-require "json"
-require "ibm_watson/authenticators"
-require "ibm_watson/tone_analyzer_v3"
-
 
 class SearchResultsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    
+    require "ibm_watson/authenticators"
+    require "ibm_watson/natural_language_understanding_v1"
+    include IBMWatson
+
+    def initialize
+        authenticator = Authenticators::IamAuthenticator.new(
+            apikey: ENV["NATURAL_LANGUAGE_UNDERSTANDING_APIKEY"]
+            )
+        # creates new instance of NLU
+        natural_language_understanding = NaturalLanguageUnderstandingV1.new(
+            version: "2021-08-01",
+            authenticator: authenticator
+            )
+        # provides service URL
+        natural_language_understanding.service_url = ENV["NATURAL_LANGUAGE_UNDERSTANDING_URL"]
+        
+        @nlu = natural_language_understanding
+    end
+
+    def get_reddit
+        # response = HTTParty.get(params[:url])
+        # if response.code == 200
+
+            # data = response.parsed_response
+            response = @nlu.analyze(
+                text: params[:url],
+                features: {
+                    entities: {
+                        emotion: true,
+                        sentiment: true,
+                        limit: 2
+                    }
+                }
+                )
+                
+                results = JSON.pretty_generate(response.result)
+                render json: results 
+                byebug
+        # end
+        #3 if statements here, save new to tables
+    end
     
     def index
         search_results = SearchResult.all
@@ -18,53 +53,23 @@ class SearchResultsController < ApplicationController
         search_result = find_search_results
         render json: search_result
     end
-    
-    
-    def get_reddit
-        response = HTTParty.get(params[:url])
-        if response.code == 200
-            res = response.parsed_response
 
-            authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
-            apikey: "{iam_api_key}"
-            )
-        
-            tone_analyzer = IBMWatson::ToneAnalyzerV3.new(
-            authenticator: authenticator,
-            version: "2017-09-21"
-            )
-        
-            tone_analyzer.service_url = "{service_url}"
+  private
 
-            results = puts JSON.pretty_generate(tone_analyzer.tone(
-                tone_input: res,
-                content_type: "text/plain",
-                sentences: nil, tones: nil, content_language: nil, accept_language: nil
-                    ).result)
-            byebug
-                render json: results
-            end
-            #3 if statements here, save new to tables
-        end
-        
-        private
-        
-        # def watson_results
-        #     response = HTTParty.post({watson/v1/analyze, body: {url: params[:url]})
-        #     if response.code == 200
-        #         res = response.parsed_response
-        #         byebug
-        #         render json: res
-        #     end
-        # end
+  # def watson_results
+  #     response = HTTParty.post({watson/v1/analyze, body: {url: params[:url]})
+  #     if response.code == 200
+  #         res = response.parsed_response
+  #         byebug
+  #         render json: res
+  #     end
+  # end
 
-        def find_search_results
-            SearchResult.find_by(id: params[:id]) 
-    end
+  def find_search_results
+    SearchResult.find_by(id: params[:id])
+  end
 
-    def render_not_found_response
-        render json: { error: "Record not found" }, status: :not_found
-    end
-
-
+  def render_not_found_response
+    render json: { error: 'Record not found' }, status: :not_found
+  end
 end

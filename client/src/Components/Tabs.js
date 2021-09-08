@@ -9,6 +9,6 @@ import { Tab } from "semantic-ui-react";
 //   { menuItem: "Search", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
 // ];
 
-const Tabs = () => null ;
+const Tabs = () => null;
 
 export default Tabs;

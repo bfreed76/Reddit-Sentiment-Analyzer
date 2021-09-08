@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     findMe();
-  }, []); 
+  }, []);
 
   const findMe = () => {
     fetch("/me")
@@ -110,10 +110,10 @@ const App = () => {
   });
 
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <div className="App">
         <br></br>
-        <HeaderComp handleLogout={handleLogout}/>
+        <HeaderComp handleLogout={handleLogout} />
         <hr></hr>
         <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
@@ -124,9 +124,7 @@ const App = () => {
           <Route
             exact
             path="/profile"
-            render={(handleLogout) => (
-              <Profile {...handleLogout}/>
-            )} 
+            render={(handleLogout) => <Profile {...handleLogout} />}
           />
         </Switch>
         <Footer handleLogout={handleLogout} />
