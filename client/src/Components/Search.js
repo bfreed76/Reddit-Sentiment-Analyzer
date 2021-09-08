@@ -16,28 +16,28 @@ const Search = () => {
     "&author=" +
     sUsername +
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
-    "&size=100";
+    "&size=" +"1";
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // console.log(pushShiftURL);
-   const postObj = {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          url: pushShiftURL,
-          sUsername,
-          subreddit,
-          searchTerms
-        }),
-      };
-      fetch("/reddit", postObj)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          // window.location.reload();
+    const postObj = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        url: pushShiftURL,
+        sUsername,
+        subreddit,
+        searchTerms
+      }),
+    };
+    fetch("/reddit", postObj)
+    .then((res) => res.json())
+    .then((res) => {
+      // console.log(res);
+      // window.location.reload();
+      console.log(pushShiftURL);
         })
         .catch((err) => console.log("reddit get err = ", err));
     };

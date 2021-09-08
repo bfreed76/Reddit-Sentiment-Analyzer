@@ -47,3 +47,5 @@ gem 'email_validator'
 
 # Enables simple backend fetching
 gem 'httparty'
+
+gem 'ibm_watson'
