@@ -1,4 +1,5 @@
 require 'httparty'
+require 'ibm_watson'
 
 class SearchResultsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
@@ -14,12 +15,13 @@ class SearchResultsController < ApplicationController
     end
 
     def get_reddit
-        response = HTTParty.get("https://api.pushshift.io/reddit/search/comment/?q=science&subreddit=askscience")
+        response = HTTParty.get(params[:url])
         if response.code == 200
             res = response.parsed_response
+            # byebug
             render json: res
         end
-        byebug
+        #3 if statements there, save new to table
     end
 
     private
@@ -31,4 +33,14 @@ class SearchResultsController < ApplicationController
     def render_not_found_response
         render json: { error: "Record not found" }, status: :not_found
     end
+
+    def search_watson
+        response = HTTParty.post({watson/v1/analyze, body: {url: params[:url]})
+        if response.code == 200
+            res = response.parsed_response
+            byebug
+            render json: res
+        end
+    end
+
 end
