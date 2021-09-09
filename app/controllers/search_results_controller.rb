@@ -25,14 +25,13 @@ class SearchResultsController < ApplicationController
         response = HTTParty.get(params[:url])
         # if response.code == 200
         url = (params[:url])
-        searchTerms = (params[:searchTerms]).split()
-            data = response.parsed_response
-            d = data["data"]
-            m = d.map {|b| b["body"]}
-            # byebug
+        searchTerms = (params[:searchTerms]).gsub('"',"").split()
+            res = response.parsed_response
+            data = res["data"]
+            data_map = data.map {|entry| entry["body"]}
+
             watson = @nlu.analyze(
-                # url: url,
-                text: "#{m}",
+                text: "#{data_map}",
                 features: {
                     sentiment: {document: true},
                     emotion: {

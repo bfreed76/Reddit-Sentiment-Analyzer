@@ -5,8 +5,9 @@ const Search = () => {
   const [sUsername, setSUsername] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState(true);
-  const [results, setResults] = useState("")
-  const [overallEmotion, setOverallEmotion] = useState("")
+  const [targetTerms, settargetTerms] = useState("")
+  const [overallEmo, setOverallEmo] = useState("")
+  const [overallSent, setOverallSent] = useState("")
   const [searchTarget, setSearchTarget] = useState("comment");
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
@@ -40,8 +41,8 @@ const Search = () => {
       .then((res) => {
         console.log(pushShiftURL);
         console.log(res);
-        setOverallEmotion(res.emotion.document.emotion)
-        setResults(res.analyzed_text)
+        // setOverallEmotion(res.emotion.document.emotion)
+        // setResults(res.analyzed_text)
         // debugger
 
         // window.location.reload(); OR HISTORY PUSH
