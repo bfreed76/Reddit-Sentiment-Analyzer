@@ -22,24 +22,34 @@ class SearchResultsController < ApplicationController
     end
 
     def get_reddit
-        # response = HTTParty.get(params[:url])
+        response = HTTParty.get(params[:url])
         # if response.code == 200
         url = (params[:url])
         targs = (params[:searchTerms])
-            # data = response.parsed_response
+            data = response.parsed_response
 
             response = @nlu.analyze(
                 url: url,
-                features: {emotion: {
-                    document: true
-                    }
+                features: {
+                    emotion: {
+                        document: true,
+                        targets: [
+                            "#{targs}"
+                        ]
+                    },
+                    sentiment: {
+                        targets: [
+                            "trump"
+                        ],
+                    },
+                    # entities: {sentiment: true, limit: 1}
                 },
                 return_analyzed_text: true,
             )
                 
             results = JSON.pretty_generate(response.result)
             render json: results 
-
+                # byebug
         # end
         #3 if statements here, save new to tables
     end

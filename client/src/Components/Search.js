@@ -6,6 +6,7 @@ const Search = () => {
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState(true);
   const [results, setResults] = useState("")
+  const [overallEmotion, setOverallEmotion] = useState("")
   const [searchTarget, setSearchTarget] = useState("comment");
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
@@ -18,7 +19,7 @@ const Search = () => {
     sUsername +
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
     "&size=" +
-    "3";
+    "1";
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -39,7 +40,9 @@ const Search = () => {
       .then((res) => {
         console.log(pushShiftURL);
         console.log(res);
-        setResults(res)
+        setOverallEmotion(res.emotion.document.emotion)
+        setResults(res.analyzed_text)
+        // debugger
 
         // window.location.reload(); OR HISTORY PUSH
       })

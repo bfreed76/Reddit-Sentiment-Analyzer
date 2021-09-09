@@ -52,3 +52,5 @@ gem 'httparty'
 gem 'ibm_watson'
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'rufo'
