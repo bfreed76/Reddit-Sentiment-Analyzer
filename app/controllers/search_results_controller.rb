@@ -25,31 +25,25 @@ class SearchResultsController < ApplicationController
         response = HTTParty.get(params[:url])
         # if response.code == 200
         url = (params[:url])
-        targs = (params[:searchTerms])
+        searchTerms = (params[:searchTerms]).split()
             data = response.parsed_response
-
-            response = @nlu.analyze(
-                url: url,
+            d = data["data"]
+            m = d.map {|b| b["body"]}
+            # byebug
+            watson = @nlu.analyze(
+                # url: url,
+                text: "#{m}",
                 features: {
+                    sentiment: {document: true},
                     emotion: {
                         document: true,
-                        targets: [
-                            "#{targs}"
-                        ]
+                        targets: searchTerms}
                     },
-                    sentiment: {
-                        targets: [
-                            "trump"
-                        ],
-                    },
-                    # entities: {sentiment: true, limit: 1}
-                },
-                return_analyzed_text: true,
+                return_analyzed_text: true, 
             )
                 
-            results = JSON.pretty_generate(response.result)
+            results = JSON.pretty_generate(watson.result)
             render json: results 
-                # byebug
         # end
         #3 if statements here, save new to tables
     end

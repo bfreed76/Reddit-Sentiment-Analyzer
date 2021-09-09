@@ -19,7 +19,7 @@ const Search = () => {
     sUsername +
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
     "&size=" +
-    "1";
+    "3";
 
   const handleSearch = (e) => {
     e.preventDefault();
