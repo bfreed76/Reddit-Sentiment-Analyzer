@@ -123,9 +123,9 @@ sear1 =
     {
       results_join_id: r1.id,
       result_text: 'Testing 1',
-      anger: 0.2,
-      disgust: 0.5,
-      fear: 0.4,
+      emo_doc: 'this is just a test',
+      sent_doc: 'this is just a test 2',
+      emo_search: 'this is just a test 3',
       joy: 0.9,
       sadness: 0.3
     }
@@ -135,9 +135,9 @@ sear2 =
     {
       results_join_id: r2.id,
       result_text: 'Testing 2',
-      anger: 0.99,
-      disgust: 0.3,
-      fear: 0.4,
+      emo_doc: 'this is just a test',
+      sent_doc: 'this is just a test 2',
+      emo_search: 'this is just a test 3',
       joy: 0.5,
       sadness: 0.4
     }
@@ -147,9 +147,9 @@ sear3 =
     {
       results_join_id: r3.id,
       result_text: 'Testing 3',
-      anger: 0.4,
-      disgust: 0.3,
-      fear: 0.2,
+      emo_doc: 'this is just a test',
+      sent_doc: 'this is just a test 2',
+      emo_search: 'this is just a test 3',
       joy: 0.1,
       sadness: 0.9
     }
@@ -159,9 +159,9 @@ sear4 =
     {
       results_join_id: r3.id,
       result_text: 'Testing 4',
-      anger: 0.3,
-      disgust: 0.1,
-      fear: 0.1,
+      emo_doc: 'this is just a test',
+      sent_doc: 'this is just a test 2',
+      emo_search: 'this is just a test 3',
       joy: 0.2,
       sadness: 0.8
     }
@@ -171,9 +171,9 @@ sear5 =
     {
       results_join_id: r4.id,
       result_text: 'Testing 5',
-      anger: 0.12,
-      disgust: 0.5,
-      fear: 0.3,
+      emo_doc: 'this is just a test',
+      sent_doc: 0.5,
+      emo_search: 0.3,
       joy: 0.2,
       sadness: 0.22
     }

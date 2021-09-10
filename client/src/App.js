@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
+import ResultsContainer from "./Components/ResultsContainer"
 import SampleContent from "./Components/SampleContent";
 import {
   BrowserRouter,
@@ -121,6 +122,7 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/results" component={ResultsContainer} />
           <Route
             exact
             path="/profile"

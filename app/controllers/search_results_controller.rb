@@ -22,14 +22,16 @@ class SearchResultsController < ApplicationController
     end
 
     def get_reddit
+        # GETS data from pushshift API
         response = HTTParty.get(params[:url])
-        # if response.code == 200
-        url = (params[:url])
         searchTerms = (params[:searchTerms]).gsub('"',"").split()
-            res = response.parsed_response
+        res = response.parsed_response
+            # Transforms data before sending to Watson and DB
             data = res["data"]
             data_map = data.map {|entry| entry["body"]}
-
+            data_str = data_map.to_s
+            
+            # GETS analysis from Watson NLU
             watson = @nlu.analyze(
                 text: "#{data_map}",
                 features: {
@@ -38,14 +40,31 @@ class SearchResultsController < ApplicationController
                         document: true,
                         targets: searchTerms}
                     },
-                return_analyzed_text: true, 
-            )
-                
-            results = JSON.pretty_generate(watson.result)
-            render json: results 
-        # end
-        #3 if statements here, save new to tables
+                    return_analyzed_text: true, 
+                    ) 
+
+        results = JSON.pretty_generate(watson.result) 
+        
+        #find_or_create_by
+        if Subreddit.where(:name => params[:subreddit]).first_or_create
+            if Author.where(:name => params[:sUsername]).first_or_create
+                if SearchTerm.where(:search_term => params[:searchTerms]).first_or_create
+                    if SearchResult.where(:result_text => data_str).first_or_create
+                    end
+                end
+            end
+        end
+
+        # Create hash from variables! 
+
+        # if SearchResult.where(:emo_doc => watson.result["emotion"]["document"]).first_or_create
+        # if SearchResult.where(:sent_doc => watson.result["sentiment"]["document"]).first_or_create
+        # if SearchResult.where(:emo_search => watson.result["emotion"]["targets"]).first_or_create
+
+    
+        render json: results
     end
+
     
     def index
         search_results = SearchResult.all

@@ -12,6 +12,8 @@ Rails
 
     # Remember to restrict routes as a last step!
 
+    get '/searches', to: 'search_results#index'
+
     get '/me', to: 'users#me'
     post '/signup', to: 'users#create'
 
