@@ -24,7 +24,6 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const context = useContext(Context);
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
 
   useEffect(() => {

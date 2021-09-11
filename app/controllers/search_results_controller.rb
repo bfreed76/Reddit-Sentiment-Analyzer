@@ -46,6 +46,7 @@ class SearchResultsController < ApplicationController
                     
                     #Save all data to DB
 
+                    user = params[:user]["username"]
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
@@ -62,6 +63,7 @@ class SearchResultsController < ApplicationController
                     SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
                     
                     results = {
+                            user: user,
                             author: auth,
                             subreddit: subr,
                             searchTerms: sear,
@@ -74,7 +76,6 @@ class SearchResultsController < ApplicationController
                     render json: results
 
                     # byebug
-                         # Create hash from variables! 
                         # render json: {results: {"test": "You got it!"}
     end
 

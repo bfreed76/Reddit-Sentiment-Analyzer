@@ -1,18 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import { Context } from "./context/Context";
+import { Context } from "../context/Context";
 
 const Search = () => {
   const [sUsername, setSUsername] = useState("");
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState(true);
-  const [targetTerms, setTargetTerms] = useState("");
-  const [overallEmo, setOverallEmo] = useState("");
-  const [overallSent, setOverallSent] = useState("");
   const [searchTarget, setSearchTarget] = useState("comment");
-  const context = useContext(Context);
-  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
+  const { user, results, setResults} = useContext(Context);
   const history = useHistory();
 
   let pushShiftURL =
@@ -28,32 +24,30 @@ const Search = () => {
     "&size=" +
     "3";
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const postObj = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        user: user,
-        url: pushShiftURL,
-        sUsername,
-        subreddit,
-        searchTerms,
-      }),
-    };
+    const handleSearch = (e) => {
+      e.preventDefault();
+      const postObj = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          user: user,
+          url: pushShiftURL,
+          sUsername,
+          subreddit,
+          searchTerms,
+        }),
+      };
     fetch("/reddit", postObj)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(pushShiftURL);
-        console.log(res);
-        setOverallEmo(res.emotion.document.emotion);
-        setOverallSent(res.sentiment.document);
-        setTargetTerms(res.emotion.targets);
-        history.push("/results");
-      })
-      .catch((err) => console.log("reddit get err = ", err));
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(pushShiftURL);
+      console.log(res);
+      setResults(res)
+      history.push("/results");
+    })
+    .catch((err) => console.log("reddit get err = ", err));
   };
 
   const handleCheck = (e) => {
