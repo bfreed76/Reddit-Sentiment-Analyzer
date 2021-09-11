@@ -49,24 +49,31 @@ class SearchResultsController < ApplicationController
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
-                    sr1 = SearchResult.find_or_create_by(sent_doc: 
-                    # watson.result["sentiment"]["document"].to_s
-                    "Watson sentiment document test")
-                    sr2 = SearchResult.find_or_create_by(
-                        # emo_doc: watson.result["emotion"]["document"].to_s
-                        "Watson emotion document")
-                    sr3 = SearchResult.find_or_create_by(
-                        # emo_search: watson.result["emotion"]["targets"].to_s
-                        "Watson emotion targets")
-
-                    newResJoin = ResultsJoin.create(user_id: "testmelater!", search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
-
-                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: sr2, sent_doc: sr1, emo_search: sr3)
                     
+                    sentDoc = "SENTDOC"
+                    # watson.result["sentiment"]["document"].to_s
+                    emoDoc = "EMODOC"
+                    # watson.result["emotion"]["document"].to_s
+                    emoTarg = "EMOTARG"
+                    # watson.result["emotion"]["targets"].to_s
 
+                    newResJoin = ResultsJoin.create(user_id: 1, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
+
+                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
+                    
+                    results = {
+                            author: auth,
+                            subreddit: subr,
+                            searchTerms: sear,
+                            sentimentDocument: sentDoc,
+                            emotionDocument: emoDoc,
+                            emotionTarget: emoTarg,
+                            data: data
+                        }
 
                     render json: results
-                    byebug
+
+                    # byebug
                          # Create hash from variables! 
                         # render json: {results: {"test": "You got it!"}
     end
