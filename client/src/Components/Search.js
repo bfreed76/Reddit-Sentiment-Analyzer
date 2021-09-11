@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import { Context } from "./context/Context";
 
 const Search = () => {
   const [sUsername, setSUsername] = useState("");
@@ -10,7 +11,10 @@ const Search = () => {
   const [overallEmo, setOverallEmo] = useState("");
   const [overallSent, setOverallSent] = useState("");
   const [searchTarget, setSearchTarget] = useState("comment");
+  const context = useContext(Context);
+  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
   const history = useHistory();
+
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
     searchTarget +
@@ -32,6 +36,7 @@ const Search = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
+        user: user,
         url: pushShiftURL,
         sUsername,
         subreddit,

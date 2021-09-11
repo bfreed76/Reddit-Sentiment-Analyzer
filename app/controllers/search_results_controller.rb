@@ -26,43 +26,49 @@ class SearchResultsController < ApplicationController
         response = HTTParty.get(params[:url])
         searchTerms = (params[:searchTerms]).gsub('"',"").split()
         res = response.parsed_response
-            # Transforms data before sending to Watson and DB
+            # Transforms pushshift data before sending to Watson and DB
             data = res["data"]
             data_map = data.map {|entry| entry["body"]}
             data_str = data_map.to_s
-            
             # GETS analysis from Watson NLU
-            watson = @nlu.analyze(
-                text: "#{data_map}",
-                features: {
-                    sentiment: {document: true},
-                    emotion: {
-                        document: true,
-                        targets: searchTerms}
-                    },
-                    return_analyzed_text: true, 
-                    ) 
+            # watson = @nlu.analyze(
+            #     text: "#{data_map}",
+            #     features: {
+            #         sentiment: {document: true},
+            #         emotion: {
+            #             document: true,
+            #             targets: searchTerms}
+            #         },
+            #         return_analyzed_text: true, 
+            #         ) 
+                    
+            #         results = JSON.pretty_generate(watson.result) 
+                    
+                    #Save all data to DB
 
-        results = JSON.pretty_generate(watson.result) 
-        
-        #find_or_create_by
-        if Subreddit.where(:name => params[:subreddit]).first_or_create
-            if Author.where(:name => params[:sUsername]).first_or_create
-                if SearchTerm.where(:search_term => params[:searchTerms]).first_or_create
-                    if SearchResult.where(:result_text => data_str).first_or_create
-                    end
-                end
-            end
-        end
+                    subr = Subreddit.find_or_create_by(name: params[:subreddit])
+                    auth = Author.find_or_create_by(name: params[:sUsername])
+                    sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
+                    sr1 = SearchResult.find_or_create_by(sent_doc: 
+                    # watson.result["sentiment"]["document"].to_s
+                    "Watson sentiment document test")
+                    sr2 = SearchResult.find_or_create_by(
+                        # emo_doc: watson.result["emotion"]["document"].to_s
+                        "Watson emotion document")
+                    sr3 = SearchResult.find_or_create_by(
+                        # emo_search: watson.result["emotion"]["targets"].to_s
+                        "Watson emotion targets")
 
-        # Create hash from variables! 
+                    newResJoin = ResultsJoin.create(user_id: "testmelater!", search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
 
-        # if SearchResult.where(:emo_doc => watson.result["emotion"]["document"]).first_or_create
-        # if SearchResult.where(:sent_doc => watson.result["sentiment"]["document"]).first_or_create
-        # if SearchResult.where(:emo_search => watson.result["emotion"]["targets"]).first_or_create
+                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: sr2, sent_doc: sr1, emo_search: sr3)
+                    
 
-    
-        render json: results
+
+                    render json: results
+                    byebug
+                         # Create hash from variables! 
+                        # render json: {results: {"test": "You got it!"}
     end
 
     
