@@ -5,8 +5,8 @@ export const Context = createContext();
 const ContextProvider = (props) => {
   const [user, setUser] = useState({});
   const [loggedin, setLoggedin] = useState(false);
-
-  const store = { user, setUser, loggedin, setLoggedin };
+  const [results, setResults] = useState("")
+  const store = { user, setUser, loggedin, setLoggedin, results, setResults };
   //wrap this around the entire app, similar to BrowserRouter
   //the value prop is where we pass down our global state
 

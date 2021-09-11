@@ -39,7 +39,7 @@ const HeaderComp = ({ handleLogout }) => {
           {loggedin ? (
             <Profile handleLogout={handleLogout} />
           ) : (
-            <LoginOrSignup/>
+            <LoginOrSignup />
           )}
         </div>
       </Transition>

@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   database: Reddit_Sent_development
-  # username: postgres 
+  # username: postgres
   # password: postgres
   # host: localhost
   # port: 3000

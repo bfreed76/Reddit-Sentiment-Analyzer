@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_155633) do
+ActiveRecord::Schema.define(version: 2021_09_10_214534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2021_08_26_155633) do
   create_table "search_results", force: :cascade do |t|
     t.integer "results_join_id"
     t.text "result_text"
-    t.float "anger"
-    t.float "disgust"
-    t.float "fear"
+    t.text "emo_doc"
+    t.text "sent_doc"
+    t.text "emo_search"
     t.float "joy"
     t.float "sadness"
     t.datetime "created_at", precision: 6, null: false

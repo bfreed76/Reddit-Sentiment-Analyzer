@@ -6,11 +6,12 @@ import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
-import Header from "./Components/HeaderComp";
+import HeaderComp from "./Components/HeaderComp";
 import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
+import ResultsContainer from "./Components/ResultsContainer"
 import SampleContent from "./Components/SampleContent";
 import {
   BrowserRouter,
@@ -23,12 +24,11 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const context = useContext(Context);
   const { user, setUser, loggedin, setLoggedin } = useContext(Context);
 
   useEffect(() => {
     findMe();
-  }, []); // NOT WORKING ON REFRESH!!
+  }, []);
 
   const findMe = () => {
     fetch("/me")
@@ -113,7 +113,7 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <br></br>
-        <Header handleLogout={handleLogout}/>
+        <HeaderComp handleLogout={handleLogout} />
         <hr></hr>
         <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
@@ -121,12 +121,11 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/results" component={ResultsContainer} />
           <Route
             exact
             path="/profile"
-            render={(handleLogout) => (
-              <Profile {...handleLogout}/>
-            )} 
+            render={(handleLogout) => <Profile {...handleLogout} />}
           />
         </Switch>
         <Footer handleLogout={handleLogout} />
