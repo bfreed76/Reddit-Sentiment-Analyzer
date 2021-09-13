@@ -13,6 +13,7 @@ import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
 import ResultsContainer from "./Components/ResultsContainer"
 import SampleContent from "./Components/SampleContent";
+import ContextProvider from "./context/Context";
 import {
   BrowserRouter,
   Route,
@@ -24,7 +25,7 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
+  const { user, setUser, loggedin, setLoggedin, results, setResults } = useContext(Context);
 
   useEffect(() => {
     findMe();
@@ -110,6 +111,7 @@ const App = () => {
   });
 
   return (
+    // <ContextProvider>
     <BrowserRouter>
       <div className="App">
         <br></br>
@@ -131,6 +133,7 @@ const App = () => {
         <Footer handleLogout={handleLogout} />
       </div>
     </BrowserRouter>
+    // </ContextProvider>
   );
 };
 

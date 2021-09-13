@@ -39,6 +39,7 @@ class SearchResultsController < ApplicationController
             #             document: true,
             #             targets: searchTerms}
             #         },
+            #         language: "en",
             #         return_analyzed_text: true, 
             #         ) 
                     
@@ -47,26 +48,29 @@ class SearchResultsController < ApplicationController
                     #Save all data to DB
 
                     user = params[:user]["username"]
+                    user_id = params[:user]["id"]
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
                     
-                    sentDoc = "SENTDOC"
-                    # watson.result["sentiment"]["document"].to_s
-                    emoDoc = "EMODOC"
-                    # watson.result["emotion"]["document"].to_s
-                    emoTarg = "EMOTARG"
-                    # watson.result["emotion"]["targets"].to_s
+                    sentDoc = 
+                    "SENTDOC"
+                    # [watson.result["sentiment"]["document"]]
+                    emoDoc = 
+                    "EMODOC"
+                    # watson.result["emotion"]["document"]
+                    emoTarg = 
+                    "EMOTARG"
+                    # watson.result["emotion"]["targets"]
 
-                    newResJoin = ResultsJoin.create(user_id: 1, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
+                    newResJoin = ResultsJoin.create(user_id: user_id, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
 
                     SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
                     
                     results = {
                             user: user,
-                            author: auth,
-                            subreddit: subr,
-                            searchTerms: sear,
+                            author: auth.name,
+                            subreddit: subr.name,
                             sentimentDocument: sentDoc,
                             emotionDocument: emoDoc,
                             emotionTarget: emoTarg,
@@ -91,15 +95,6 @@ class SearchResultsController < ApplicationController
     end
 
   private
-
-  # def watson_results
-  #     response = HTTParty.post({watson/v1/analyze, body: {url: params[:url]})
-  #     if response.code == 200
-  #         res = response.parsed_response
-  #         byebug
-  #         render json: res
-  #     end
-  # end
 
   def find_search_results
     SearchResult.find_by(id: params[:id])
