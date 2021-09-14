@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { List } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
+import ResultsHeader from "./ResultsHeader";
+import { Container } from "semantic-ui-react";
 import {
   LineChart,
   Line,
@@ -80,59 +82,25 @@ const ResultsContainer = () => {
     },
   ];
 
-  const data = [
-    {
-      name: "Block A",
-      l1: 4000,
-      l2: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Block B",
-      l1: 3000,
-      l2: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Block C",
-      l1: 2000,
-      l2: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Block D",
-      l1: 2780,
-      l2: 3908,
-      amt: 2000,
-    },
-  ];
-
-  const renderResults = () => {
-    return (
-      <>
-        {/* <List.Item> {user.email} </List.Item>
-          <List.Item> {results.user} </List.Item>
-          <List.Item> {results.author} </List.Item>
-          <List.Item> {results.subreddit} </List.Item> */}
-        {/* <List.Item> {results.sentimentDocument[0].score} </List.Item> */}
-        {/* <List.Item> {results.sentimentDocument[0].label} </List.Item> */}
-      </>
-    );
-  };
+//   const renderResults = () => {
+//     return (
+//       <>
+//         <List.Item> {user.email} </List.Item>
+//           <List.Item> {results.user} </List.Item>
+//           <List.Item> {results.author} </List.Item>
+//           <List.Item> {results.subreddit} </List.Item> }
+//         <List.Item> {results.sentimentDocument[0].score} </List.Item>
+//         <List.Item> {results.sentimentDocument[0].label} </List.Item>
+//       </>
+//     );
+//   };
 
   return (
     <div>
       {/* {!!results ? renderResults() : <h3>"Results not availalbe" </h3>} */}
-      <List bulleted>
-        <List.Item> {sentDoc.label} </List.Item>
-        <List.Item> {sentDoc.score} </List.Item>
-        <List.Item> {emoDoc.emotion.anger} </List.Item>
-        {/* <List.Item> { results.emotionDocument[0].} </List.Item> */}
-        {/* <List.Item> { results.emotionDocument[0].} </List.Item> */}
-        {/* <List.Item> { results.emotionTarget} </List.Item> */}
-      </List>
-        <EmoDocResults data={data} emoDoc={emoDoc.emotion}></EmoDocResults>
-        <EmoTargResults></EmoTargResults>
+
+        <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc.emotion} />
+
     </div>
   );
 };
