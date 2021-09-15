@@ -11,6 +11,11 @@ class ResultsJoinsController < ApplicationController
     render json: results_join
   end
 
+  def top_content
+    last_results = ResultsJoin.all.limit(20).sort_by(&:created_at)
+    render json: last_results
+  end
+
   private
 
   def find_results_join

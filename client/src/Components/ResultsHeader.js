@@ -26,13 +26,13 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
             <Table.Cell>Searching:</Table.Cell>
             <Table.Cell>{capitalize(searchTarget)}s</Table.Cell>
             <Table.Cell>Reddit User:</Table.Cell>
-            <Table.Cell>{sUsername}u/Nasty</Table.Cell>
+            <Table.Cell>{sUsername}</Table.Cell>
           </Table.Row>
           <Table.Row textAlign='center'>
             <Table.Cell>Subreddit:</Table.Cell>
-            <Table.Cell>{subreddit}conservative</Table.Cell>
+            <Table.Cell>{subreddit}</Table.Cell>
             <Table.Cell>Search Term(s):</Table.Cell>
-            <Table.Cell>{searchTerms}Trump Palin</Table.Cell>
+            <Table.Cell>{searchTerms}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

@@ -31,39 +31,42 @@ class SearchResultsController < ApplicationController
             data_map = data.map {|entry| entry["body"]}
             data_str = data_map.to_s
             # GETS analysis from Watson NLU
-            # watson = @nlu.analyze(
-            #     text: "#{data_map}",
-            #     features: {
-            #         sentiment: {document: true},
-            #         emotion: {
-            #             document: true,
-            #             targets: searchTerms}
-            #         },
-            #         language: "en",
-            #         return_analyzed_text: true, 
-            #         ) 
+            watson = @nlu.analyze(
+                text: "#{data_map}",
+                features: {
+                    sentiment: {document: true},
+                    emotion: {
+                        document: true,
+                        targets: searchTerms}
+                    },
+                    language: "en",
+                    return_analyzed_text: true, 
+                    ) 
                     
-            #         results = JSON.pretty_generate(watson.result) 
+                    results = JSON.pretty_generate(watson.result) 
                     
                     #Save all data to DB
 
                     user = params[:user]["username"]
-                    user_id = params[:user]["id"]
+                    userId = session[:user_id]
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
                     
                     sentDoc = 
-                    "SENTDOC"
-                    # [watson.result["sentiment"]["document"]]
+                    # "sentDoc"
+                    # "[{\"score\"=>-0.548657, \"label\"=>\"negative\"}]"
+                    watson.result["sentiment"]["document"]
                     emoDoc = 
-                    "EMODOC"
-                    # watson.result["emotion"]["document"]
+                    # "emoDoc"
+                    # "{\"(TEST)emotion\"=>{\"sadness\"=>0.10775, \"joy\"=>0.01927, \"fear\"=>0.058148, \"disgust\"=>0.248551, \"anger\"=>0.24569}}"
+                    watson.result["emotion"]["document"]
                     emoTarg = 
-                    "EMOTARG"
-                    # watson.result["emotion"]["targets"]
+                    # "emoTarg"
+                    # "[{\"(TEST)text\"=>\"trump\", \"emotion\"=>{\"sadness\"=>0.307172, \"joy\"=>0.115704, \"fear\"=>0.096049, \"disgust\"=>0.204234, \"anger\"=>0.270571}}, {\"text\"=>\"bush\", \"emotion\"=>{\"sadness\"=>0.202192, \"joy\"=>0.124439, \"fear\"=>0.130706, \"disgust\"=>0.080181, \"anger\"=>0.161853}}]"
+                    watson.result["emotion"]["targets"]
 
-                    newResJoin = ResultsJoin.create(user_id: user_id, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
+                    newResJoin = ResultsJoin.create(user_id: userId, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
 
                     SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
                     
@@ -79,8 +82,6 @@ class SearchResultsController < ApplicationController
 
                     render json: results
 
-                    # byebug
-                        # render json: {results: {"test": "You got it!"}
     end
 
     

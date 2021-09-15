@@ -24,10 +24,6 @@
   color: #61dafb;
 }
 
-/* .EmoDocResults {
-  display: flex;
-} */
-
 .FooterBtn {
   position: fixed;
   align-items: center;
@@ -49,11 +45,7 @@
 }
 
 #userIcon {
-  float: right;
-  /* position: absolute;
-  top: 20;
-  right: 0;
-  margin-right: 10px; */
+  padding-left: 18%;
 }
 
 @keyframes App-logo-spin {
