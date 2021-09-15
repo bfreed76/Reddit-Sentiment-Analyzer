@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import {
@@ -16,48 +16,39 @@ import {
 } from "recharts";
 
 const EmoDocResults = ({ props, emoDoc }) => {
-  const { user, results } = React.useContext(Context);
+  const { user, results } = useContext(Context);
+
   const data = [
-    { name: "sadness", uv: emoDoc.sadness },
-    { name: "joy", uv: emoDoc.joy },
-    { name: "fear", uv: emoDoc.fear },
-    { name: "disgust", uv: emoDoc.disgust },
-    { name: "anger", uv: emoDoc.anger },
+    { name: "Sadness", uv: emoDoc.sadness },
+    { name: "Joy", uv: emoDoc.joy },
+    { name: "Fear", uv: emoDoc.fear },
+    { name: "Disgust", uv: emoDoc.disgust },
+    { name: "Anger", uv: emoDoc.anger },
   ];
 
-  const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-    return (
-      <text x={x + width / 4} y={y} fill='#666' textAnchor='middle' dy={-6}>{`${value}`}</text>
-    );
-  };
-
   const renderBarChart = (
-      <ResponsiveContainer width="95"> 
-
     <BarChart
       width={340}
       height={250}
       data={data}
       margin={{
-          top: 5,
-          right: 5,
-          left: 5,
-          bottom: 5,
-        }}>
+        top: 5,
+        right: 5,
+        left: 15,
+        bottom: 5,
+      }}>
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='name' />
       <YAxis />
       <Tooltip />
       <Bar dataKey='uv' fill='#8884d8' />
     </BarChart>
-          </ResponsiveContainer>
   );
 
-  return (
-    <div className="emoDocResults">
-          {renderBarChart}
-    </div>
-  );
+  return <div>
+      <p>Overall Emotional Scores </p>
+      {renderBarChart}
+      </div>;
 };
 
 export default EmoDocResults;

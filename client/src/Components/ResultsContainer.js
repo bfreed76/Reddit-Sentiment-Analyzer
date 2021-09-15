@@ -4,7 +4,7 @@ import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 import ResultsHeader from "./ResultsHeader";
-import { Container } from "semantic-ui-react";
+import { Container, Card, Feed } from "semantic-ui-react";
 import {
   LineChart,
   Line,
@@ -58,53 +58,49 @@ const ResultsContainer = () => {
     },
   ];
 
-  const lData = [
+  const items = [
     {
-      author: "_myusername__",
-      body: "The reason the issue feels out of hand despite a different president is because of Trump. A fire is easiest to snuff out when it first appears. The larger the fire gets, the more difficult it is to put out because at some point, the time you spend putting it out",
+      header: "_myusername__",
+      description:
+        "The reason the issue feels out of hand despite a different president is because of Trump. A fire is easiest to snuff out when it first appears. The larger the fire gets, the more difficult it is to put out because at some point, the time you spend putting it out",
       created_utc: 1631565370,
       score: 1,
-      subreddit: "politics",
+      meta: "politics",
     },
     {
-      author: "ThePhildozer89",
-      body: "I feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected therI feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected ther",
+      header: "ThePhildozer89",
+      description:
+        "I feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected therI feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected ther",
       created_utc: 1631565370,
       score: 1,
-      subreddit: "politics",
+      meta: "politics",
     },
     {
-      author: "Marcus_McTavish",
-      body: "How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS? How many peopled decided Trump over Biden bc of BDS?",
+      header: "Marcus_McTavish",
+      description:
+        "How many peopled decided Ty peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS? How many peopled decided Trump over Biden bc of BDS?",
       created_utc: 1631565370,
       score: 1,
-      subreddit: "politics",
+      meta: "politics",
     },
+    {
+        header: "ThePhildozer89",
+        description:
+          "I feel like this door swsdfasdasdfasdfhich party won both when Biden and Trump were elected therI feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected ther",
+        created_utc: 1631565370,
+        score: 1,
+        meta: "politics",
+      },
   ];
 
-//   const renderResults = () => {
-//     return (
-//       <>
-//         <List.Item> {user.email} </List.Item>
-//           <List.Item> {results.user} </List.Item>
-//           <List.Item> {results.author} </List.Item>
-//           <List.Item> {results.subreddit} </List.Item> }
-//         <List.Item> {results.sentimentDocument[0].score} </List.Item>
-//         <List.Item> {results.sentimentDocument[0].label} </List.Item>
-//       </>
-//     );
-//   };
-
   return (
-    <div>
+    <div className='results'>
       {/* {!!results ? renderResults() : <h3>"Results not availalbe" </h3>} */}
 
-        <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc.emotion} />
-
+      <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc.emotion} emoTarg={emoTarg} />
+      <Card.Group items={items} itemsPerRow={1} />
     </div>
   );
 };
-
-
 
 export default ResultsContainer;

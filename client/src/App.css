@@ -24,9 +24,9 @@
   color: #61dafb;
 }
 
-.EmoDocResults {
+/* .EmoDocResults {
   display: flex;
-}
+} */
 
 .FooterBtn {
   position: fixed;
@@ -40,8 +40,12 @@
   font-size: 150%;
 }
 
-.p {
+/* .p {
   margin-bottom: 0px;
+} */
+
+.results {
+  width:500;
 }
 
 #userIcon {
