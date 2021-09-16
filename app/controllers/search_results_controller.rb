@@ -82,8 +82,6 @@ class SearchResultsController < ApplicationController
                         }
 
                     render json: results
-                
-                    # byebug
     end
 
     def index
@@ -99,7 +97,6 @@ class SearchResultsController < ApplicationController
     def top_content
         last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse      
         render json: last_results
-    # byebug
     end
 
   private

@@ -14,7 +14,6 @@ class ResultsJoinsController < ApplicationController
   # def top_content
   #   last_results = ResultsJoin.all.limit(20).sort_by(&:created_at).reverse      
   #   render json: last_results
-  #   # byebug
   # end
 
   private
