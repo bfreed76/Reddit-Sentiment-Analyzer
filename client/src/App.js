@@ -11,20 +11,13 @@ import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
-import ResultsContainer from "./Components/ResultsContainer"
+import ResultsContainer from "./Components/ResultsContainer";
 import SampleContent from "./Components/SampleContent";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  Redirect,
-  matchPath,
-  NavLink,
-} from "react-router-dom";
+import ContextProvider from "./context/Context";
+import { BrowserRouter, Route, Switch, Link, Redirect, matchPath, NavLink } from "react-router-dom";
 
 const App = () => {
-  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
+  const { setUser, loggedin, setLoggedin } = useContext(Context);
 
   useEffect(() => {
     findMe();
@@ -66,7 +59,7 @@ const App = () => {
         key: "top_content",
       },
       render: () => (
-        <Route path="/top_content" exact>
+        <Route path='/top_content' exact>
           <Tab.Pane>
             <div>
               {loggedin ? (
@@ -90,7 +83,7 @@ const App = () => {
         key: "home",
       },
       render: () => (
-        <Route path="/" exact>
+        <Route path='/' exact>
           <Tab.Pane>
             <div>
               {" "}
@@ -110,8 +103,9 @@ const App = () => {
   });
 
   return (
+    // <ContextProvider>
     <BrowserRouter>
-      <div className="App">
+      <div className='App'>
         <br></br>
         <HeaderComp handleLogout={handleLogout} />
         <hr></hr>
@@ -119,18 +113,14 @@ const App = () => {
         <br></br>
         <div></div>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/results" component={ResultsContainer} />
-          <Route
-            exact
-            path="/profile"
-            render={(handleLogout) => <Profile {...handleLogout} />}
-          />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/results' component={ResultsContainer} />
+          <Route exact path='/profile' render={(handleLogout) => <Profile {...handleLogout} />} />
         </Switch>
-        <Footer handleLogout={handleLogout} />
       </div>
     </BrowserRouter>
+    // </ContextProvider>
   );
 };
 

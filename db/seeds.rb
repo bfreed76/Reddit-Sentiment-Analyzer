@@ -54,8 +54,8 @@ r1 =
       search_term_id: st2.id,
       subreddit_id: subr3.id,
       author_id: a2.id,
-      days_before: '3',
-      days_after: ''
+      days_before: '0',
+      days_after: '0'
     }
   )
 r2 =
@@ -65,8 +65,8 @@ r2 =
       search_term_id: st2.id,
       subreddit_id: subr3.id,
       author_id: a2.id,
-      days_before: '2',
-      days_after: '1'
+      days_before: '0',
+      days_after: '0'
     }
   )
 r3 =
@@ -76,8 +76,8 @@ r3 =
       search_term_id: st2.id,
       subreddit_id: subr2.id,
       author_id: a3.id,
-      days_before: '7',
-      days_after: ''
+      days_before: '0',
+      days_after: '0'
     }
   )
 r4 =
@@ -87,8 +87,8 @@ r4 =
       search_term_id: st1.id,
       subreddit_id: subr2.id,
       author_id: a3.id,
-      days_before: '14',
-      days_after: '7'
+      days_before: '0',
+      days_after: '0'
     }
   )
 r5 =
@@ -98,8 +98,8 @@ r5 =
       search_term_id: st3.id,
       subreddit_id: subr1.id,
       author_id: a1.id,
-      days_before: '7',
-      days_after: ''
+      days_before: '0',
+      days_after: '0'
     }
   )
 r6 =
@@ -109,8 +109,8 @@ r6 =
       search_term_id: st1.id,
       subreddit_id: subr1.id,
       author_id: a1.id,
-      days_before: '3',
-      days_after: '1'
+      days_before: '0',
+      days_after: '0'
     }
   )
 
@@ -122,60 +122,60 @@ sear1 =
   SearchResult.create(
     {
       results_join_id: r1.id,
-      result_text: 'Testing 1',
-      emo_doc: 'this is just a test',
-      sent_doc: 'this is just a test 2',
-      emo_search: 'this is just a test 3',
-      joy: 0.9,
-      sadness: 0.3
+      result_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      emo_doc_json: ["emotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}],
+      sent_doc_json: [{"score"=>-0.548657, "label"=>"negative"}],
+      emo_search_json: [{"text"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}],
+      joy: 0,
+      sadness: 0
     }
   )
 sear2 =
   SearchResult.create(
     {
       results_join_id: r2.id,
-      result_text: 'Testing 2',
-      emo_doc: 'this is just a test',
-      sent_doc: 'this is just a test 2',
-      emo_search: 'this is just a test 3',
-      joy: 0.5,
-      sadness: 0.4
+      result_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      emo_doc_json: ["emotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}],
+      sent_doc_json: [{"score"=>-0.548657, "label"=>"negative"}],
+      emo_search_json: [{"text"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}],
+      joy: 0,
+      sadness: 0
     }
   )
 sear3 =
   SearchResult.create(
     {
       results_join_id: r3.id,
-      result_text: 'Testing 3',
-      emo_doc: 'this is just a test',
-      sent_doc: 'this is just a test 2',
-      emo_search: 'this is just a test 3',
-      joy: 0.1,
-      sadness: 0.9
+      result_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      emo_doc_json: ["emotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}],
+      sent_doc_json: [{"score"=>-0.548657, "label"=>"negative"}],
+      emo_search_json: [{"text"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}],
+      joy: 0,
+      sadness: 0
     }
   )
 sear4 =
   SearchResult.create(
     {
       results_join_id: r3.id,
-      result_text: 'Testing 4',
-      emo_doc: 'this is just a test',
-      sent_doc: 'this is just a test 2',
-      emo_search: 'this is just a test 3',
-      joy: 0.2,
-      sadness: 0.8
+      result_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      emo_doc_json: ["emotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}],
+      sent_doc_json: [{"score"=>-0.548657, "label"=>"negative"}],
+      emo_search_json: [{"text"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}],
+      joy: 0,
+      sadness: 0
     }
   )
 sear5 =
   SearchResult.create(
     {
       results_join_id: r4.id,
-      result_text: 'Testing 5',
-      emo_doc: 'this is just a test',
-      sent_doc: 0.5,
-      emo_search: 0.3,
-      joy: 0.2,
-      sadness: 0.22
+      result_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      emo_doc_json: ["emotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}],
+      sent_doc_json: [{"score"=>-0.548657, "label"=>"negative"}],
+      emo_search_json: [{"text"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}],
+      joy: 0,
+      sadness: 0
     }
   )
 

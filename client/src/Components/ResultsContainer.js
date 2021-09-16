@@ -1,33 +1,108 @@
-import React, {useContext} from 'react'
+import React, { useContext } from "react";
+import { List } from "semantic-ui-react";
 import { Context } from "../context/Context";
+import EmoDocResults from "./EmoDocResults";
+import EmoTargResults from "./EmoTargResults";
+import ResultsHeader from "./ResultsHeader";
+import { Container, Card, Feed } from "semantic-ui-react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const ResultsContainer = () => {
-    const { user, results } = useContext(Context);
-    
-    debugger
-    
-    return (
-        <div>
-            RESULTS CARDS HERE
-            {/* 
-            (Header)
-            results.user
-            user.results_joins[user.results_joins.length-1].created_at
-            results.author.name
-            results.subreddit.name
-            results.searchTerms.search_term  (check for search terms)
-            results.sentimentDocument
-            results.emotionDocument
-            results.emotionTarget
+  const { user, results } = React.useContext(Context);
 
-            (Cards)
-            results.data[1].author
-            results.data[1].body
-            results.data[1].score
-            results.data[1].created_utc
-            */}
-        </div>
-    )
-}
+  const sentDoc = {
+    // = results.sentimentDocument[0]
+    score: -0.763437,
+    label: "negative",
+  };
 
-export default ResultsContainer
+  const emoDoc = [
+    {
+    emotion: {
+      sadness: 0.522918,
+      joy: 0.5,
+      fear: 0.5,
+      disgust: 0.5,
+      anger: 0.5,
+    },
+  }
+];
+
+  const emoTarg = [
+    {
+      text: "trump",
+      emotion: {
+        sadness: 0.522918,
+        joy: 0.208687,
+        fear: 0.007476,
+        disgust: 0.099433,
+        anger: 0.318133,
+      },
+    },
+    {
+      text: "biden",
+      emotion: {
+        sadness: 0.526561,
+        joy: 0.143993,
+        fear: 0.034155,
+        disgust: 0.178588,
+        anger: 0.241992,
+      },
+    },
+  ];
+
+  const items = [
+    {
+      header: "_myusername__",
+      description:
+        "The reason the issue feels out of hand despite a different president is because of Trump. A fire is easiest to snuff out when it first appears. The larger the fire gets, the more difficult it is to put out because at some point, the time you spend putting it out",
+      created_utc: 1631565370,
+      score: 1,
+      meta: "politics",
+    },
+    {
+      header: "ThePhildozer89",
+      description:
+        "I feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected therI feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected ther",
+      created_utc: 1631565370,
+      score: 1,
+      meta: "politics",
+    },
+    {
+      header: "Marcus_McTavish",
+      description:
+        "How many peopled decided Ty peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS?How many peopled decided Trump over Biden bc of BDS? How many peopled decided Trump over Biden bc of BDS?",
+      created_utc: 1631565370,
+      score: 1,
+      meta: "politics",
+    },
+    {
+        header: "ThePhildozer89",
+        description:
+          "I feel like this door swsdfasdasdfasdfhich party won both when Biden and Trump were elected therI feel like this door swings both ways though? Regardless of which party won both when Biden and Trump were elected ther",
+        created_utc: 1631565370,
+        score: 1,
+        meta: "politics",
+      },
+  ];
+
+  return (
+    <div className='results'>
+      {/* {!!results ? renderResults() : <h3>"Results not availalbe" </h3>} */}
+
+      <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc} emoTarg={emoTarg} />
+      <Card.Group items={items} itemsPerRow={1} />
+    </div>
+  );
+};
+
+export default ResultsContainer;
