@@ -97,8 +97,7 @@ class SearchResultsController < ApplicationController
     end
 
     def top_content
-        last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse 
-        last_results_joins = ResultsJoin.all.limit(20).sort_by(&:created_at).reverse       
+        last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse      
         render json: last_results
     # byebug
     end
