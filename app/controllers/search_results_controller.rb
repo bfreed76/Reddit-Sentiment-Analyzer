@@ -31,19 +31,20 @@ class SearchResultsController < ApplicationController
             data_map = data.map {|entry| entry["body"]}
             data_str = data_map.to_s
             # GETS analysis from Watson NLU
-            watson = @nlu.analyze(
-                text: "#{data_map}",
-                features: {
-                    sentiment: {document: true},
-                    emotion: {
-                        document: true,
-                        targets: searchTerms}
-                    },
-                    language: "en",
-                    return_analyzed_text: true, 
-                    ) 
+            #!! Watson offline
+            # watson = @nlu.analyze(
+            #     text: "#{data_map}",
+            #     features: {
+            #         sentiment: {document: true},
+            #         emotion: {
+            #             document: true,
+            #             targets: searchTerms}
+            #         },
+            #         language: "en",
+            #         return_analyzed_text: true, 
+            #         ) 
                     
-                    results = JSON.pretty_generate(watson.result) 
+            #         results = JSON.pretty_generate(watson.result) 
                     
                     #Save all data to DB
 
@@ -55,20 +56,20 @@ class SearchResultsController < ApplicationController
                     
                     sentDoc = 
                     # "sentDoc"
-                    # "[{\"score\"=>-0.548657, \"label\"=>\"negative\"}]"
+                    # {{"testscore"=>-0.548657, "label"=>"negative"}}
                     watson.result["sentiment"]["document"]
                     emoDoc = 
                     # "emoDoc"
-                    # "{\"(TEST)emotion\"=>{\"sadness\"=>0.10775, \"joy\"=>0.01927, \"fear\"=>0.058148, \"disgust\"=>0.248551, \"anger\"=>0.24569}}"
+                    # {"testemotion"=>{"sadness"=>0.10775, "joy"=>0.01927, "fear"=>0.058148, "disgust"=>0.248551, "anger"=>0.24569}}
                     watson.result["emotion"]["document"]
                     emoTarg = 
                     # "emoTarg"
-                    # "[{\"(TEST)text\"=>\"trump\", \"emotion\"=>{\"sadness\"=>0.307172, \"joy\"=>0.115704, \"fear\"=>0.096049, \"disgust\"=>0.204234, \"anger\"=>0.270571}}, {\"text\"=>\"bush\", \"emotion\"=>{\"sadness\"=>0.202192, \"joy\"=>0.124439, \"fear\"=>0.130706, \"disgust\"=>0.080181, \"anger\"=>0.161853}}]"
+                    # [{"testtext"=>"biden", "emotion"=>{"sadness"=>0.258686, "joy"=>0.095797, "fear"=>0.162138, "disgust"=>0.446691, "anger"=>0.239035}}]
                     watson.result["emotion"]["targets"]
 
                     newResJoin = ResultsJoin.create(user_id: userId, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
 
-                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
+                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc_json: emoDoc, sent_doc_json: sentDoc, emo_search_json: emoTarg)
                     
                     results = {
                             user: user,
@@ -81,10 +82,10 @@ class SearchResultsController < ApplicationController
                         }
 
                     render json: results
-
+                
+                    # byebug
     end
 
-    
     def index
         search_results = SearchResult.all
         render json: search_results
@@ -93,6 +94,13 @@ class SearchResultsController < ApplicationController
     def show
         search_result = find_search_results
         render json: search_result
+    end
+
+    def top_content
+        last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse 
+        last_results_joins = ResultsJoin.all.limit(20).sort_by(&:created_at).reverse       
+        render json: last_results
+    # byebug
     end
 
   private

@@ -14,10 +14,11 @@ const TopContent = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Top Content: ", data);
-          // setTopContent(data);
+          setTopContent(data);
       })
       .catch((err) => console.log("error =", err));
   };
+
   return (
     <div>
       {topContent.map((item) => {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_214534) do
+ActiveRecord::Schema.define(version: 2021_09_16_173838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2021_09_10_214534) do
     t.float "sadness"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.json "emo_doc_json"
+    t.json "emo_search_json"
+    t.json "sent_doc_json"
   end
 
   create_table "search_terms", force: :cascade do |t|

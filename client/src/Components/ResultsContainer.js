@@ -25,15 +25,17 @@ const ResultsContainer = () => {
     label: "negative",
   };
 
-  const emoDoc = {
+  const emoDoc = [
+    {
     emotion: {
       sadness: 0.522918,
-      joy: 0.208687,
-      fear: 0.007476,
-      disgust: 0.099433,
-      anger: 0.318133,
+      joy: 0.5,
+      fear: 0.5,
+      disgust: 0.5,
+      anger: 0.5,
     },
-  };
+  }
+];
 
   const emoTarg = [
     {
@@ -97,7 +99,7 @@ const ResultsContainer = () => {
     <div className='results'>
       {/* {!!results ? renderResults() : <h3>"Results not availalbe" </h3>} */}
 
-      <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc.emotion} emoTarg={emoTarg} />
+      <ResultsHeader sentDoc={sentDoc} emoDoc={emoDoc} emoTarg={emoTarg} />
       <Card.Group items={items} itemsPerRow={1} />
     </div>
   );

@@ -47,12 +47,16 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
       <p>
         Overall Sentiment Score: {sentDoc.score} ({sentDoc.label})
       </p>
-      <div className='emoDocResults'>
-        <EmoDocResults results={results} emoDoc={emoDoc}></EmoDocResults>
-        {emoTarg.map((targ) => {
-          return <EmoTargResults results={results} targ={targ}></EmoTargResults>;
-        })}
-      </div>
+        {/* <div className='emoDocResults'>
+          <EmoDocResults results={results} emoDoc={emoDoc}></EmoDocResults> */}
+
+          {emoDoc.map((doc) => {
+            return <EmoDocResults results={results} doc={doc}></EmoDocResults>;})}
+
+          {emoTarg.map((targ) => {
+            return <EmoTargResults results={results} targ={targ}></EmoTargResults>;
+          })}
+
     </div>
   );
 };
