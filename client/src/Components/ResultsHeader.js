@@ -4,13 +4,20 @@ import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
-const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
+const ResultsHeader = () => {
   const { user, results, sUsername, subreddit, searchTerms, searchTarget } = useContext(Context);
 
   const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1);
   };
 
+  // const mapEmoTarg = () => {
+  //   return results.emotionTarget.map((targ) => {
+  //      <EmoTargResults targ={targ}></EmoTargResults>;
+  //   })
+  // }
+
+  // debugger
   return (
     <div>
       <Divider horizontal>
@@ -31,7 +38,7 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
           <Table.Row textAlign='center'>
             <Table.Cell>Subreddit:</Table.Cell>
             <Table.Cell>{subreddit}</Table.Cell>
-            <Table.Cell>Search Term(s):</Table.Cell>
+            <Table.Cell>Topic:</Table.Cell>
             <Table.Cell>{searchTerms}</Table.Cell>
           </Table.Row>
         </Table.Body>
@@ -43,20 +50,18 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
           Results
         </Header>
       </Divider>
-
       <p>
-        Overall Sentiment Score: {sentDoc.score} ({sentDoc.label})
+        Overall Sentiment Score: {results.sentimentDocument.score} (
+        {results.sentimentDocument.label})
       </p>
-        {/* <div className='emoDocResults'>
-          <EmoDocResults results={results} emoDoc={emoDoc}></EmoDocResults> */}
-
-          {emoDoc.map((doc) => {
-            return <EmoDocResults results={results} doc={doc}></EmoDocResults>;})}
-
-          {emoTarg.map((targ) => {
-            return <EmoTargResults results={results} targ={targ}></EmoTargResults>;
-          })}
-
+      <div className='emoDocResults'>
+        <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
+        {/* {mapEmoTarg()} */}
+        {/* <EmoTargResults></EmoTargResults> */}
+        {results.emotionTarget.map((targ) => {
+          <EmoTargResults targ={targ}></EmoTargResults>;
+        })}
+      </div>
     </div>
   );
 };

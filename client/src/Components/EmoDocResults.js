@@ -15,12 +15,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const EmoDocResults = ({ props, doc }) => {
+const EmoDocResults = ({ emoDoc }) => {
   const { user, results } = useContext(Context);
 
-  const {sadness, joy, fear, disgust, anger} = doc.emotion
-
-//   debugger
+  const {sadness, joy, fear, disgust, anger} = emoDoc.emotion
+  
 
 const data = [
     { name: "Sadness", uv: sadness},

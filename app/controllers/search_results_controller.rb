@@ -32,19 +32,19 @@ class SearchResultsController < ApplicationController
             data_str = data_map.to_s
             # GETS analysis from Watson NLU
             #!! Watson offline
-            # watson = @nlu.analyze(
-            #     text: "#{data_map}",
-            #     features: {
-            #         sentiment: {document: true},
-            #         emotion: {
-            #             document: true,
-            #             targets: searchTerms}
-            #         },
-            #         language: "en",
-            #         return_analyzed_text: true, 
-            #         ) 
+            watson = @nlu.analyze(
+                text: "#{data_map}",
+                features: {
+                    sentiment: {document: true},
+                    emotion: {
+                        document: true,
+                        targets: searchTerms}
+                    },
+                    language: "en",
+                    return_analyzed_text: true, 
+                    ) 
                     
-            #         results = JSON.pretty_generate(watson.result) 
+                    results = JSON.pretty_generate(watson.result) 
                     
                     #Save all data to DB
 
@@ -94,10 +94,10 @@ class SearchResultsController < ApplicationController
         render json: search_result
     end
 
-    def top_content
-        last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse      
-        render json: last_results
-    end
+    # def top_content
+    #     last_results = SearchResult.all.limit(20).sort_by(&:created_at).reverse      
+    #     render json: last_results
+    # end
 
   private
 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import {
@@ -15,11 +15,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const EmoTargResults = ({ emoDoc, targ }) => {
+const EmoTargResults = ({ targ }) => {
   const { user, results } = useContext(Context);
 
-const {sadness, joy, fear, disgust, anger} = targ.emotion
-
+  const { sadness, joy, fear, disgust, anger } = targ.emotion;
+  
   const data = [
     { name: "S", uv: sadness },
     { name: "J", uv: joy },
@@ -27,6 +27,12 @@ const {sadness, joy, fear, disgust, anger} = targ.emotion
     { name: "D", uv: disgust },
     { name: "A", uv: anger },
   ];
+  
+  // useEffect(() => {
+  //   debugger;
+  // }, []);
+
+  // debugger
 
   const renderBarChart = (
     <BarChart
