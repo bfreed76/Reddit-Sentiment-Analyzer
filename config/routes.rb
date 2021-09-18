@@ -22,6 +22,7 @@ Rails
 
     post '/reddit', to: 'search_results#get_reddit'
 
-    # get '/top_content', to: 'results_joins#top_content'
-    get '/top_content', to: 'search_results#top_content'
+    get '/top_content', to: 'results_joins#top_content'
+    get '/my_searches', to: 'results_joins#my_searches'
+    
   end

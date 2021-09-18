@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { Divider, Header, Icon, Table } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
+import { Divider, Header, Icon, Table, Card } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
-const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
+const ResultsHeader = () => {
   const { user, results, sUsername, subreddit, searchTerms, searchTarget } = useContext(Context);
 
   const capitalize = (s) => {
@@ -31,7 +31,7 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
           <Table.Row textAlign='center'>
             <Table.Cell>Subreddit:</Table.Cell>
             <Table.Cell>{subreddit}</Table.Cell>
-            <Table.Cell>Search Term(s):</Table.Cell>
+            <Table.Cell>Topic:</Table.Cell>
             <Table.Cell>{searchTerms}</Table.Cell>
           </Table.Row>
         </Table.Body>
@@ -44,18 +44,20 @@ const ResultsHeader = ({ sentDoc, emoDoc, emoTarg }) => {
         </Header>
       </Divider>
 
-      <p>
-        Overall Sentiment Score: {sentDoc.score} ({sentDoc.label})
-      </p>
-        {/* <div className='emoDocResults'>
-          <EmoDocResults results={results} emoDoc={emoDoc}></EmoDocResults> */}
+      <h3>
+        Overall Sentiment Score: {results.sentimentDocument.score} (
+        {results.sentimentDocument.label})
+      </h3>
 
-          {emoDoc.map((doc) => {
-            return <EmoDocResults results={results} doc={doc}></EmoDocResults>;})}
+      <div className='emoDocResults'>
+        <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
 
-          {emoTarg.map((targ) => {
-            return <EmoTargResults results={results} targ={targ}></EmoTargResults>;
-          })}
+      {!!results.emotionTarget
+        ? results.emotionTarget.map((targ) => {
+            return <EmoTargResults targ={targ}></EmoTargResults>;
+          })
+        : null}
+      </div>
 
     </div>
   );

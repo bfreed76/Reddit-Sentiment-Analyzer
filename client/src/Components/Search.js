@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../context/Context";
@@ -21,6 +21,7 @@ const Search = () => {
     setSearchTarget,
   } = useContext(Context);
   const history = useHistory();
+  const [ error, setError ] = useState(false)
 
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
@@ -31,7 +32,7 @@ const Search = () => {
     subreddit +
     "&author=" +
     sUsername +
-    "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
+    "&fields=author,created_utc,body,score,subreddit,url,title,selftext,permalink" +
     "&size=" +
     "3";
 
@@ -51,15 +52,23 @@ const Search = () => {
       }),
     };
     fetch("/reddit", postObj)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          res.json()
       .then((res) => {
         console.log(pushShiftURL);
-        console.log(res);
+        console.log("BACK FROM SERVER!", res);
         setResults(res);
-        history.push("/results");
-      })
-      .catch((err) => console.log("reddit get err = ", err));
-  };
+        setError(false)
+        history.push("/results")});
+      } else {
+        res.json()
+        .then((errorData) => {
+          console.log("SERVER ERR: ", errorData.errors)
+          setError(true)
+        })
+      }
+  })}
 
   const handleCheck = (e) => {
     setSearchTarget(e.target.value);
@@ -109,10 +118,11 @@ const Search = () => {
           placeholder='search terms'
           onChange={(e) => setSearchTerms(e.target.value)}
         />
+        {error ? <h4 style={{color: "red"}}>No Results Found. Please Search Again.</h4> : null}
       </Form.Field>
       <br></br>
       <Button primary type='submit'>
-        Go
+        Search
       </Button>
     </Form>
   );

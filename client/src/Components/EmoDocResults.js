@@ -15,12 +15,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const EmoDocResults = ({ props, doc }) => {
+const EmoDocResults = ({ emoDoc }) => {
   const { user, results } = useContext(Context);
 
-  const {sadness, joy, fear, disgust, anger} = doc.emotion
-
-//   debugger
+  const {sadness, joy, fear, disgust, anger} = emoDoc.emotion
+  
 
 const data = [
     { name: "Sadness", uv: sadness},
@@ -31,16 +30,17 @@ const data = [
   ];
 
   const renderBarChart = (
-    <BarChart
+    <BarChart 
       width={340}
       height={250}
       data={data}
-      margin={{
-        top: 5,
-        right: 5,
-        left: 15,
-        bottom: 5,
-      }}>
+      // margin={{
+      //   top: 5,
+      //   right: 5,
+      //   left: 15,
+      //   bottom: 5,
+      // }}
+      >
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='name' />
       <YAxis />
@@ -50,7 +50,7 @@ const data = [
   );
 
   return <div>
-      <p>Overall Emotional Scores </p>
+      <p>Overall Emotional Score </p>
       {renderBarChart}
       </div>;
 };

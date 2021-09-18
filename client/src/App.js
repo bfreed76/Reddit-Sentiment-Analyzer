@@ -7,6 +7,7 @@ import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
+import MySearches from "./Components/MySearches";
 import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
@@ -77,7 +78,7 @@ const App = () => {
     {
       menuItem: {
         as: NavLink,
-        content: "My Searches",
+        content: "Search",
         to: "/",
         exact: true,
         key: "home",
@@ -93,6 +94,24 @@ const App = () => {
         </Route>
       ),
     },
+    { 
+      menuItem: loggedin ? {
+        as: NavLink,
+        content: "My Searches",
+        to: "/my_searches",
+        exact: true,
+        key: "my_searches",
+      } : {},
+      render: () => (
+        <Route path='/my_searches' exact>
+          <Tab.Pane>
+            <div>
+                <MySearches />
+            </div>
+          </Tab.Pane>
+        </Route>
+      ),
+    }
   ];
 
   const defaultActiveIndex = panes.findIndex((pane) => {
