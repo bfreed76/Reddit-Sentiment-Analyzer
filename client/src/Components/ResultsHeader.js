@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Divider, Header, Icon, Table } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
+import { Divider, Header, Icon, Table, Card } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
@@ -11,13 +11,6 @@ const ResultsHeader = () => {
     return s.charAt(0).toUpperCase() + s.slice(1);
   };
 
-  // const mapEmoTarg = () => {
-  //   return results.emotionTarget.map((targ) => {
-  //      <EmoTargResults targ={targ}></EmoTargResults>;
-  //   })
-  // }
-
-  // debugger
   return (
     <div>
       <Divider horizontal>
@@ -50,18 +43,22 @@ const ResultsHeader = () => {
           Results
         </Header>
       </Divider>
-      <p>
+
+      <h3>
         Overall Sentiment Score: {results.sentimentDocument.score} (
         {results.sentimentDocument.label})
-      </p>
+      </h3>
+
       <div className='emoDocResults'>
         <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
-        {/* {mapEmoTarg()} */}
-        {/* <EmoTargResults></EmoTargResults> */}
-        {results.emotionTarget.map((targ) => {
-          <EmoTargResults targ={targ}></EmoTargResults>;
-        })}
+
+      {!!results
+        ? results.emotionTarget.map((targ) => {
+            return <EmoTargResults targ={targ}></EmoTargResults>;
+          })
+        : null}
       </div>
+
     </div>
   );
 };

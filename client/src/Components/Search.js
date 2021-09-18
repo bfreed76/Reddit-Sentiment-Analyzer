@@ -31,7 +31,7 @@ const Search = () => {
     subreddit +
     "&author=" +
     sUsername +
-    "&fields=author,created_utc,body,score,subreddit,url,title,selftext" +
+    "&fields=author,created_utc,body,score,subreddit,url,title,selftext,permalink" +
     "&size=" +
     "3";
 

@@ -19,25 +19,19 @@ const EmoTargResults = ({ targ }) => {
   const { user, results } = useContext(Context);
 
   const { sadness, joy, fear, disgust, anger } = targ.emotion;
-  
-  const data = [
-    { name: "S", uv: sadness },
-    { name: "J", uv: joy },
-    { name: "F", uv: fear },
-    { name: "D", uv: disgust },
-    { name: "A", uv: anger },
-  ];
-  
-  // useEffect(() => {
-  //   debugger;
-  // }, []);
 
-  // debugger
+  const data = [
+    { name: "Sadness", uv: sadness},
+    { name: "Joy", uv: joy },
+    { name: "Fear", uv: fear },
+    { name: "Disgust", uv: disgust },
+    { name: "Anger", uv: anger },
+  ];
 
   const renderBarChart = (
     <BarChart
-      width={250}
-      height={100}
+      width={340}
+      height={150}
       data={data}
       margin={{
         top: 5,
@@ -55,7 +49,7 @@ const EmoTargResults = ({ targ }) => {
 
   return (
     <div>
-      <p>"Emotional scores for "{targ.text}" </p>
+      <p>"Emotional score for <strong>"{targ.text}"</strong></p>
       {renderBarChart}
     </div>
   );
