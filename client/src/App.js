@@ -7,6 +7,7 @@ import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
+import MySearches from "./Components/MySearches";
 import Footer from "./Components/Footer";
 import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
@@ -77,7 +78,7 @@ const App = () => {
     {
       menuItem: {
         as: NavLink,
-        content: "My Searches",
+        content: "Search",
         to: "/",
         exact: true,
         key: "home",
@@ -88,6 +89,30 @@ const App = () => {
             <div>
               {" "}
               <Search />
+            </div>
+          </Tab.Pane>
+        </Route>
+      ),
+    },
+    {
+      menuItem: {
+        as: NavLink,
+        content: "My Searches",
+        to: "/my_searches",
+        exact: true,
+        key: "my_searches",
+      },
+      render: () => (
+        <Route path='/my_searches' exact>
+          <Tab.Pane>
+            <div>
+              {loggedin ? (
+                <MySearches />
+              ) : (
+                <div>
+                  <SampleContent />
+                </div>
+              )}
             </div>
           </Tab.Pane>
         </Route>

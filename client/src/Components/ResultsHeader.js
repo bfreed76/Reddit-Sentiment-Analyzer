@@ -52,7 +52,7 @@ const ResultsHeader = () => {
       <div className='emoDocResults'>
         <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
 
-      {!!results
+      {!!results.emotionTarget
         ? results.emotionTarget.map((targ) => {
             return <EmoTargResults targ={targ}></EmoTargResults>;
           })

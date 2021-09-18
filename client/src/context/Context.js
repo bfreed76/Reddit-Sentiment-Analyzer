@@ -8,7 +8,7 @@ const ContextProvider = (props) => {
   const [results, setResults] = useState();
   const [sUsername, setSUsername] = useState("");
   const [subreddit, setSubreddit] = useState("");
-  const [searchTerms, setSearchTerms] = useState(true);
+  const [searchTerms, setSearchTerms] = useState("");
   const [searchTarget, setSearchTarget] = useState("comment");
   const store = {
     user,
