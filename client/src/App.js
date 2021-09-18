@@ -94,30 +94,24 @@ const App = () => {
         </Route>
       ),
     },
-    {
-      menuItem: {
+    { 
+      menuItem: loggedin ? {
         as: NavLink,
         content: "My Searches",
         to: "/my_searches",
         exact: true,
         key: "my_searches",
-      },
+      } : {},
       render: () => (
         <Route path='/my_searches' exact>
           <Tab.Pane>
             <div>
-              {loggedin ? (
                 <MySearches />
-              ) : (
-                <div>
-                  <SampleContent />
-                </div>
-              )}
             </div>
           </Tab.Pane>
         </Route>
       ),
-    },
+    }
   ];
 
   const defaultActiveIndex = panes.findIndex((pane) => {

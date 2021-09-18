@@ -4,7 +4,6 @@ import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
 const TopContentCard = ({ item }) => {
-  // if can't read property of undefined, prob because an array of 1 object. If watson incons. do a backend check (if emoDoc = array, make object)
  
   const emoDoc = item.search_results[0].emo_doc_json;
   const emoTarg = item.search_results[0].emo_search_json;
