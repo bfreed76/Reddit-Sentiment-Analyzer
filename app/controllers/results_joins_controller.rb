@@ -17,8 +17,9 @@ class ResultsJoinsController < ApplicationController
   end
   
   def my_searches
-    last_results = ResultsJoin.find(session[:user_id]).reverse      
-    render json: last_results
+    my_results = ResultsJoin.where(user_id: session[:user_id]).reverse      
+    render json: my_results
+    # byebug
   end
 
   private
