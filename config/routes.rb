@@ -21,4 +21,8 @@ Rails
     delete '/logout', to: 'sessions#destroy'
 
     post '/reddit', to: 'search_results#get_reddit'
+
+    get '/top_content', to: 'results_joins#top_content'
+    get '/my_searches', to: 'results_joins#my_searches'
+    
   end

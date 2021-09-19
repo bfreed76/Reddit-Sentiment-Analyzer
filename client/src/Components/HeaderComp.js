@@ -20,28 +20,18 @@ const HeaderComp = ({ handleLogout }) => {
 
   return (
     <div>
-      <Header as="h1" textAlign="center">
+      <Header as='h1' >
         <Header.Content>
-          <div>
-            <Icon name="reddit" />
-            <big>Emot/r</big>
-            <Icon
-              id="userIcon"
-              name="user outline"
-              onClick={toggleVisibility}
-            />
+          <div as="h1.ui.header">
+            <Icon name='reddit' />
+            <big>Emot/r</big> 
+            <Icon id='userIcon' name='user outline' onClick={toggleVisibility} />
           </div>
         </Header.Content>
       </Header>
       <Divider hidden />
-      <Transition visible={visible} animation="fade" duration={300}>
-        <div>
-          {loggedin ? (
-            <Profile handleLogout={handleLogout} />
-          ) : (
-            <LoginOrSignup />
-          )}
-        </div>
+      <Transition visible={visible} animation='fade' duration={300}>
+        <div>{loggedin ? <Profile handleLogout={handleLogout} /> : <LoginOrSignup />}</div>
       </Transition>
     </div>
   );

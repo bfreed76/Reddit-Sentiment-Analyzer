@@ -12,7 +12,7 @@ const Profile = ({ handleLogout }) => {
         <div>
           <h2>Username: {user.username} </h2>
           <h2>email: {user.email}</h2>
-          <Button primary>Update</Button>
+          <Button primary>Update</Button> 
           <Button primary onClick={handleLogout}>
             Logout
           </Button>

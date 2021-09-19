@@ -1,33 +1,43 @@
-import React, {useContext} from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import { List } from "semantic-ui-react";
 import { Context } from "../context/Context";
+import EmoDocResults from "./EmoDocResults";
+import EmoTargResults from "./EmoTargResults";
+import ResultsHeader from "./ResultsHeader";
+import ResultsCard from "./ResultsCard";
+import { Container, Card, Feed } from "semantic-ui-react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const ResultsContainer = () => {
-    const { user, results } = useContext(Context);
-    
-    debugger
-    
-    return (
+  const { user, results } = useContext(Context);
+
+  const renderCards = results.data.map((result, key) => {
+    return <ResultsCard key={key} result={result} />;
+  });
+
+  return (
+    <div className='results'>
+      {(!!results) ? (
         <div>
-            RESULTS CARDS HERE
-            {/* 
-            (Header)
-            results.user
-            user.results_joins[user.results_joins.length-1].created_at
-            results.author.name
-            results.subreddit.name
-            results.searchTerms.search_term  (check for search terms)
-            results.sentimentDocument
-            results.emotionDocument
-            results.emotionTarget
-
-            (Cards)
-            results.data[1].author
-            results.data[1].body
-            results.data[1].score
-            results.data[1].created_utc
-            */}
+          <ResultsHeader />
+          {results.data.map((result, key) => {
+            return <ResultsCard key={key} result={result} />
+          })}
         </div>
-    )
-}
+      ) : (
+        <h3>Results not available. Please try your search again. </h3>
+        )}
+    </div>
+  );
+};
 
-export default ResultsContainer
+export default ResultsContainer;

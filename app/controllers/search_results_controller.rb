@@ -24,49 +24,66 @@ class SearchResultsController < ApplicationController
     def get_reddit
         # GETS data from pushshift API
         response = HTTParty.get(params[:url])
-        searchTerms = (params[:searchTerms]).gsub('"',"").split()
         res = response.parsed_response
-            # Transforms pushshift data before sending to Watson and DB
-            data = res["data"]
-            data_map = data.map {|entry| entry["body"]}
-            data_str = data_map.to_s
-            # GETS analysis from Watson NLU
-            # watson = @nlu.analyze(
-            #     text: "#{data_map}",
-            #     features: {
-            #         sentiment: {document: true},
-            #         emotion: {
-            #             document: true,
-            #             targets: searchTerms}
-            #         },
-            #         return_analyzed_text: true, 
-            #         ) 
-                    
-            #         results = JSON.pretty_generate(watson.result) 
+
+        # Transforms pushshift data before sending to Watson and DB
+        data = res["data"]
+        data_map = data.map {|entry| entry["body"]}
+        data_str = data_map.to_s
+
+
+        if params[:searchTerms].empty? 
+            watson = @nlu.analyze(
+                text: "#{data_map}",
+                features: {
+                    sentiment: {document: true},
+                    emotion: {
+                        document: true}
+                    },
+                language: "en",
+            return_analyzed_text: true) 
+        else
+            searchTerms = (params[:searchTerms]).gsub('"',"").split()
+
+            watson = @nlu.analyze(
+                text: "#{data_map}",
+                features: {
+                    sentiment: {document: true},
+                    emotion: {
+                        document: true,
+                        targets: searchTerms}
+                    },
+                language: "en",
+            return_analyzed_text: true) 
+        end
+
+            results = JSON.pretty_generate(watson.result) 
                     
                     #Save all data to DB
 
                     user = params[:user]["username"]
+                    userId = session[:user_id]
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
                     
-                    sentDoc = "SENTDOC"
-                    # watson.result["sentiment"]["document"].to_s
-                    emoDoc = "EMODOC"
-                    # watson.result["emotion"]["document"].to_s
-                    emoTarg = "EMOTARG"
-                    # watson.result["emotion"]["targets"].to_s
+                    sentDoc = watson.result["sentiment"]["document"]
+                    emoDoc = watson.result["emotion"]["document"]
+                    # byebug
+                    if searchTerms 
+                        emoTarg = watson.result["emotion"]["targets"] 
+                    else
+                        emoTarg = ""
+                    end
 
-                    newResJoin = ResultsJoin.create(user_id: 1, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
+                    newResJoin = ResultsJoin.create(user_id: userId, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
 
-                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
+                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc_json: emoDoc, sent_doc_json: sentDoc, emo_search_json: emoTarg)
                     
                     results = {
                             user: user,
-                            author: auth,
-                            subreddit: subr,
-                            searchTerms: sear,
+                            author: auth.name,
+                            subreddit: subr.name,
                             sentimentDocument: sentDoc,
                             emotionDocument: emoDoc,
                             emotionTarget: emoTarg,
@@ -74,12 +91,8 @@ class SearchResultsController < ApplicationController
                         }
 
                     render json: results
-
-                    # byebug
-                        # render json: {results: {"test": "You got it!"}
     end
 
-    
     def index
         search_results = SearchResult.all
         render json: search_results
@@ -91,15 +104,6 @@ class SearchResultsController < ApplicationController
     end
 
   private
-
-  # def watson_results
-  #     response = HTTParty.post({watson/v1/analyze, body: {url: params[:url]})
-  #     if response.code == 200
-  #         res = response.parsed_response
-  #         byebug
-  #         render json: res
-  #     end
-  # end
 
   def find_search_results
     SearchResult.find_by(id: params[:id])
