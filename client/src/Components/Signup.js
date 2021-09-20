@@ -1,14 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../context/Context";
 import { useHistory } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
+import updateSuccessful from "./UpdateSuccessful";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { user, setUser, loggedin, setLoggedin } = useContext(Context);
+  const { user, setUser, loggedin, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
+
+  useEffect(() => {
+    setUsername(user.username)
+    setEmail(user.email);
+  }, []);
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -29,6 +35,25 @@ const Signup = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    fetch("/update", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("Response from update **:  ", res)
+          setIsUpdating(false)
+          history.push("/success")
+        })
+        .catch((err) => console.log("Update err = ", err))
+    
+  }
+
   return (
     <div>
       <Form onSubmit={handleSignup}>
@@ -48,18 +73,25 @@ const Signup = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Field>
+        {isUpdating ? <h3 >Please enter new username or email.</h3> :
         <Form.Field>
           <label>Password</label>
           <input
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+            />
         </Form.Field>
+          }
         <Form.Field></Form.Field>
+        {isUpdating ? 
+        <Button primary onClick={handleUpdate}>
+          Update
+        </Button> :
         <Button primary type="submit">
-          Signup
+          Login
         </Button>
+        }
       </Form>
     </div>
   );

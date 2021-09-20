@@ -8,15 +8,22 @@ import LoginOrSignup from "./LoginOrSignup";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 
-const HeaderComp = ({ handleLogout }) => {
+const HeaderComp = ({handleLogout, findMe}) => {
   let history = useHistory();
   const context = useContext(Context);
-  const { loggedin } = useContext(Context);
+  const { loggedin, isUpdating, setIsUpdating  } = useContext(Context);
   const [visible, setVisible] = useState(false);
 
   const toggleVisibility = () => {
+    findMe()
     setVisible(!visible);
   };
+
+  const renderUpdatePage = () => {
+    setIsUpdating(true)
+    toggleVisibility()
+    history.push("/signup")
+  }
 
   return (
     <div>
@@ -31,7 +38,7 @@ const HeaderComp = ({ handleLogout }) => {
       </Header>
       <Divider hidden />
       <Transition visible={visible} animation='fade' duration={300}>
-        <div>{loggedin ? <Profile handleLogout={handleLogout} /> : <LoginOrSignup />}</div>
+        <div>{loggedin ? <Profile handleLogout={handleLogout} renderUpdatePage={renderUpdatePage} /> : <LoginOrSignup />}</div>
       </Transition>
     </div>
   );

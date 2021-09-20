@@ -16,6 +16,7 @@ Rails
 
     get '/me', to: 'users#me'
     post '/signup', to: 'users#create'
+    patch '/update', to: 'users#update'
 
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'

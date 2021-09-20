@@ -26,9 +26,9 @@ const MySearches = () => {
 
     return (
       <div> 
-        {mySearches.map((item) => {
+        {mySearches.length>1 ? mySearches.map((item) => {
          return <MySearchCards item={item} />
-        })}
+        }) : <h3 style={{color:"red"}}>No search results available</h3>}
       </div>
     );
   };
