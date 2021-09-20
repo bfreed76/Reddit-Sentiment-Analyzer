@@ -53,8 +53,8 @@ const ResultsHeader = () => {
         <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
 
         {!!results.emotionTarget
-          ? results.emotionTarget.map((targ) => {
-              return <EmoTargResults targ={targ}></EmoTargResults>;
+          ? results.emotionTarget.map((targ, id) => {
+              return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
             })
           : null}
       </div>

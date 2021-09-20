@@ -4,10 +4,9 @@ import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
 const MySearchCards = ({ item }) => {
-
-const emoDoc = item.search_results[0].emo_doc_json;
-const emoTarg = item.search_results[0].emo_search_json;
-const sentDoc = item.search_results[0].sent_doc_json
+  const emoDoc = item.search_results[0].emo_doc_json;
+  const emoTarg = item.search_results[0].emo_search_json;
+  const sentDoc = item.search_results[0].sent_doc_json;
 
   return (
     <div>
@@ -23,7 +22,7 @@ const sentDoc = item.search_results[0].sent_doc_json
           <Table.Row textAlign='center'>
             <Table.Cell>Date:</Table.Cell>
             <Table.Cell>
-              <strong>{item.created_at.slice(0,10)}</strong>
+              <strong>{item.created_at.slice(0, 10)}</strong>
             </Table.Cell>
             <Table.Cell>Reddit User:</Table.Cell>
             <Table.Cell>
@@ -56,8 +55,8 @@ const sentDoc = item.search_results[0].sent_doc_json
       <div className='emoDocResults'>
         <EmoDocResults emoDoc={emoDoc}></EmoDocResults>
 
-        {emoTarg.map((targ) => {
-          return <EmoTargResults targ={targ}></EmoTargResults>;
+        {emoTarg.map((targ, id) => {
+          return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
         })}
       </div>
       <br></br>

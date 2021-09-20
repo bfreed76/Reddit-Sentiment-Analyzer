@@ -1,7 +1,6 @@
 import "./App.css";
-import { Button, Tab } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
-import Home from "./Components/Home";
 import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
@@ -9,23 +8,11 @@ import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
 import MySearches from "./Components/MySearches";
 import UpdateSuccessful from "./Components/UpdateSuccessful";
-import Footer from "./Components/Footer";
-import Tabs from "./Components/Tabs";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
 import ResultsContainer from "./Components/ResultsContainer";
 import SampleContent from "./Components/SampleContent";
-import ContextProvider from "./context/Context";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  Redirect,
-  useHistory,
-  matchPath,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory, matchPath, NavLink } from "react-router-dom";
 
 const App = () => {
   const { setUser, loggedin, setLoggedin } = useContext(Context);
@@ -48,7 +35,7 @@ const App = () => {
       .catch((err) => console.log("error =", err));
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE",
     })
@@ -61,7 +48,7 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleUpdate = (e) => {
+  const handleUpdate = () => {
     history.push("/signup");
     console.log("********************HANDLE UPDATE");
   };

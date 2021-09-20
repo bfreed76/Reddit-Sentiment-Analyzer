@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import { Button } from "semantic-ui-react";
-import { Context } from "../context/Context";
+import React from "react";
 
-const Footer = ({ handleLogout }) => {
-  const { loggedin } = useContext(Context);
+const Footer = () => {
 
   return (
     <div>

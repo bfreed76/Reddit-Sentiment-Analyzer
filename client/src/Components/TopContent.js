@@ -20,8 +20,8 @@ const TopContent = () => {
 
   return (
     <div>
-      {topContent.map((item) => {
-        return <TopContentCard item={item} />;
+      {topContent.map((item, id) => {
+        return <TopContentCard key={id} item={item} />;
       })}
     </div>
   );

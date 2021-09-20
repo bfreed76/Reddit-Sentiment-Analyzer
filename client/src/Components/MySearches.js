@@ -1,36 +1,34 @@
-import { Context } from "../context/Context";
-import React, { useState, useEffect, useContext } from "react";
-import { Card, Feed } from "semantic-ui-react";
-import TopContentCard from "./TopContentCard";
+import React, { useState, useEffect } from "react";
 import MySearchCards from "./MySearchCards";
 
 const MySearches = () => {
-    const { user } = useContext(Context);
-    const [mySearches, setMySearches] = useState([]);
+  const [mySearches, setMySearches] = useState([]);
 
-    useEffect(() => {
-      getMySearches();
-    }, []);
-  
-    const getMySearches = () => {
-      fetch("/my_searches")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("My Searches: ", data);
-          setMySearches(data);
-        })
-        .catch((err) => console.log("error =", err));
-    };
+  useEffect(() => {
+    getMySearches();
+  }, []);
 
-    // debugger
-
-    return (
-      <div> 
-        {mySearches.length>1 ? mySearches.map((item) => {
-         return <MySearchCards item={item} />
-        }) : <h3 style={{color:"red"}}>No search results available</h3>}
-      </div>
-    );
+  const getMySearches = () => {
+    fetch("/my_searches")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("My Searches: ", data);
+        setMySearches(data);
+      })
+      .catch((err) => console.log("error =", err));
   };
 
-export default MySearches
+  return (
+    <div>
+      {mySearches.length > 1 ? (
+        mySearches.map((item, id) => {
+          return <MySearchCards key={id} item={item} />;
+        })
+      ) : (
+        <h3 style={{ color: "red" }}>No search results available</h3>
+      )}
+    </div>
+  );
+};
+
+export default MySearches;
