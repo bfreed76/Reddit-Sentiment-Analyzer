@@ -13,10 +13,6 @@ class UserPostsController < ApplicationController
     render json: user_posts
   end
 
-  def create
-    #find user from session
-  end
-
   private
 
   def find_user_posts

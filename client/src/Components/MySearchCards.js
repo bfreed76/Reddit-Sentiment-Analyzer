@@ -56,7 +56,7 @@ const MySearchCards = ({ item }) => {
         <EmoDocResults emoDoc={emoDoc}></EmoDocResults>
 
         {emoTarg.map((targ, id) => {
-          return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
+          return <EmoTargResults key={id} targ={targ} />;
         })}
       </div>
       <br></br>

@@ -29,9 +29,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # Check user auth and info
   def me
-    #if userID in session hash, return userID, username, etc
-    # else unauthorized
     user = User.find_by(id: session[:user_id])
     if user
       render json: user
@@ -40,6 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Update user info
   def update
     user = User.find_by(id: session[:user_id])
     if user
@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     else
       render json: { error: "User not found" }, status: :not_found 
     end
-    # byebug
   end
 
   private

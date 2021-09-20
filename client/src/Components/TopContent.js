@@ -12,7 +12,6 @@ const TopContent = () => {
     fetch("/top_content")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Top Content: ", data);
         setTopContent(data);
       })
       .catch((err) => console.log("error =", err));
