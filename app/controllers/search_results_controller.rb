@@ -52,8 +52,8 @@ class SearchResultsController < ApplicationController
                                 document: true,
                                 targets: searchTerms}
                             },
-                    return_analyzed_text: true) 
-                    end     
+                    return_analyzed_text: true))
+                    end    
                 # Convert Watson results to JSON
                 results = JSON.pretty_generate(watson.result) 
                     
@@ -99,11 +99,12 @@ class SearchResultsController < ApplicationController
 
   private
 
-  def find_search_results
-    SearchResult.find_by(id: params[:id])
-  end
+    def find_search_results
+        SearchResult.find_by(id: params[:id])
+    end
 
-  def render_not_found_response
-    render json: { error: 'Record not found' }, status: :not_found
-  end
+    def render_not_found_response
+        render json: { error: 'Record not found' }, status: :not_found
+    end
+
 end
