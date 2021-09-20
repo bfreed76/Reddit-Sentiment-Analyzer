@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../context/Context";
@@ -6,10 +6,6 @@ import { Context } from "../context/Context";
 const Search = () => {
   const {
     user,
-    setUser,
-    loggedin,
-    setLoggedin,
-    results,
     setResults,
     sUsername,
     setSUsername,
@@ -21,7 +17,7 @@ const Search = () => {
     setSearchTarget,
   } = useContext(Context);
   const history = useHistory();
-  const [ error, setError ] = useState(false)
+  const [error, setError] = useState(false);
 
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
@@ -51,24 +47,23 @@ const Search = () => {
         searchTerms,
       }),
     };
-    fetch("/reddit", postObj)
-      .then((res) => {
-        if (res.ok) {
-          res.json()
-      .then((res) => {
-        console.log(pushShiftURL);
-        console.log("BACK FROM SERVER!", res);
-        setResults(res);
-        setError(false)
-        history.push("/results")});
+    fetch("/reddit", postObj).then((res) => {
+      if (res.ok) {
+        res.json().then((res) => {
+          console.log(pushShiftURL);
+          console.log("BACK FROM SERVER!", res);
+          setResults(res);
+          setError(false);
+          history.push("/results");
+        });
       } else {
-        res.json()
-        .then((errorData) => {
-          console.log("SERVER ERR: ", errorData.errors)
-          setError(true)
-        })
+        res.json().then((errorData) => {
+          console.log("SERVER ERR: ", errorData.errors);
+          setError(true);
+        });
       }
-  })}
+    });
+  };
 
   const handleCheck = (e) => {
     setSearchTarget(e.target.value);
@@ -91,7 +86,7 @@ const Search = () => {
           radio
           id='submission'
           value='submission'
-          checked={searchTarget == "submission"}
+          checked={searchTarget === "submission"}
           onChange={handleCheck}
         />
       </Form.Field>
@@ -118,7 +113,7 @@ const Search = () => {
           placeholder='search terms'
           onChange={(e) => setSearchTerms(e.target.value)}
         />
-        {error ? <h4 style={{color: "red"}}>No Results Found. Please Search Again.</h4> : null}
+        {error ? <h4 style={{ color: "red" }}>No Results Found. Please Search Again.</h4> : null}
       </Form.Field>
       <br></br>
       <Button primary type='submit'>

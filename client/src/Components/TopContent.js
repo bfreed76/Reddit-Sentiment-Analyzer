@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Card, Feed } from "semantic-ui-react";
 import TopContentCard from "./TopContentCard";
 
 const TopContent = () => {
@@ -14,7 +13,7 @@ const TopContent = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Top Content: ", data);
-          setTopContent(data);
+        setTopContent(data);
       })
       .catch((err) => console.log("error =", err));
   };
@@ -22,7 +21,7 @@ const TopContent = () => {
   return (
     <div>
       {topContent.map((item) => {
-       return <TopContentCard item={item} />
+        return <TopContentCard item={item} />;
       })}
     </div>
   );

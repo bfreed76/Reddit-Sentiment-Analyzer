@@ -6,7 +6,8 @@ const UpdateSuccessful = ({findMe}) => {
 
     useEffect(() => {
         findMe();
-      });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
 
   return (
     <div>
