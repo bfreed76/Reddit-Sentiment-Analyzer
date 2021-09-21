@@ -7,10 +7,6 @@ import EmoTargResults from "./EmoTargResults";
 const ResultsHeader = () => {
   const { results, sUsername, subreddit, searchTerms, searchTarget } = useContext(Context);
 
-  const capitalize = (s) => {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  };
-
   return (
     <div>
       <Divider horizontal>
@@ -22,21 +18,20 @@ const ResultsHeader = () => {
 
       <Table unstackable={true}>
         <Table.Body>
-          <Table.Row textAlign='center'>
+          {/* <Table.Row textAlign='center'>
             <Table.Cell>Searching:</Table.Cell>
-            <Table.Cell>{capitalize(searchTarget)}s</Table.Cell>
-            <Table.Cell>Reddit User:</Table.Cell>
-            <Table.Cell>{sUsername}</Table.Cell>
-          </Table.Row>
-          <Table.Row textAlign='center'>
-            <Table.Cell>Subreddit:</Table.Cell>
-            <Table.Cell>{subreddit}</Table.Cell>
-            <Table.Cell>Topic:</Table.Cell>
-            <Table.Cell>{searchTerms}</Table.Cell>
+            <Table.Cell>{searchTarget}s</Table.Cell>
+          </Table.Row> */}
+          <Table.Row textAlign='left' style={{fontWeight: "bold"}}>
+            <Table.Cell className="cellLabel">Reddit User:</Table.Cell>
+            <Table.Cell>{sUsername ? sUsername : "---"}</Table.Cell>
+            <Table.Cell className="cellLabel">Subreddit:</Table.Cell>
+            <Table.Cell>{subreddit ? subreddit : "---"}</Table.Cell>
+            <Table.Cell className="cellLabel">Topic:</Table.Cell>
+            <Table.Cell>{searchTerms ? searchTerms : "---"}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
-
       <Divider horizontal>
         <Header as='h3'>
           <Icon name='bar chart' />

@@ -34,6 +34,7 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    console.log(pushShiftURL)
     const postObj = {
       method: "POST",
       headers: {
@@ -50,8 +51,6 @@ const Search = () => {
     fetch("/reddit", postObj).then((res) => {
       if (res.ok) {
         res.json().then((res) => {
-          console.log(pushShiftURL);
-          console.log("BACK FROM SERVER!", res);
           setResults(res);
           setError(false);
           history.push("/results");
@@ -65,31 +64,9 @@ const Search = () => {
     });
   };
 
-  // const handleCheck = (e) => {
-  //   setSearchTarget(e.target.value);
-  // };
-
   return (
     <Form onSubmit={handleSearch}>
       <h2>Discover emotional content on Reddit.</h2>
-      <Form.Field>
-        {/* <Checkbox
-          label='Comments'
-          radio
-          id='comment'
-          value='comment'
-          checked={searchTarget === "comment"}
-          onChange={handleCheck}
-        />
-        <Checkbox
-          label='Submissions'
-          radio
-          id='submission'
-          value='submission'
-          checked={searchTarget === "submission"}
-          onChange={handleCheck}
-        /> */}
-      </Form.Field>
       <Form.Field>
         <Input
           icon='search'

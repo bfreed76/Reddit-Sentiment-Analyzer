@@ -24,6 +24,10 @@
   color: #61dafb;
 }
 
+.cellLabel {
+  font-weight: 100;
+}
+
 .FooterBtn {
   position: fixed;
   align-items: center;

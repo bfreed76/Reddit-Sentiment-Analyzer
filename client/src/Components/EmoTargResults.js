@@ -14,7 +14,7 @@ const EmoTargResults = ({ targ }) => {
 
   const renderBarChart = (
     <BarChart
-      width={340}
+      width={380}
       height={150}
       data={data}
       margin={{
@@ -34,7 +34,7 @@ const EmoTargResults = ({ targ }) => {
   return (
     <div>
       <p>
-        "Emotional score for <strong>"{targ.text}"</strong>
+        Emotional score for <strong>{targ.text}</strong>
       </p>
       {renderBarChart}
     </div>
