@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Divider, Header, Icon, Table, Card } from "semantic-ui-react";
+import React, { useContext } from "react";
+import { Divider, Header, Icon, Table } from "semantic-ui-react";
 import { Context } from "../context/Context";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
 const ResultsHeader = () => {
-  const { user, results, sUsername, subreddit, searchTerms, searchTarget } = useContext(Context);
+  const { results, sUsername, subreddit, searchTerms, searchTarget } = useContext(Context);
 
   const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1);
@@ -52,13 +52,12 @@ const ResultsHeader = () => {
       <div className='emoDocResults'>
         <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
 
-      {!!results.emotionTarget
-        ? results.emotionTarget.map((targ) => {
-            return <EmoTargResults targ={targ}></EmoTargResults>;
-          })
-        : null}
+        {!!results.emotionTarget
+          ? results.emotionTarget.map((targ, id) => {
+              return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
+            })
+          : null}
       </div>
-
     </div>
   );
 };

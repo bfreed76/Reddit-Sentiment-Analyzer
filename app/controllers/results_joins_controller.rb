@@ -12,13 +12,13 @@ class ResultsJoinsController < ApplicationController
   end
  
   def top_content
-    last_results = ResultsJoin.all.limit(20).sort_by(&:created_at).reverse      
+    last_results = ResultsJoin.all.limit(10).sort_by(&:created_at).reverse      
     render json: last_results
   end
   
   def my_searches
-    last_results = ResultsJoin.find(session[:user_id]).reverse      
-    render json: last_results
+    my_results = ResultsJoin.where(user_id: session[:user_id]).reverse      
+    render json: my_results
   end
 
   private

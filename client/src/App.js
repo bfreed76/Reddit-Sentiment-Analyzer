@@ -1,24 +1,22 @@
 import "./App.css";
-import { Button, Tab } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
-import Home from "./Components/Home";
 import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
 import MySearches from "./Components/MySearches";
-import Footer from "./Components/Footer";
-import Tabs from "./Components/Tabs";
+import UpdateSuccessful from "./Components/UpdateSuccessful";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
 import ResultsContainer from "./Components/ResultsContainer";
 import SampleContent from "./Components/SampleContent";
-import ContextProvider from "./context/Context";
-import { BrowserRouter, Route, Switch, Link, Redirect, matchPath, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory, matchPath, NavLink } from "react-router-dom";
 
 const App = () => {
   const { setUser, loggedin, setLoggedin } = useContext(Context);
+  const history = useHistory();
 
   useEffect(() => {
     findMe();
@@ -37,7 +35,7 @@ const App = () => {
       .catch((err) => console.log("error =", err));
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE",
     })
@@ -48,6 +46,11 @@ const App = () => {
         setUser({});
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleUpdate = () => {
+    history.push("/signup");
+    console.log("********************HANDLE UPDATE");
   };
 
   const panes = [
@@ -94,24 +97,26 @@ const App = () => {
         </Route>
       ),
     },
-    { 
-      menuItem: loggedin ? {
-        as: NavLink,
-        content: "My Searches",
-        to: "/my_searches",
-        exact: true,
-        key: "my_searches",
-      } : {},
+    {
+      menuItem: loggedin
+        ? {
+            as: NavLink,
+            content: "My Searches",
+            to: "/my_searches",
+            exact: true,
+            key: "my_searches",
+          }
+        : {},
       render: () => (
         <Route path='/my_searches' exact>
           <Tab.Pane>
             <div>
-                <MySearches />
+              <MySearches />
             </div>
           </Tab.Pane>
         </Route>
       ),
-    }
+    },
   ];
 
   const defaultActiveIndex = panes.findIndex((pane) => {
@@ -126,7 +131,7 @@ const App = () => {
     <BrowserRouter>
       <div className='App'>
         <br></br>
-        <HeaderComp handleLogout={handleLogout} />
+        <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
         <hr></hr>
         <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
@@ -135,7 +140,12 @@ const App = () => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/results' component={ResultsContainer} />
-          <Route exact path='/profile' render={(handleLogout) => <Profile {...handleLogout} />} />
+          <Route exact path='/success'>
+            <UpdateSuccessful findMe={findMe} />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile handleLogout={handleLogout} />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>

@@ -10,6 +10,7 @@ const ContextProvider = (props) => {
   const [subreddit, setSubreddit] = useState("");
   const [searchTerms, setSearchTerms] = useState("");
   const [searchTarget, setSearchTarget] = useState("comment");
+  const [isUpdating, setIsUpdating] = useState(false)
   const store = {
     user,
     setUser,
@@ -24,7 +25,7 @@ const ContextProvider = (props) => {
     searchTerms,
     setSearchTerms,
     searchTarget,
-    setSearchTarget,
+    setSearchTarget, isUpdating, setIsUpdating
   };
   //wrap this around the entire app, similar to BrowserRouter
   //the value prop is where we pass down our global state

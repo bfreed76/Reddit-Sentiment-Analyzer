@@ -1,27 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import { Container } from "semantic-ui-react";
-import { Context } from "../context/Context";
-import {
-  LineChart,
-  BarChart,
-  Bar,
-  Cell,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import React from "react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 const EmoTargResults = ({ targ }) => {
-  const { user, results } = useContext(Context);
-
   const { sadness, joy, fear, disgust, anger } = targ.emotion;
 
   const data = [
-    { name: "Sadness", uv: sadness},
+    { name: "Sadness", uv: sadness },
     { name: "Joy", uv: joy },
     { name: "Fear", uv: fear },
     { name: "Disgust", uv: disgust },
@@ -49,7 +33,9 @@ const EmoTargResults = ({ targ }) => {
 
   return (
     <div>
-      <p>"Emotional score for <strong>"{targ.text}"</strong></p>
+      <p>
+        "Emotional score for <strong>"{targ.text}"</strong>
+      </p>
       {renderBarChart}
     </div>
   );

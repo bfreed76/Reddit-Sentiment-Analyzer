@@ -1,28 +1,11 @@
-import React, { useContext } from "react";
-import { Container } from "semantic-ui-react";
-import { Context } from "../context/Context";
-import {
-  LineChart,
-  BarChart,
-  Bar,
-  Cell,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import React from "react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 const EmoDocResults = ({ emoDoc }) => {
-  const { user, results } = useContext(Context);
+  const { sadness, joy, fear, disgust, anger } = emoDoc.emotion;
 
-  const {sadness, joy, fear, disgust, anger} = emoDoc.emotion
-  
-
-const data = [
-    { name: "Sadness", uv: sadness},
+  const data = [
+    { name: "Sadness", uv: sadness },
     { name: "Joy", uv: joy },
     { name: "Fear", uv: fear },
     { name: "Disgust", uv: disgust },
@@ -30,17 +13,7 @@ const data = [
   ];
 
   const renderBarChart = (
-    <BarChart 
-      width={340}
-      height={250}
-      data={data}
-      // margin={{
-      //   top: 5,
-      //   right: 5,
-      //   left: 15,
-      //   bottom: 5,
-      // }}
-      >
+    <BarChart width={340} height={250} data={data}>
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='name' />
       <YAxis />
@@ -49,10 +22,12 @@ const data = [
     </BarChart>
   );
 
-  return <div>
+  return (
+    <div>
       <p>Overall Emotional Score </p>
       {renderBarChart}
-      </div>;
+    </div>
+  );
 };
 
 export default EmoDocResults;

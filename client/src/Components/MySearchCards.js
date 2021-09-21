@@ -3,7 +3,7 @@ import { Divider, Header, Icon, Table } from "semantic-ui-react";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
 
-const TopContentCard = ({ item }) => {
+const MySearchCards = ({ item }) => {
   const emoDoc = item.search_results[0].emo_doc_json;
   const emoTarg = item.search_results[0].emo_search_json;
   const sentDoc = item.search_results[0].sent_doc_json;
@@ -20,9 +20,9 @@ const TopContentCard = ({ item }) => {
       <Table unstackable={true}>
         <Table.Body>
           <Table.Row textAlign='center'>
-            <Table.Cell>Username:</Table.Cell>
+            <Table.Cell>Date:</Table.Cell>
             <Table.Cell>
-              <strong>{item.user.username}s</strong>
+              <strong>{item.created_at.slice(0, 10)}</strong>
             </Table.Cell>
             <Table.Cell>Reddit User:</Table.Cell>
             <Table.Cell>
@@ -61,9 +61,8 @@ const TopContentCard = ({ item }) => {
       </div>
       <br></br>
       <br></br>
-      <br></br>
     </div>
   );
 };
 
-export default TopContentCard;
+export default MySearchCards;
