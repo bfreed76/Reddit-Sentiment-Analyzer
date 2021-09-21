@@ -10,8 +10,8 @@ const Profile = ({ handleLogout, renderUpdatePage }) => {
     <div>
       {loggedin ? (
         <div>
-          <h2>Username: {user.username} </h2>
-          <h2>email: {user.email}</h2>
+          <h3>Username: {user.username} </h3>
+          <h3>email: {user.email}</h3>
           <Button primary onClick={renderUpdatePage}>
             Update
           </Button>
