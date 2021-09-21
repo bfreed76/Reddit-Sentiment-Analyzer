@@ -8,7 +8,7 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { user, setUser, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
+  const { user, setUser, loggedin, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
 
   useEffect(() => {
     setUsername(user.username);
@@ -17,6 +17,9 @@ const Signup = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    if (!username || !email || !password) {
+      return console.log("field(s) missing");
+    }
     fetch("/signup", {
       method: "POST",
       headers: {
@@ -29,7 +32,7 @@ const Signup = () => {
         console.log(user);
         setUser(user);
         setLoggedin(true);
-        history.push("/top_content");
+        history.push("success");
       })
       .catch((err) => console.log(err));
   };
@@ -45,15 +48,15 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("Response from update **:  ", res);
         setIsUpdating(false);
-        history.push("/success");
+        history.push("success");
       })
       .catch((err) => console.log("Update err = ", err));
   };
 
   return (
     <div>
+      {!loggedin ? setIsUpdating(false) : null}
       <Form onSubmit={handleSignup}>
         <Form.Field>
           <label>Username</label>
@@ -68,7 +71,9 @@ const Signup = () => {
           <input placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
         </Form.Field>
         {isUpdating ? (
+          <>
           <h3>Please enter new username or email.</h3>
+          </>
         ) : (
           <Form.Field>
             <label>Password</label>
@@ -85,9 +90,12 @@ const Signup = () => {
             Update
           </Button>
         ) : (
-          <Button primary type='submit'>
-            Login
-          </Button>
+          <>
+            <p style={{ textAlign: "right" }}>* All fields required</p>
+            <Button primary type='submit'>
+              Signup
+            </Button>
+          </>
         )}
       </Form>
     </div>

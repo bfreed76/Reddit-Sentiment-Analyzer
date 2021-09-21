@@ -12,7 +12,6 @@ const MySearches = () => {
     fetch("/my_searches")
       .then((res) => res.json())
       .then((data) => {
-        console.log("My Searches: ", data);
         setMySearches(data);
       })
       .catch((err) => console.log("error =", err));

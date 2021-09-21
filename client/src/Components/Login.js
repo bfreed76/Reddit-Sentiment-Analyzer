@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(true);
-  const { setUser, setLoggedin } = useContext(Context);
+  const { setUser, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
   let history = useHistory();
 
   const handleLogin = (e) => {
@@ -26,7 +26,7 @@ const Login = () => {
           setUser(user);
           setLoggedin(true);
           setSuccess(true);
-          history.push("/top_content");
+          history.push("success");
         } else {
           setSuccess(false);
         }
@@ -36,6 +36,7 @@ const Login = () => {
 
   return (
     <div>
+      {setIsUpdating(false)}
       <Form onSubmit={handleLogin}>
         <Form.Field>
           <label>Email</label>
@@ -49,7 +50,6 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Field>
-        <Form.Field></Form.Field>
         {success ? null : <h3 className='Alert'>Wrong email or password.</h3>}
         <Button primary type='submit'>
           Login

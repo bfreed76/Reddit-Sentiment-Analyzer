@@ -39,7 +39,7 @@ const HeaderComp = ({ handleLogout, findMe }) => {
       <Transition visible={visible} animation='fade' duration={300}>
         <div>
           {loggedin ? (
-            <Profile handleLogout={handleLogout} renderUpdatePage={renderUpdatePage} />
+            <Profile handleLogout={handleLogout} renderUpdatePage={renderUpdatePage}/>
           ) : (
             <LoginOrSignup />
           )}

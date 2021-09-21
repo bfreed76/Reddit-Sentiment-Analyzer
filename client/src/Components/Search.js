@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Button, Checkbox, Form, Input } from "semantic-ui-react";
+import { Button, Form, Input } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../context/Context";
 
 const Search = () => {
+  const history = useHistory();
+  const [error, setError] = useState(false);
   const {
     user,
     setResults,
@@ -16,8 +18,6 @@ const Search = () => {
     searchTarget,
     setSearchTarget,
   } = useContext(Context);
-  const history = useHistory();
-  const [error, setError] = useState(false);
 
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
@@ -65,15 +65,15 @@ const Search = () => {
     });
   };
 
-  const handleCheck = (e) => {
-    setSearchTarget(e.target.value);
-  };
+  // const handleCheck = (e) => {
+  //   setSearchTarget(e.target.value);
+  // };
 
   return (
     <Form onSubmit={handleSearch}>
-      <h2>Search Reddit to discover emotional stuff</h2>
+      <h2>Discover emotional content on Reddit.</h2>
       <Form.Field>
-        <Checkbox
+        {/* <Checkbox
           label='Comments'
           radio
           id='comment'
@@ -88,7 +88,7 @@ const Search = () => {
           value='submission'
           checked={searchTarget === "submission"}
           onChange={handleCheck}
-        />
+        /> */}
       </Form.Field>
       <Form.Field>
         <Input

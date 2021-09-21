@@ -30,6 +30,7 @@ const App = () => {
         if (!data.error) {
           setUser(data);
           setLoggedin(true);
+          history.push("/");
         }
       })
       .catch((err) => console.log("error =", err));
@@ -50,14 +51,13 @@ const App = () => {
 
   const handleUpdate = () => {
     history.push("/signup");
-    console.log("********************HANDLE UPDATE");
   };
 
   const panes = [
     {
       menuItem: {
         as: NavLink,
-        content: "Top Content",
+        content: "Most Recent",
         to: "/top_content",
         exact: true,
         key: "top_content",
@@ -127,7 +127,6 @@ const App = () => {
   });
 
   return (
-    // <ContextProvider>
     <BrowserRouter>
       <div className='App'>
         <br></br>
@@ -149,7 +148,6 @@ const App = () => {
         </Switch>
       </div>
     </BrowserRouter>
-    // </ContextProvider>
   );
 };
 

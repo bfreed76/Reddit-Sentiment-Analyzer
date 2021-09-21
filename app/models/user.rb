@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :votes
   has_secure_password
 
   has_many :user_posts
