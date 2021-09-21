@@ -3,16 +3,18 @@ import { Context } from "../context/Context";
 import { Button } from "semantic-ui-react";
 import Login from "./Login";
 
-const Profile = ({ handleLogout }) => {
-  const context = useContext(Context);
+const Profile = ({ handleLogout, renderUpdatePage }) => {
   const { user, loggedin } = useContext(Context);
+
   return (
     <div>
       {loggedin ? (
         <div>
-          <h2>Username: {user.username} </h2>
-          <h2>email: {user.email}</h2>
-          <Button primary>Update</Button>
+          <h3>Username: {user.username} </h3>
+          <h3>email: {user.email}</h3>
+          <Button primary onClick={renderUpdatePage}>
+            Update
+          </Button>
           <Button primary onClick={handleLogout}>
             Logout
           </Button>

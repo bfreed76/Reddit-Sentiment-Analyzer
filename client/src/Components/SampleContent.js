@@ -1,5 +1,6 @@
 import React from "react";
-import SampleTopContent from "../SampleTopContent.jpg";
+import SampleTopContent2 from "../SampleTopContent2.jpg";
+
 import { Image } from "semantic-ui-react";
 
 import LoginOrSignup from "./LoginOrSignup";
@@ -7,11 +8,11 @@ import LoginOrSignup from "./LoginOrSignup";
 const SampleContent = () => {
   return (
     <div>
-      <p>Search Results by Reddit Score</p>
-      <h2>Sample content...</h2>
-      <Image src={SampleTopContent} fluid />
-
-      <h1>Login to see more!</h1>
+      <h1 style={{ textAlign: "left" }}>Just a sample...</h1>
+      <hr></hr>
+      <Image src={SampleTopContent2} fluid />
+      <hr></hr>
+      <h1>Login to view!</h1>
       <LoginOrSignup />
     </div>
   );

@@ -4,7 +4,7 @@
 
 .App {
   text-align: center;
-  max-width: 600px;
+  max-width: 500px;
   vertical-align: center;
   padding: 10px;
 }
@@ -24,6 +24,10 @@
   color: #61dafb;
 }
 
+.cellLabel {
+  font-weight: 100;
+}
+
 .FooterBtn {
   position: fixed;
   align-items: center;
@@ -36,16 +40,16 @@
   font-size: 150%;
 }
 
-.p {
+/* .p {
   margin-bottom: 0px;
+} */
+
+.results {
+  width:500;
 }
 
 #userIcon {
-  float: right;
-  /* position: absolute;
-  top: 20;
-  right: 0;
-  margin-right: 10px; */
+  padding-left: 18%;
 }
 
 @keyframes App-logo-spin {

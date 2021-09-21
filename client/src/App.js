@@ -1,31 +1,22 @@
 import "./App.css";
-import { Button, Tab } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
-import Home from "./Components/Home";
 import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
 import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
-import Footer from "./Components/Footer";
-import Tabs from "./Components/Tabs";
+import MySearches from "./Components/MySearches";
+import UpdateSuccessful from "./Components/UpdateSuccessful";
 import Search from "./Components/Search";
 import TopContent from "./Components/TopContent";
-import ResultsContainer from "./Components/ResultsContainer"
+import ResultsContainer from "./Components/ResultsContainer";
 import SampleContent from "./Components/SampleContent";
-import ContextProvider from "./context/Context";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  Redirect,
-  matchPath,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory, matchPath, NavLink } from "react-router-dom";
 
 const App = () => {
-  const { user, setUser, loggedin, setLoggedin, results, setResults } = useContext(Context);
+  const { setUser, loggedin, setLoggedin } = useContext(Context);
+  const history = useHistory();
 
   useEffect(() => {
     findMe();
@@ -39,12 +30,13 @@ const App = () => {
         if (!data.error) {
           setUser(data);
           setLoggedin(true);
+          history.push("/");
         }
       })
       .catch((err) => console.log("error =", err));
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE",
     })
@@ -57,17 +49,21 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdate = () => {
+    history.push("/signup");
+  };
+
   const panes = [
     {
       menuItem: {
         as: NavLink,
-        content: "Top Content",
+        content: "Most Recent",
         to: "/top_content",
         exact: true,
         key: "top_content",
       },
       render: () => (
-        <Route path="/top_content" exact>
+        <Route path='/top_content' exact>
           <Tab.Pane>
             <div>
               {loggedin ? (
@@ -85,17 +81,37 @@ const App = () => {
     {
       menuItem: {
         as: NavLink,
-        content: "My Searches",
+        content: "Search",
         to: "/",
         exact: true,
         key: "home",
       },
       render: () => (
-        <Route path="/" exact>
+        <Route path='/' exact>
           <Tab.Pane>
             <div>
               {" "}
               <Search />
+            </div>
+          </Tab.Pane>
+        </Route>
+      ),
+    },
+    {
+      menuItem: loggedin
+        ? {
+            as: NavLink,
+            content: "My Searches",
+            to: "/my_searches",
+            exact: true,
+            key: "my_searches",
+          }
+        : {},
+      render: () => (
+        <Route path='/my_searches' exact>
+          <Tab.Pane>
+            <div>
+              <MySearches />
             </div>
           </Tab.Pane>
         </Route>
@@ -111,29 +127,27 @@ const App = () => {
   });
 
   return (
-    // <ContextProvider>
     <BrowserRouter>
-      <div className="App">
+      <div className='App'>
         <br></br>
-        <HeaderComp handleLogout={handleLogout} />
+        <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
         <hr></hr>
         <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
         <br></br>
         <div></div>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/results" component={ResultsContainer} />
-          <Route
-            exact
-            path="/profile"
-            render={(handleLogout) => <Profile {...handleLogout} />}
-          />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/results' component={ResultsContainer} />
+          <Route exact path='/success'>
+            <UpdateSuccessful findMe={findMe} />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile handleLogout={handleLogout} />
+          </Route>
         </Switch>
-        <Footer handleLogout={handleLogout} />
       </div>
     </BrowserRouter>
-    // </ContextProvider>
   );
 };
 

@@ -7,6 +7,7 @@ class SearchResultsController < ApplicationController
     include IBMWatson
 
     def initialize
+        # initialize Watson NLU auth
         authenticator = Authenticators::IamAuthenticator.new(
             apikey: ENV["NATURAL_LANGUAGE_UNDERSTANDING_APIKEY"]
             )
@@ -17,56 +18,62 @@ class SearchResultsController < ApplicationController
             )
         # provides service URL
         natural_language_understanding.service_url = ENV["NATURAL_LANGUAGE_UNDERSTANDING_URL"]
-        
-        @nlu = natural_language_understanding
+            @nlu = natural_language_understanding
     end
 
     def get_reddit
         # GETS data from pushshift API
         response = HTTParty.get(params[:url])
-        searchTerms = (params[:searchTerms]).gsub('"',"").split()
-        res = response.parsed_response
-            # Transforms pushshift data before sending to Watson and DB
-            data = res["data"]
+            res = response.parsed_response
+        # Transforms pushshift data before sending to Watson and DB
+        data = res["data"]
             data_map = data.map {|entry| entry["body"]}
             data_str = data_map.to_s
-            # GETS analysis from Watson NLU
-            # watson = @nlu.analyze(
-            #     text: "#{data_map}",
-            #     features: {
-            #         sentiment: {document: true},
-            #         emotion: {
-            #             document: true,
-            #             targets: searchTerms}
-            #         },
-            #         language: "en",
-            #         return_analyzed_text: true, 
-            #         ) 
-                    
-            #         results = JSON.pretty_generate(watson.result) 
-                    
-                    #Save all data to DB
 
+            # Pushshift API data to Watson NLU with options to analyze search terms and Watson config
+            if params[:searchTerms].empty? 
+                watson = @nlu.analyze(
+                    text: "#{data_map}",
+                    language: "en",
+                    features: {
+                        sentiment: {document: true},
+                        emotion: {
+                            document: true}
+                        },
+                    return_analyzed_text: true
+                ) else (
+                searchTerms = (params[:searchTerms]).gsub('"',"").split()
+                    watson = @nlu.analyze(
+                        text: "#{data_map}",
+                        language: "en",
+                        features: {
+                            sentiment: {document: true},
+                            emotion: {
+                                document: true,
+                                targets: searchTerms}
+                            },
+                    return_analyzed_text: true))
+                    end    
+                # Convert Watson results to JSON
+                results = JSON.pretty_generate(watson.result) 
+                    
+                    # Saves all data to DB
                     user = params[:user]["username"]
-                    user_id = params[:user]["id"]
+                    userId = session[:user_id]
                     subr = Subreddit.find_or_create_by(name: params[:subreddit])
                     auth = Author.find_or_create_by(name: params[:sUsername])
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
-                    
-                    sentDoc = 
-                    "SENTDOC"
-                    # [watson.result["sentiment"]["document"]]
-                    emoDoc = 
-                    "EMODOC"
-                    # watson.result["emotion"]["document"]
-                    emoTarg = 
-                    "EMOTARG"
-                    # watson.result["emotion"]["targets"]
-
-                    newResJoin = ResultsJoin.create(user_id: user_id, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
-
-                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc: emoDoc, sent_doc: sentDoc, emo_search: emoTarg)
-                    
+                    sentDoc = watson.result["sentiment"]["document"]
+                    emoDoc = watson.result["emotion"]["document"]
+                        # Enables optional analysis of searchterms
+                        if searchTerms 
+                        emoTarg = watson.result["emotion"]["targets"] 
+                        else
+                        emoTarg = ""
+                        end
+                    newResJoin = ResultsJoin.create(user_id: userId, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
+                    SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc_json: emoDoc, sent_doc_json: sentDoc, emo_search_json: emoTarg)
+                    # Structure custom JSON
                     results = {
                             user: user,
                             author: auth.name,
@@ -76,14 +83,10 @@ class SearchResultsController < ApplicationController
                             emotionTarget: emoTarg,
                             data: data
                         }
-
+                        
                     render json: results
-
-                    # byebug
-                        # render json: {results: {"test": "You got it!"}
     end
 
-    
     def index
         search_results = SearchResult.all
         render json: search_results
@@ -96,11 +99,12 @@ class SearchResultsController < ApplicationController
 
   private
 
-  def find_search_results
-    SearchResult.find_by(id: params[:id])
-  end
+    def find_search_results
+        SearchResult.find_by(id: params[:id])
+    end
 
-  def render_not_found_response
-    render json: { error: 'Record not found' }, status: :not_found
-  end
+    def render_not_found_response
+        render json: { error: 'Record not found' }, status: :not_found
+    end
+
 end

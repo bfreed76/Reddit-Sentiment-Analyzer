@@ -2,23 +2,27 @@ Rails
   .application
   .routes
   .draw do
-    resources :search_results
-    resources :authors
-    resources :subreddits
-    resources :search_terms
-    resources :results_joins
-    resources :user_posts
-    resources :users
+    resources :search_results, only: [:index]
+    resources :authors, only: [:index, :show]
+    resources :subreddits, only: [:index, :show]
+    resources :search_terms, only: [:index, :show]
+    resources :results_joins, only: [:index, :show]
+    resources :user_posts, only: [:index, :show]
+    resources :users, only: [:index, :show]
 
-    # Remember to restrict routes as a last step!
+    # Custom routes
 
     get '/searches', to: 'search_results#index'
+    post '/reddit', to: 'search_results#get_reddit'
 
     get '/me', to: 'users#me'
     post '/signup', to: 'users#create'
+    patch '/update', to: 'users#update'
 
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
 
-    post '/reddit', to: 'search_results#get_reddit'
+    get '/top_content', to: 'results_joins#top_content'
+    get '/my_searches', to: 'results_joins#my_searches'
+    
   end

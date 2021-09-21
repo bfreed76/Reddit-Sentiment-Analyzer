@@ -53,4 +53,6 @@ gem 'ibm_watson'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'rails_rest_vote'
+
 gem 'rufo'
