@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pages#index'
+  root 'results_joins#top_content'
     resources :search_results, only: [:index]
     resources :authors, only: [:index, :show]
     resources :subreddits, only: [:index, :show]
