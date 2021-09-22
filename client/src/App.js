@@ -3,7 +3,7 @@ import { Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
-import ContextProvider, { Context } from "./context/Context";
+import { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
 import MySearches from "./Components/MySearches";
@@ -128,7 +128,6 @@ const App = () => {
   });
 
   return (
-    <ContextProvider>
       <BrowserRouter>
         <div className='App'>
           <br></br>
@@ -150,7 +149,6 @@ const App = () => {
           </Switch>
         </div>
       </BrowserRouter>
-    </ContextProvider>
   );
 };
 
