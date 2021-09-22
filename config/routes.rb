@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'results_joins#top_content'
     resources :search_results, only: [:index]
     resources :authors, only: [:index, :show]
     resources :subreddits, only: [:index, :show]
@@ -23,6 +22,6 @@ Rails.application.routes.draw do
     get '/top_content', to: 'results_joins#top_content'
     get '/my_searches', to: 'results_joins#my_searches'
 
-    get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+    get "*path", to: "application#fallback_index_html", constraints: ->(req) { !req.xhr? && req.format.html? }
     
   end
