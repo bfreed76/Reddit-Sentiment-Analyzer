@@ -1,7 +1,5 @@
-Rails
-  .application
-  .routes
-  .draw do
+Rails.application.routes.draw do
+  root 'pages#index'
     resources :search_results, only: [:index]
     resources :authors, only: [:index, :show]
     resources :subreddits, only: [:index, :show]
