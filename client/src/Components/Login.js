@@ -7,22 +7,26 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(true);
-  const { setUser, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
+  const { setUser, setLoggedin, isUpdating, setIsUpdating, CSRFToken } = useContext(Context);
   let history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch("/login", {
+
+    const postObj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-CSRF-Token": CSRFToken(document.cookie)
       },
       body: JSON.stringify({ email, password }),
-    })
+    }
+
+    console.log(postObj, "***************")
+    fetch("/login", postObj)
       .then((r) => r.json())
       .then((user) => {
         if (!!user.id) {
-          console.log("Log in: ", user);
           setUser(user);
           setLoggedin(true);
           setSuccess(true);
