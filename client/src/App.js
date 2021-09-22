@@ -3,7 +3,7 @@ import { Tab } from "semantic-ui-react";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Profile from "./Components/Profile";
-import { Context } from "./context/Context";
+import ContextProvider, { Context } from "./context/Context";
 import { useContext, useEffect } from "react";
 import HeaderComp from "./Components/HeaderComp";
 import MySearches from "./Components/MySearches";
@@ -45,6 +45,7 @@ const App = () => {
         console.log("Logged out.");
         setLoggedin(false);
         setUser({});
+        window.location.reload()
       })
       .catch((err) => console.log(err));
   };
@@ -127,27 +128,29 @@ const App = () => {
   });
 
   return (
-    <BrowserRouter>
-      <div className='App'>
-        <br></br>
-        <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
-        <hr></hr>
-        <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
-        <br></br>
-        <div></div>
-        <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/results' component={ResultsContainer} />
-          <Route exact path='/success'>
-            <UpdateSuccessful findMe={findMe} />
-          </Route>
-          <Route exact path='/profile'>
-            <Profile handleLogout={handleLogout} />
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
+        <div className='App'>
+          <br></br>
+          <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
+          <hr></hr>
+          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
+          <br></br>
+          <div></div>
+          <Switch>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/results' component={ResultsContainer} />
+            <Route exact path='/success'>
+              <UpdateSuccessful findMe={findMe} />
+            </Route>
+            <Route exact path='/profile'>
+              <Profile handleLogout={handleLogout} />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </ContextProvider>
   );
 };
 

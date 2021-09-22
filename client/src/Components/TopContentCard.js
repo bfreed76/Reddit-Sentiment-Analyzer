@@ -54,9 +54,9 @@ const TopContentCard = ({ item }) => {
       </h3>
       <div className='emoDocResults'>
         <EmoDocResults emoDoc={emoDoc}></EmoDocResults>
-        {emoTarg.map((targ, id) => {
+        {emoTarg ? emoTarg.map((targ, id) => {
           return <EmoTargResults key={id} targ={targ} />;
-        })}
+        }): null}
       </div>
       <br></br>
       <br></br>

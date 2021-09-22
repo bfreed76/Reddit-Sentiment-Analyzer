@@ -31,7 +31,7 @@ class SearchResultsController < ApplicationController
             data_str = data_map.to_s
 
             # Pushshift API data to Watson NLU with options to analyze search terms and Watson config
-            if params[:searchTerms].empty? 
+            if params[:searchTerms].blank? 
                 watson = @nlu.analyze(
                     text: "#{data_map}",
                     language: "en",

@@ -5,20 +5,29 @@ const EmoDocResults = ({ emoDoc }) => {
   const { sadness, joy, fear, disgust, anger } = emoDoc.emotion;
 
   const data = [
-    { name: "Sadness", uv: sadness },
-    { name: "Joy", uv: joy },
-    { name: "Fear", uv: fear },
-    { name: "Disgust", uv: disgust },
-    { name: "Anger", uv: anger },
+    { name: "Sadness", Score: sadness },
+    { name: "Joy", Score: joy },
+    { name: "Fear", Score: fear },
+    { name: "Disgust", Score: disgust },
+    { name: "Anger", Score: anger },
   ];
 
   const renderBarChart = (
-    <BarChart width={400} height={250} data={data}>
+    <BarChart
+      width={325}
+      height={250}
+      data={data}
+      margin={{
+        top: 5,
+        right: 5,
+        left: 0,
+        bottom: 5,
+      }}>
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='name' />
-      <YAxis />
+      <YAxis type='number' domain={[0, 1]} />
       <Tooltip />
-      <Bar dataKey='uv' fill='#8884d8' />
+      <Bar dataKey='Score' fill='#8884d8' />
     </BarChart>
   );
 

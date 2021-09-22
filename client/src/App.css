@@ -28,6 +28,10 @@
   font-weight: 100;
 }
 
+.recharts-wrapper {
+  margin : 0 auto;
+}
+
 .FooterBtn {
   position: fixed;
   align-items: center;
@@ -40,9 +44,6 @@
   font-size: 150%;
 }
 
-/* .p {
-  margin-bottom: 0px;
-} */
 
 .results {
   width:500;

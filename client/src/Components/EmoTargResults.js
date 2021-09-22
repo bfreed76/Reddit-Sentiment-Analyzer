@@ -14,25 +14,25 @@ const EmoTargResults = ({ targ }) => {
 
   const renderBarChart = (
     <BarChart
-      width={380}
-      height={150}
+      width={325}
+      height={250}
       data={data}
       margin={{
         top: 5,
         right: 5,
-        left: 15,
+        left: 0,
         bottom: 5,
       }}>
       <CartesianGrid strokeDasharray='1 3' />
       <XAxis dataKey='name' fontSize='15' />
-      <YAxis />
+      <YAxis type='number' domain={[0, 1]} />
       <Tooltip />
       <Bar dataKey='uv' fill='#3884d8' />
     </BarChart>
   );
 
   return (
-    <div>
+    <div className='rechats-wrapper'>
       <p>
         Emotional score for <strong>{targ.text}</strong>
       </p>

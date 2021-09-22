@@ -24,7 +24,7 @@ const MySearches = () => {
           return <MySearchCards key={id} item={item} />;
         })
       ) : (
-        <h3 style={{ color: "red" }}>No search results available</h3>
+        <h3>No search results available</h3>
       )}
     </div>
   );
