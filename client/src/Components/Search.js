@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Form, Input } from "semantic-ui-react";
+import { Button, Form, Input, Dimmer, Loader, Image, Segment } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../context/Context";
 
 const Search = () => {
   const history = useHistory();
   const [error, setError] = useState(false);
+  const [loading, setloading] = useState(false);
   const {
     user,
     setResults,
@@ -33,6 +34,7 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setloading(true);
     console.log(pushShiftURL);
     const postObj = {
       method: "POST",
@@ -64,7 +66,12 @@ const Search = () => {
   };
 
   return (
-    <>
+    <Segment>
+      {loading ? (
+        <Dimmer active inverted>
+          <Loader>Analyzing...</Loader>
+        </Dimmer>
+      ) : null}
       <Form onSubmit={handleSearch}>
         <h2>Discover emotional content on Reddit.</h2>
         <Form.Field>
@@ -100,7 +107,7 @@ const Search = () => {
           Search
         </Button>
       </Form>
-    </>
+    </Segment>
   );
 };
 

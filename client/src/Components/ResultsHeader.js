@@ -20,11 +20,11 @@ const ResultsHeader = () => {
         <Table.Body>
           <Table.Row textAlign='left' style={{ fontWeight: "bold" }}>
             <Table.Cell className='cellLabel'>Reddit User:</Table.Cell>
-            <Table.Cell>{sUsername ? sUsername : "---"}</Table.Cell>
+            <Table.Cell>{sUsername ? sUsername : "-"}</Table.Cell>
             <Table.Cell className='cellLabel'>Subreddit:</Table.Cell>
-            <Table.Cell>{subreddit ? subreddit : "---"}</Table.Cell>
+            <Table.Cell>{subreddit ? subreddit : "-"}</Table.Cell>
             <Table.Cell className='cellLabel'>Topic:</Table.Cell>
-            <Table.Cell>{searchTerms ? searchTerms : "---"}</Table.Cell>
+            <Table.Cell>{searchTerms ? searchTerms : "-"}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
