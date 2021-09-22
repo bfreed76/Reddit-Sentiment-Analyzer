@@ -51,9 +51,7 @@ gem 'httparty'
 
 gem 'ibm_watson'
 
-group :development, :test do
-  gem 'dotenv-rails'
-end
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
 gem 'rails_rest_vote'
 

@@ -19,9 +19,10 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-if ['development', 'test'].include? ENV['RAILS_ENV']
-  Dotenv::Railtie.load
-end
+
+Dotenv::Railtie.load
+
+HOSTNAME = ENV['HOSTNAME']
 
 module RedditSent
   class Application < Rails::Application
