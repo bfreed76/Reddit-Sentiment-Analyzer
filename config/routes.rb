@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     resources :results_joins, only: [:index, :show]
     resources :user_posts, only: [:index, :show]
     resources :users, only: [:index, :show]
-
+    
     # Custom routes
-
+    
+    root 'main#index'
     get '/searches', to: 'search_results#index'
     post '/reddit', to: 'search_results#get_reddit'
 
