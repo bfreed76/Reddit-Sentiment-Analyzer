@@ -12,7 +12,7 @@ class ResultsJoinsController < ApplicationController
   end
  
   def top_content
-    last_results = ResultsJoin.all.limit(10).sort_by(&:created_at).reverse      
+    last_results = ResultsJoin.all.sort_by(&:created_at).reverse      
     render json: last_results
   end
   
