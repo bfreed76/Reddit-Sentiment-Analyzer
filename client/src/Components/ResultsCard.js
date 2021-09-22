@@ -7,7 +7,7 @@ const ResultsCard = ({ result }) => {
   return (
     <Card.Group itemsPerRow={1}>
       <Card centered href={link} target='_blank'>
-        <Card.Content header={"Author:  " + result.author} />
+        <Card.Content textAlign="left" header={result.author + " says..."} />
         <Card.Content textAlign='left' description={result.body} />
         <Card.Content extra>Subreddit: {result.subreddit}</Card.Content>
       </Card>

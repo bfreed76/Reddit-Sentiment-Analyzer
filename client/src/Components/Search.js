@@ -30,7 +30,7 @@ const Search = () => {
     sUsername +
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext,permalink" +
     "&size=" +
-    "3";
+    "50";
 
   const handleSearch = (e) => {
     e.preventDefault();
