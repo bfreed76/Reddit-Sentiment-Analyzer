@@ -53,6 +53,4 @@ gem 'ibm_watson'
 
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
-gem 'rails_rest_vote'
-
 gem 'rufo'
