@@ -18,7 +18,8 @@ const App = () => {
   const { setUser, loggedin, setLoggedin } = useContext(Context);
   const history = useHistory();
 
-  // Checks user auth
+  // Checks user authentication
+
   useEffect(() => {
     findMe();
   }, []);
@@ -58,6 +59,8 @@ const App = () => {
   const handleUpdate = () => {
     history.push("/signup");
   };
+
+  // Three Semantic UI tabs for primary interface/app body
 
   const panes = [
     {
@@ -131,6 +134,8 @@ const App = () => {
       exact: true,
     });
   });
+
+  // React routing; render header and tabs (body)
 
   return (
     <BrowserRouter>

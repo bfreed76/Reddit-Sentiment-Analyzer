@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   
   # Login (create session)
-  
   def create
 
     #if username and password, save userID as session hash

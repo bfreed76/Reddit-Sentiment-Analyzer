@@ -4,11 +4,15 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   # after_action :set_csrf_cookie
 
+  # Fallback route
+
   def fallback_index_html
     render file: 'public/index.html'
   end
 
   private
+
+  # CSRF token creation for deployment to Heroku
 
   def set_csrf_cookie
     cookies["CSRF-TOKEN"] = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Icon, Header } from "semantic-ui-react";
 import { Divider, Transition } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
@@ -6,23 +6,28 @@ import { useState } from "react";
 import Profile from "./Profile";
 import LoginOrSignup from "./LoginOrSignup";
 import { Context } from "../context/Context";
-import { useContext } from "react";
 
 const HeaderComp = ({ handleLogout, findMe }) => {
-  let history = useHistory();
   const { loggedin, setIsUpdating } = useContext(Context);
   const [visible, setVisible] = useState(false);
+  let history = useHistory();
+
+  // Toggles profile/login visibility
 
   const toggleVisibility = () => {
     findMe();
     setVisible(!visible);
   };
 
+  // Helper that toggles update state and visibility
+
   const renderUpdatePage = () => {
     setIsUpdating(true);
     toggleVisibility();
     history.push("/signup");
   };
+
+  // Renders header, toggles profile and login/signup
 
   return (
     <div>
@@ -39,7 +44,7 @@ const HeaderComp = ({ handleLogout, findMe }) => {
       <Transition visible={visible} animation='fade' duration={300}>
         <div>
           {loggedin ? (
-            <Profile handleLogout={handleLogout} renderUpdatePage={renderUpdatePage}/>
+            <Profile handleLogout={handleLogout} renderUpdatePage={renderUpdatePage} />
           ) : (
             <LoginOrSignup />
           )}

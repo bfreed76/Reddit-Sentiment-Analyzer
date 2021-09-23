@@ -6,16 +6,18 @@ class SearchResultsController < ApplicationController
     require "ibm_watson/natural_language_understanding_v1"
     include IBMWatson
 
+    # initialize Watson NLU auth
     def initialize
-        # initialize Watson NLU auth
         authenticator = Authenticators::IamAuthenticator.new(
             apikey: ENV["NATURAL_LANGUAGE_UNDERSTANDING_APIKEY"]
             )
+
         # creates new instance of NLU
         natural_language_understanding = NaturalLanguageUnderstandingV1.new(
             version: "2021-08-01",
             authenticator: authenticator
             )
+
         # provides service URL
         natural_language_understanding.service_url = ENV["NATURAL_LANGUAGE_UNDERSTANDING_URL"]
             @nlu = natural_language_understanding
@@ -30,7 +32,7 @@ class SearchResultsController < ApplicationController
             data_map = data.map {|entry| entry["body"]}
             data_str = data_map.to_s
 
-            # Pushshift API data to Watson NLU with options to analyze search terms and Watson config
+            # Sends pushshift API data to Watson NLU with Watson config and option to analyze search terms 
             if params[:searchTerms].blank? 
                 watson = @nlu.analyze(
                     text: "#{data_map}",
@@ -54,6 +56,7 @@ class SearchResultsController < ApplicationController
                             },
                     return_analyzed_text: true))
                     end    
+
                 # Convert Watson results to JSON
                 results = JSON.pretty_generate(watson.result) 
                     
@@ -65,15 +68,18 @@ class SearchResultsController < ApplicationController
                     sear = SearchTerm.find_or_create_by(search_term: params[:searchTerms])
                     sentDoc = watson.result["sentiment"]["document"]
                     emoDoc = watson.result["emotion"]["document"]
+
                         # Enables optional analysis of searchterms
                         if searchTerms 
                         emoTarg = watson.result["emotion"]["targets"] 
                         else
                         emoTarg = ""
                         end
+
                     newResJoin = ResultsJoin.create(user_id: userId, search_term_id: sear.id, subreddit_id: subr.id, author_id: auth.id) 
                     SearchResult.create(results_join_id: newResJoin.id, result_text: data_str, emo_doc_json: emoDoc, sent_doc_json: sentDoc, emo_search_json: emoTarg)
-                    # Structure custom JSON
+                    
+                    # Structures custom JSON
                     results = {
                             user: user,
                             author: auth.name,

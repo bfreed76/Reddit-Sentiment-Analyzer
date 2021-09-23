@@ -7,6 +7,8 @@ import EmoTargResults from "./EmoTargResults";
 const ResultsHeader = () => {
   const { results, sUsername, subreddit, searchTerms } = useContext(Context);
 
+  // Renders search results header, toggles render of 'search term' results
+
   return (
     <div>
       <Divider horizontal>
@@ -15,7 +17,6 @@ const ResultsHeader = () => {
           Search Info
         </Header>
       </Divider>
-
       <Table unstackable={true}>
         <Table.Body>
           <Table.Row textAlign='left' style={{ fontWeight: "bold" }}>
@@ -34,19 +35,17 @@ const ResultsHeader = () => {
           Results
         </Header>
       </Divider>
-
       <h3>
         Overall Sentiment Score: {results.sentimentDocument.score} (
         {results.sentimentDocument.label})
       </h3>
-
       <div className='emoDocResults'>
-          <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
-          {!!results.emotionTarget
-            ? results.emotionTarget.map((targ, id) => {
-                return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
-              })
-            : null}
+        <EmoDocResults emoDoc={results.emotionDocument}></EmoDocResults>
+        {!!results.emotionTarget
+          ? results.emotionTarget.map((targ, id) => {
+              return <EmoTargResults key={id} targ={targ}></EmoTargResults>;
+            })
+          : null}
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
 class CreateVotes < ActiveRecord::Migration[6.1]
   def change
+
+    # Created for vote function that was not included pre-production
+
     create_table :votes do |t|
       t.boolean :vote #only for up down vote usage, not for like unlike feature.
       t.references :votable, :polymorphic => true

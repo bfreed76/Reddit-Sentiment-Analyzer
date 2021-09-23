@@ -4,6 +4,8 @@ import MySearchCards from "./MySearchCards";
 const MySearches = () => {
   const [mySearches, setMySearches] = useState([]);
 
+  // Populates tab with most recent searches from all users
+
   useEffect(() => {
     getMySearches();
   }, []);
@@ -16,6 +18,8 @@ const MySearches = () => {
       })
       .catch((err) => console.log("error =", err));
   };
+
+  // Renders result cards
 
   return (
     <div>

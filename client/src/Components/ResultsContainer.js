@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Context } from "../context/Context";
-
 import ResultsHeader from "./ResultsHeader";
 import ResultsCard from "./ResultsCard";
 
 const ResultsContainer = () => {
   const { results } = useContext(Context);
+
+  // Renders results header and results cards with error handling
 
   return (
     <div className='results'>

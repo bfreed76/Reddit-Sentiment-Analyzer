@@ -1,9 +1,9 @@
 import React from "react";
 import SampleTopContent2 from "../SampleTopContent2.jpg";
-
 import { Image } from "semantic-ui-react";
-
 import LoginOrSignup from "./LoginOrSignup";
+
+// Renders "Most Recent" landing page for unauthenticated users
 
 const SampleContent = () => {
   return (

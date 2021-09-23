@@ -6,6 +6,8 @@ import Login from "./Login";
 const Profile = ({ handleLogout, renderUpdatePage }) => {
   const { user, loggedin } = useContext(Context);
 
+  // Render profile info or login/signup prompt
+
   return (
     <div>
       {loggedin ? (

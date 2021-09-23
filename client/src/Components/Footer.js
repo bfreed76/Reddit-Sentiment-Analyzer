@@ -2,6 +2,8 @@ import React from "react";
 
 const Footer = () => {
 
+  // Gives props where due. Not those kinds of props.
+
   return (
     <div>
       <div style={{ textAlign: "center" }}></div>

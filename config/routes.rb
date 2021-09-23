@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get '/top_content', to: 'results_joins#top_content'
     get '/my_searches', to: 'results_joins#my_searches'
 
+    # Fallback route
+
     get "*path", to: "application#fallback_index_html", constraints: ->(req) 
     { !req.xhr? && req.format.html? }
 

@@ -4,6 +4,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 const EmoDocResults = ({ emoDoc }) => {
   const { sadness, joy, fear, disgust, anger } = emoDoc.emotion;
 
+  // Assigns chart values to results data from Watson
+
   const data = [
     { name: "Sadness", Score: sadness },
     { name: "Joy", Score: joy },
@@ -11,6 +13,8 @@ const EmoDocResults = ({ emoDoc }) => {
     { name: "Disgust", Score: disgust },
     { name: "Anger", Score: anger },
   ];
+
+  // Renders chart
 
   const renderBarChart = (
     <BarChart

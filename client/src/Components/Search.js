@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Button, Form, Input, Dimmer, Loader, Image, Segment } from "semantic-ui-react";
+import React, { useState, useContext } from "react";
+import { Button, Form, Input, Dimmer, Loader, Segment } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../context/Context";
 
@@ -19,6 +19,8 @@ const Search = () => {
     searchTarget,
   } = useContext(Context);
 
+  // Builds URL for pushshift api request
+
   let pushShiftURL =
     "https://api.pushshift.io/reddit/search/" +
     searchTarget +
@@ -31,6 +33,8 @@ const Search = () => {
     "&fields=author,created_utc,body,score,subreddit,url,title,selftext,permalink" +
     "&size=" +
     "50";
+
+  // Sends state (Reddit search) to backend for fetch from pushshift api and Watson analysis
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -64,6 +68,8 @@ const Search = () => {
       }
     });
   };
+
+  // Landing page with search forms and error handling
 
   return (
     <Segment>

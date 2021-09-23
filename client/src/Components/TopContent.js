@@ -4,6 +4,8 @@ import TopContentCard from "./TopContentCard";
 const TopContent = () => {
   const [topContent, setTopContent] = useState([]);
 
+  // Fetches most recent content on component render
+
   useEffect(() => {
     getTopContent();
   }, []);
@@ -16,6 +18,8 @@ const TopContent = () => {
       })
       .catch((err) => console.log("error =", err));
   };
+
+  // Renders recent content cards
 
   return (
     <div>

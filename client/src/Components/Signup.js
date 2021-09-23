@@ -10,10 +10,14 @@ const Signup = () => {
   const history = useHistory();
   const { user, setUser, loggedin, setLoggedin, isUpdating, setIsUpdating } = useContext(Context);
 
+  // Sets local state to global state on component render
+
   useEffect(() => {
     setUsername(user.username);
     setEmail(user.email);
   }, [user.username, user.email]);
+
+  // Handles signup with input error handling
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -37,6 +41,8 @@ const Signup = () => {
       .catch((err) => console.log(err));
   };
 
+  // Handles update of user profile information
+
   const handleUpdate = (e) => {
     e.preventDefault();
     fetch("/update", {
@@ -53,6 +59,8 @@ const Signup = () => {
       })
       .catch((err) => console.log("Update err = ", err));
   };
+
+  // Renders either login or signup information depending on state
 
   return (
     <div>
@@ -72,7 +80,7 @@ const Signup = () => {
         </Form.Field>
         {isUpdating ? (
           <>
-          <h3>Please enter new username or email.</h3>
+            <h3>Please enter new username or email.</h3>
           </>
         ) : (
           <Form.Field>
