@@ -23,7 +23,7 @@ const Login = () => {
       },
       body: JSON.stringify({ email, password }),
     };
-    fetch("/login", postObj)
+    fetch("/api/login", postObj)
       .then((r) => r.json())
       .then((user) => {
         if (!!user.id) {

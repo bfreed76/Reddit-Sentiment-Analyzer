@@ -2,7 +2,6 @@ module Api
   class ResultsJoinsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-
     def index
       results_joins = ResultsJoin.all
       render json: results_joins

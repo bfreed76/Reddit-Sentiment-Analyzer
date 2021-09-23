@@ -11,7 +11,7 @@ const MySearches = () => {
   }, []);
 
   const getMySearches = () => {
-    fetch("/my_searches")
+    fetch("/api/my_searches")
       .then((res) => res.json())
       .then((data) => {
         setMySearches(data);

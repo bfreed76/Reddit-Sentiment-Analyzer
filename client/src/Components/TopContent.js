@@ -11,7 +11,7 @@ const TopContent = () => {
   }, []);
 
   const getTopContent = () => {
-    fetch("/top_content")
+    fetch("/api/top_content")
       .then((res) => res.json())
       .then((data) => {
         setTopContent(data);

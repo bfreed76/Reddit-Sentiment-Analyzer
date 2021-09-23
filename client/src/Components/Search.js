@@ -53,7 +53,7 @@ const Search = () => {
         searchTerms,
       }),
     };
-    fetch("/reddit", postObj).then((res) => {
+    fetch("/api/reddit", postObj).then((res) => {
       if (res.ok) {
         res.json().then((res) => {
           setResults(res);

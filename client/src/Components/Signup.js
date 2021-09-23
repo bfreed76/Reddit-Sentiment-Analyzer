@@ -24,7 +24,7 @@ const Signup = () => {
     if (!username || !email || !password) {
       return console.log("field(s) missing");
     }
-    fetch("/signup", {
+    fetch("/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Signup = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    fetch("/update", {
+    fetch("/api/update", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

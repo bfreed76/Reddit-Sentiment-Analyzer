@@ -25,7 +25,7 @@ const App = () => {
   }, []);
 
   const findMe = () => {
-    fetch("/me")
+    fetch("/api/me")
       .then((res) => res.json())
       .then((data) => {
         console.log("current user: ", data);
@@ -41,7 +41,7 @@ const App = () => {
   // Logout
 
   const handleLogout = () => {
-    fetch("/logout", {
+    fetch("/api/logout", {
       method: "DELETE",
     })
       .then((res) => res.json())
