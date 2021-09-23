@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
     # Fallback route
 
-    get "*path", to: "application#fallback_index_html", constraints: ->(req) 
-    { !req.xhr? && req.format.html? }
+    get "*path", to: "application#fallback_index_html", constraints: ->(req) { !req.xhr? && req.format.html? }
 
   end
