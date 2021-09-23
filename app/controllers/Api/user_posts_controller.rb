@@ -1,3 +1,5 @@
+module Api 
+
 class UserPostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   before_action :current_user
@@ -22,4 +24,6 @@ class UserPostsController < ApplicationController
   def render_not_found_response
     render json: { error: 'Record not found' }, status: :not_found
   end
+end
+
 end

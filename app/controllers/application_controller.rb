@@ -1,6 +1,4 @@
-module Api 
-
-  class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
     include ActionController::Cookies
     # Adding CSRF cookies for deployment to Heroku
     skip_before_action :verify_authenticity_token
@@ -27,4 +25,3 @@ module Api
 
   end
 
-end
