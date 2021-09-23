@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  namespace :api do
     resources :search_results, only: [:index]
     resources :authors, only: [:index, :show]
     resources :subreddits, only: [:index, :show]
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
 
     get '/top_content', to: 'results_joins#top_content'
     get '/my_searches', to: 'results_joins#my_searches'
+
+  end
 
     # Fallback route
 
