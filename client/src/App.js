@@ -18,6 +18,7 @@ const App = () => {
   const { setUser, loggedin, setLoggedin } = useContext(Context);
   const history = useHistory();
 
+  // Checks user auth
   useEffect(() => {
     findMe();
   }, []);
@@ -36,6 +37,8 @@ const App = () => {
       .catch((err) => console.log("error =", err));
   };
 
+  // Logout
+
   const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE",
@@ -45,10 +48,12 @@ const App = () => {
         console.log("Logged out.");
         setLoggedin(false);
         setUser({});
-        window.location.reload()
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
+
+  // Routes to signup component
 
   const handleUpdate = () => {
     history.push("/signup");
@@ -128,27 +133,27 @@ const App = () => {
   });
 
   return (
-      <BrowserRouter>
-        <div className='App'>
-          <br></br>
-          <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
-          <hr></hr>
-          <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
-          <br></br>
-          <div></div>
-          <Switch>
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/results' component={ResultsContainer} />
-            <Route exact path='/success'>
-              <UpdateSuccessful findMe={findMe} />
-            </Route>
-            <Route exact path='/profile'>
-              <Profile handleLogout={handleLogout} />
-            </Route>
-          </Switch>
-        </div>
-      </BrowserRouter>
+    <BrowserRouter>
+      <div className='App'>
+        <br></br>
+        <HeaderComp handleLogout={handleLogout} handleUpdate={handleUpdate} findMe={findMe} />
+        <hr></hr>
+        <Tab panes={panes} defaultActiveIndex={defaultActiveIndex} />
+        <br></br>
+        <div></div>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/results' component={ResultsContainer} />
+          <Route exact path='/success'>
+            <UpdateSuccessful findMe={findMe} />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile handleLogout={handleLogout} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 

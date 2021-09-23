@@ -7,6 +7,8 @@ import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter } from "react-router-dom";
 import ContextProvider from "./context/Context";
 
+// Enabled ContextProvider at highest level component
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

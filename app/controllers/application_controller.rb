@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   include ActionController::Cookies
-  # after_action :set_csrf_cookie
+  # Adding CSRF cookies for deployment to Heroku
   skip_before_action :verify_authenticity_token
+  # after_action :set_csrf_cookie
 
   def fallback_index_html
     render file: 'public/index.html'

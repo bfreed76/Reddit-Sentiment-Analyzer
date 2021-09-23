@@ -49,8 +49,11 @@ gem 'email_validator'
 # Enables simple backend fetching
 gem 'httparty'
 
+# Enable IBM Watson services
 gem 'ibm_watson'
 
+# Enable security for use of auth tokens to IBM Watson
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
+# Enable Ruby Formatter
 gem 'rufo'
