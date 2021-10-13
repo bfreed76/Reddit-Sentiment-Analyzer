@@ -71,7 +71,7 @@ module Api
                         sentDoc = watson.result["sentiment"]["document"]
                         emoDoc = watson.result["emotion"]["document"]
 
-                            # Enables optional analysis of searchterms
+                            # Assigns Watson results to search terms if available
                             if searchTerms 
                             emoTarg = watson.result["emotion"]["targets"] 
                             else

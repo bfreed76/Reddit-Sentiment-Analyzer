@@ -51,6 +51,7 @@ const Login = () => {
           <label>Password</label>
           <input
             placeholder='password'
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
