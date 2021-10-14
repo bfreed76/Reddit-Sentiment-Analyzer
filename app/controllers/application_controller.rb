@@ -14,14 +14,14 @@ class ApplicationController < ActionController::Base
 
     # CSRF token creation for deployment to Heroku
 
-    def set_csrf_cookie
-      cookies["CSRF-TOKEN"] = {
-        value: form_authenticity_token,
-        secure: true,
-        same_site: :strict,
-        domain: 'reddit-emotion-analyzer.herokuapp.com/'}
-        # p 'cookie  ****' + cookies["CSRF-TOKEN"]
-    end
+    # def set_csrf_cookie
+    #   cookies["CSRF-TOKEN"] = {
+    #     value: form_authenticity_token,
+    #     secure: true,
+    #     same_site: :strict,
+    #     domain: 'reddit-emotion-analyzer.herokuapp.com/'}
+    #     p 'cookie  ****' + cookies["CSRF-TOKEN"]
+    # end
 
   end
 
