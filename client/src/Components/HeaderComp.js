@@ -35,7 +35,7 @@ const HeaderComp = ({ handleLogout, findMe }) => {
         <Header.Content>
           <div as='h1.ui.header'>
             <Icon name='reddit' />
-            <big>Emot/rS</big>
+            <big>Emot/r</big>
             <Icon id='userIcon' name='user outline' onClick={toggleVisibility} />
           </div>
         </Header.Content>
