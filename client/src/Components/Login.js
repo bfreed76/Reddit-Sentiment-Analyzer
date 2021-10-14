@@ -7,25 +7,25 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(true);
-  const { setUser, setLoggedin, setIsUpdating, CSRFToken } = useContext(Context);
+  const { setUser, setLoggedin, setIsUpdating } = useContext(Context);
   let history = useHistory();
 
   // Login
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Includes CSRF token for deployment to Heroku
     const postObj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": CSRFToken(document.cookie),
       },
       body: JSON.stringify({ email, password }),
     };
     fetch("/api/login", postObj)
       .then((r) => r.json())
       .then((user) => {
+        //user true or not?!
+        console.log("USER", user)
         if (!!user.id) {
           setUser(user);
           setLoggedin(true);

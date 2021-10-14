@@ -10,15 +10,6 @@ const ContextProvider = (props) => {
   const [searchTerms, setSearchTerms] = useState("");
   const [searchTarget, setSearchTarget] = useState("comment");
   const [isUpdating, setIsUpdating] = useState(false);
-  // CSRF token for deployment to Heroku
-  const CSRFToken = (cookies) => {
-    if (!!cookies) {
-      const splitCookies = cookies.split("; ");
-      return splitCookies.find((cookie) => cookie.startsWith("CSRF-TOKEN=")).split("=")[1];
-    } else {
-      return cookies;
-    }
-  };
 
   // Context 'store'
 
@@ -38,8 +29,7 @@ const ContextProvider = (props) => {
     searchTarget,
     setSearchTarget,
     isUpdating,
-    setIsUpdating,
-    CSRFToken,
+    setIsUpdating
   };
 
   // Wrapped contenxt provider component at Index.js
