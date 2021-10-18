@@ -1,14 +1,8 @@
 <div id="top"></div>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 [![Video][vido-shield]][video-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
+Cancel changes
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
