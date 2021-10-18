@@ -1,8 +1,3 @@
-<div id="top"></div>
-[![Video][vido-shield]][video-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-Cancel changes
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
