@@ -76,7 +76,7 @@ Due to IBM Watson's monthly usage limits, I have capped the search results at th
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [React.js](https://reactjs.org/) ![React.js](./client/public/react.svg)
+* [React.js](https://reactjs.org/) <img src="./client/public/react.svg" alt="React" width="80" height="80">
 * [React Router](https://reactrouter.com/) ![React Router](./client/public/reactrouter.svg)
 * [Semantic UI React](https://react.semantic-ui.com/) ![SemanticUI](./client/public/semanticuireact.svg)
 * [IBM Watson](https://www.ibm.com/watson) ![IBM Watson](./client/public/ibmwatson.svg)
