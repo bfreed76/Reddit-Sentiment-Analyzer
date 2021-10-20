@@ -142,11 +142,17 @@ To get Emot/r up and running, please follow these steps.
    ```sh
    rails s
    ```
-3. Start React server
+3. Install npm and start server
    ```sh
-   npm start --prefix client
+   npm install --prefix client
+   npm run --prefix client
    ```
-   
+4. Create and seed the database
+   ```sh
+   rails db:create 
+   rails db:seed
+   ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
