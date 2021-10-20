@@ -1,7 +1,5 @@
 <div id="top"></div>
 
-[![Linkedin Badge](https://img.shields.io/badge/-brintonfoyreed-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brintonfoyreed/)](https://www.linkedin.com/in/brintonfoyreed/) [![Instagram Badge](https://img.shields.io/badge/-nigels_vacation-purple?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/nigels_vacation/)](https://www.instagram.com/nigels_vacation/) [![Medium Badge](https://img.shields.io/badge/-brintonfoyreed-03a57a?style=flat-square&labelColor=000000&logo=Medium&link=https://brintonfoyreed.medium.com/)](https://brintonfoyreed.medium.com/)[ ![Gmail Badge](https://img.shields.io/badge/-brintonfoyreed@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:brintonfoyreed@gmail.com)](mailto:brintonfoyreed@gmail.com)
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -45,7 +43,7 @@
     <li><a href="#background">Background</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact-me">Contact Me</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -59,14 +57,14 @@
 
 <img src="./client/public/screen3.jpg" alt="screenshot3">
 
-Emot/r uses IBM Watson's Natural Language Understanding to extract emotional content and overall sentiment from Reddit content. Users can search any combination of search terms, Reddit usernames, or subreddits to narrow their search of topics. 
+Emot/r uses IBM Watson's Natural Language Understanding to extract emotional content and overall sentiment from Reddit content. Users can use any combination of search terms, Reddit usernames, or subreddits to narrow their search. 
 
 Use Emot/r to:
-* determine the emotional flavor of a Reddit user's posts or an entire subreddit.
+* determine the emotional content (sadness, joy, fear, anger, disgust) of a Reddit user's posts or an entire subreddit.
 * explore general sentiment from all Reddit users on a particular topic.
 * track emotional content around specific social issues or interests.
 
-Due to IBM Watson's monthly usage limits, I have capped the search results at the last 50 comments posted to Reddit. If you would like to see increased max count or have feature requests, such as inclusion of Reddit submmissions or an option to search by date, please [email me](mailto:brintonfoyreed@gmail.com) with your request. Please write "Emot/r feature request" in the subject line.
+Due to IBM Watson's monthly usage limits, I have capped the search results at the last 50 comments posted to Reddit. If you would like to see increased max count or have feature requests, such as inclusion of Reddit submmissions or an option to search by date, please [email me](mailto:brintonfoyreed@gmail.com) with your request. Please write <strong>"Emot/r feature request"</strong> in the subject line.
 
 
 ### Built Using
@@ -87,17 +85,19 @@ To get Emot/r up and running, please follow these steps.
 
 ### Prerequisites
 
-[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg) [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg) *Not tested on MacOS
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg) [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)  *Not tested on MacOS
 
 
 - Please ensure you are using Ruby version 2.7.4.
   ```sh
   ruby -v 
   ```
-  or, if using rbenv
-  ```sh
+  or, if using rbenv,
+
+  ```
  rbenv version
   ```
+
 - [IBM Watson Natural Language Understanding (NLU) account](https://www.ibm.com/cloud/watson-natural-language-understanding): follow the link to set up your free account.
   -  Once you have a cloud account, you can create a Natural Langauge Understanding project by selecting 'create resource' from your dashboard. 
 - [IBM Watson credentials](https://cloud.ibm.com/docs/watson?topic=watson-iam)
@@ -221,9 +221,9 @@ Distributed under the MIT License.
 
 
 <!-- CONTACT -->
-## Contact
+## Contact Me
 
-Brinton Foy Reed - brintonfoyreed@gmail.com
+[![Linkedin Badge](https://img.shields.io/badge/-brintonfoyreed-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brintonfoyreed/)](https://www.linkedin.com/in/brintonfoyreed/) [![Instagram Badge](https://img.shields.io/badge/-nigels_vacation-purple?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/nigels_vacation/)](https://www.instagram.com/nigels_vacation/) [![Medium Badge](https://img.shields.io/badge/-brintonfoyreed-03a57a?style=flat-square&labelColor=000000&logo=Medium&link=https://brintonfoyreed.medium.com/)](https://brintonfoyreed.medium.com/)[ ![Gmail Badge](https://img.shields.io/badge/-brintonfoyreed@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:brintonfoyreed@gmail.com)](mailto:brintonfoyreed@gmail.com)
 
 Project Link: [Emot/r](https://reddit-emotion-analyzer.herokuapp.com/)
 
