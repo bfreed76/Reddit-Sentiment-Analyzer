@@ -138,19 +138,19 @@ To get Emot/r up and running, please follow these steps.
    ```sh
    sudo service postgresql start
    ```
-2. Start rails server
+2. Create and seed the database
    ```sh
-   rails s
+   rails db:create 
+   rails db:seed
    ```
-3. Install npm and start server
+3. Install npm and start React server
    ```sh
    npm install --prefix client
    npm run --prefix client
    ```
-4. Create and seed the database
+4. Start rails server
    ```sh
-   rails db:create 
-   rails db:seed
+   rails s
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
