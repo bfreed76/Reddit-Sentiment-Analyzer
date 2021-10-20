@@ -1,61 +1,61 @@
-<div id="top"></div>
+[div id="top"][/div]
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-    <img src="./client/public/favicon.ico" alt="Logo" width="80" height="80">
-  </a>
+[!-- PROJECT LOGO --]
+[br /]
+[div align="center"]
+    [img src="./client/public/favicon.ico" alt="Logo" width="80" height="80"]
+  [/a]
 
-  <h1 align="center">Emot/r</h1>
+  [h1 align="center"]Emot/r[/h1]
 
-  <p align="center">
+  [p align="center"]
     Analyze the sentiment and emotional content of Reddit content using machine learning!
-    <br />
-        <a href="https://dashboard.heroku.com/apps/reddit-emotion-analyzer">Use Emot/r on Heroku</a>
-    <br />
-    <br />
-        <a href="https://github.com/bfreed76"><strong>Explore more of my apps »</strong></a>
+    [br /]
+        [a href="https://dashboard.heroku.com/apps/reddit-emotion-analyzer"]Use Emot/r on Heroku[/a]
+    [br /]
+    [br /]
+        [a href="https://github.com/bfreed76"][strong]Explore more of my apps »[/strong][/a]
 
 
-  </p>
+  [/p]
   
-</div>
+[/div]
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-Emot/r">About Emot/r</a>
-      <ul>
-        <li><a href="#built-with">Built Using</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#startup">Startup</a></li>
-    <li><a href="#background">Background</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact-me">Contact Me</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+[!-- TABLE OF CONTENTS --]
+[details]
+  [summary]Table of Contents[/summary]
+  [ol]
+    [li]
+      [a href="#about-Emot/r"]About Emot/r[/a]
+      [ul]
+        [li][a href="#built-with"]Built Using[/a][/li]
+      [/ul]
+    [/li]
+    [li]
+      [a href="#getting-started"]Getting Started[/a]
+      [ul]
+        [li][a href="#prerequisites"]Prerequisites[/a][/li]
+        [li][a href="#installation"]Installation[/a][/li]
+      [/ul]
+    [/li]
+    [li][a href="#startup"]Startup[/a][/li]
+    [li][a href="#background"]Background[/a][/li]
+    [li][a href="#contributing"]Contributing[/a][/li]
+    [li][a href="#license"]License[/a][/li]
+    [li][a href="#contact-me"]Contact Me[/a][/li]
+    [li][a href="#acknowledgments"]Acknowledgments[/a][/li]
+  [/ol]
+[/details]
 
 
 
 
 
-<!-- ABOUT Emot/r -->
+[!-- ABOUT Emot/r --]
 ## About Emot/r
 
-<img src="./client/public/screen3.jpg" alt="screenshot3">
+[img src="./client/public/screen3.jpg" alt="screenshot3" align="center"]
 
 Emot/r uses IBM Watson's Natural Language Understanding to extract emotional content and overall sentiment from Reddit content. Users can use any combination of search terms, Reddit usernames, or subreddits to narrow their search. 
 
@@ -64,21 +64,21 @@ Use Emot/r to:
 * explore general sentiment from all Reddit users on a particular topic.
 * track emotional content around specific social issues or interests.
 
-Due to IBM Watson's monthly usage limits, I have capped the search results at the last 50 comments posted to Reddit. If you would like to see increased max count or have feature requests, such as inclusion of Reddit submmissions or an option to search by date, please [email me](mailto:brintonfoyreed@gmail.com) with your request. Please write <strong>"Emot/r feature request"</strong> in the subject line.
+Due to IBM Watson's monthly usage limits, I have capped the search results at the last 50 comments posted to Reddit. If you would like to see increased max count or have feature requests, such as inclusion of Reddit submmissions or an option to search by date, please [email me](mailto:brintonfoyreed@gmail.com) with your request. Please write [strong]"Emot/r feature request"[/strong] in the subject line.
 
 
 ### Built Using
 
 [![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)](https://reactjs.org/) [![ReactRouter](https://img.shields.io/badge/ReactRouter-4F545E?style=flat&logo=reactrouter)](https://reactrouter.com/) [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-99bdee?style=flat-square&logo=postgresql)](https://www.postgresql.org/) [![Heroku](https://img.shields.io/badge/-Heroku-purple?style=flat-square&logo=heroku)](https://www.heroku.com/) [![Ruby](https://img.shields.io/badge/-Ruby-ff6666?style=flat-square&logo=ruby)](https://https://ruby-lang.org/) [![Rails](https://img.shields.io/badge/Rails-red?style=flat&logo=ruby-on-rails)](https://rubyonrails.org/) [![IBMWatson](https://img.shields.io/badge/IBMWatson-6C8FE3?style=flat&logo=ibmwatson)](https://www.ibm.com/watson) [![SemanticUI](https://img.shields.io/badge/SemanticUI-52f3cf?style=flat&logo=semanticuireact)](https://react.semantic-ui.com/) 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
 
 
 
 
 
-<!-- GETTING STARTED -->
+[!-- GETTING STARTED --]
 ## Getting Started
 
 To get Emot/r up and running, please follow these steps.
@@ -88,12 +88,12 @@ To get Emot/r up and running, please follow these steps.
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg) [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)  *Not tested on MacOS
 
 
-- Please ensure you are using Ruby version 2.7.4.
+- Please ensure you are using Ruby version 2.7.4. You can see your version (rvm only)
   ```sh
   ruby -v 
   ```
 
-- [IBM Watson Natural Language Understanding (NLU) account](https://www.ibm.com/cloud/watson-natural-language-understanding): follow the link to set up your free account.
+- [IBM Watson Natural Language Understanding (NLU) account](https://www.ibm.com/cloud/watson-natural-language-understanding): follow the link to set up your free cloud account.
   -  Once you have a cloud account, you can create a Natural Langauge Understanding project by selecting 'create resource' from your dashboard. 
 - [IBM Watson credentials](https://cloud.ibm.com/docs/watson?topic=watson-iam)
 - Emot/r uses the following additional gems (loads automatically from Gemfile)
@@ -128,9 +128,9 @@ To get Emot/r up and running, please follow these steps.
 6. Add IBM Watson NLU credentials to .env file
    ```sh
    # ./env
-   NATURAL_LANGUAGE_UNDERSTANDING_APIKEY=<your IBM Watson API key>
-   NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=<your IBM Watson API key>
-   NATURAL_LANGUAGE_UNDERSTANDING_URL=<your IBM Watson credentails URL>
+   NATURAL_LANGUAGE_UNDERSTANDING_APIKEY=[ your IBM Watson API key ]
+   NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=[ your IBM Watson API key ]
+   NATURAL_LANGUAGE_UNDERSTANDING_URL=[ your IBM Watson credentails URL ]
    NATURAL_LANGUAGE_UNDERSTANDING_AUTH_TYPE=iam
    ```
 7. Ensure that your .gitignore file includes all .env files
@@ -153,38 +153,38 @@ To get Emot/r up and running, please follow these steps.
    npm start --prefix client
    ```
    
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
-<!-- USAGE EXAMPLES -->
+[!-- USAGE EXAMPLES --]
 ## Background
 
-The idea for this app came from a conversation about natural language understanding with a friend. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
+The idea for this app came from a conversation with a friend about natural language understanding. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
 
-<img src="./client/public/screen1.png" alt="screenshot">
+[img src="./client/public/screen1.png" alt="screenshot" align="center"]
 
 I collaborated with Career Founday UX program grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
 
-<img src="./client/public/usecases1.png" alt="usecases">
+[img src="./client/public/usecases1.png" alt="usecases" align="center"]
 
 They also conducted a small (n=5) study with Reddit users and found that nearly all subjects would prefer to use the app on a mobile device. Thus, I developed the app according to responsive design principles. 
 
-<img src="./client/public/cardsorting1.png" alt="studyscreenshot">
+[img src="./client/public/cardsorting1.png" alt="studyscreenshot" align="center"]
 
 I set up the postgres database with the following data structure. 
 
-<img src="./client/public/backend1.png" alt="database">
+[img src="./client/public/backend1.png" alt="database" align="center"]
 
 Due to the potentially large datasets involved and the required use of credentials, I decided to access Reddit data (via [pushshift api](https://github.com/pushshift/api)) and apply IBM Watson NLU analysis from Rails, instead of from the frontend. 
 
-<img src="./client/public/controller1.png" alt="backend_code">
+[img src="./client/public/controller1.png" alt="backend_code" align="center"]
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
 
 
-<!-- CONTRIBUTING -->
+
+
+[!-- CONTRIBUTING --]
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -198,37 +198,37 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
 
 
 
 
-<!-- LICENSE -->
+[!-- LICENSE --]
 ## License
 
 Distributed under the MIT License. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
 
 
 
 
-<!-- CONTACT -->
+[!-- CONTACT --]
 ## Contact Me
 
 [![Linkedin Badge](https://img.shields.io/badge/-brintonfoyreed-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brintonfoyreed/)](https://www.linkedin.com/in/brintonfoyreed/) [![Instagram Badge](https://img.shields.io/badge/-nigels_vacation-purple?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/nigels_vacation/)](https://www.instagram.com/nigels_vacation/) [![Medium Badge](https://img.shields.io/badge/-brintonfoyreed-03a57a?style=flat-square&labelColor=000000&logo=Medium&link=https://brintonfoyreed.medium.com/)](https://brintonfoyreed.medium.com/)[ ![Gmail Badge](https://img.shields.io/badge/-brintonfoyreed@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:brintonfoyreed@gmail.com)](mailto:brintonfoyreed@gmail.com)
 
 Project Link: [Emot/r](https://reddit-emotion-analyzer.herokuapp.com/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
 
 
 
 
 
-<!-- ACKNOWLEDGMENTS -->
+[!-- ACKNOWLEDGMENTS --]
 ## Acknowledgments
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
@@ -240,4 +240,4 @@ Use this space to list resources you find helpful and would like to give credit 
 * [Font Awesome](https://fontawesome.com)
 * [React Icons](https://react-icons.github.io/react-icons/search)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+[p align="right"]([a href="#top"]back to top[/a])[/p]
