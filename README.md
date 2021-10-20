@@ -152,13 +152,13 @@ To get Emot/r up and running, please follow these steps.
 <!-- USAGE EXAMPLES -->
 ## Background
 
-The idea for this app came from a conversation about natural language understanding with a friend. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
+The idea for this app came from a conversation with a friend about natural language understanding. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
 
 <p align="center">
 <img src="./client/public/screen1.png" alt="screenshot">
 </p>
 
-I collaborated with Career Founday UX program grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
+I collaborated with a Career Foundary UX grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
 
 <p align="center">
 <img src="./client/public/usecases1.png" alt="usecases">
@@ -193,7 +193,7 @@ Due to the potentially large datasets involved and the required use of credentia
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement."
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
