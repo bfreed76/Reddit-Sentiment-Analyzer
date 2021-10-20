@@ -2,9 +2,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-    <img src="./client/public/favicon.ico" alt="Logo" width="80" height="80">
-  </a>
 
   <h1 align="center">Emot/r</h1>
 
@@ -14,9 +11,6 @@
         <a href="https://dashboard.heroku.com/apps/reddit-emotion-analyzer">Use Emot/r on Heroku</a>
     <br />
     <br />
-        <a href="https://github.com/bfreed76"><strong>Explore more of my apps »</strong></a>
-
-
   </p>
   
 </div>
@@ -160,23 +154,33 @@ To get Emot/r up and running, please follow these steps.
 
 The idea for this app came from a conversation about natural language understanding with a friend. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
 
+<p align="center">
 <img src="./client/public/screen1.png" alt="screenshot">
+</p>
 
 I collaborated with Career Founday UX program grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
 
+<p align="center">
 <img src="./client/public/usecases1.png" alt="usecases">
+</p>
 
 They also conducted a small (n=5) study with Reddit users and found that nearly all subjects would prefer to use the app on a mobile device. Thus, I developed the app according to responsive design principles. 
 
+<p align="center">
 <img src="./client/public/cardsorting1.png" alt="studyscreenshot">
+</p>
 
 I set up the postgres database with the following data structure. 
 
+<p align="center">
 <img src="./client/public/backend1.png" alt="database">
+</p>
 
 Due to the potentially large datasets involved and the required use of credentials, I decided to access Reddit data (via [pushshift api](https://github.com/pushshift/api)) and apply IBM Watson NLU analysis from Rails, instead of from the frontend. 
 
+<p align="center">
 <img src="./client/public/controller1.png" alt="backend_code">
+</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -221,6 +225,7 @@ Distributed under the MIT License.
 [![Linkedin Badge](https://img.shields.io/badge/-brintonfoyreed-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brintonfoyreed/)](https://www.linkedin.com/in/brintonfoyreed/) [![Instagram Badge](https://img.shields.io/badge/-nigels_vacation-purple?style=flat-square&logo=instagram&logoColor=white&link=https://www.instagram.com/nigels_vacation/)](https://www.instagram.com/nigels_vacation/) [![Medium Badge](https://img.shields.io/badge/-brintonfoyreed-03a57a?style=flat-square&labelColor=000000&logo=Medium&link=https://brintonfoyreed.medium.com/)](https://brintonfoyreed.medium.com/)[ ![Gmail Badge](https://img.shields.io/badge/-brintonfoyreed@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:brintonfoyreed@gmail.com)](mailto:brintonfoyreed@gmail.com)
 
 Project Link: [Emot/r](https://reddit-emotion-analyzer.herokuapp.com/)
+<a href="https://github.com/bfreed76"><strong>See more apps on my profile page »</strong></a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
