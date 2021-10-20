@@ -2,14 +2,12 @@
 
 [!-- PROJECT LOGO --]
 [br /]
-[div align="center"]
-    [img src="./client/public/favicon.ico" alt="Logo" width="80" height="80"]
+[div margin='0 auto']/public/favicon.ico" alt="Logo" width="80" height="80"]
   [/a]
 
-  [h1 align="center"]Emot/r[/h1]
+  [h1 margin='0 auto']]
 
-  [p align="center"]
-    Analyze the sentiment and emotional content of Reddit content using machine learning!
+  [p margin='0 auto'] and emotional content of Reddit content using machine learning!
     [br /]
         [a href="https://dashboard.heroku.com/apps/reddit-emotion-analyzer"]Use Emot/r on Heroku[/a]
     [br /]
@@ -55,7 +53,7 @@
 [!-- ABOUT Emot/r --]
 ## About Emot/r
 
-[img src="./client/public/screen3.jpg" alt="screenshot3" align="center"]
+[img src="./client/public/screen3.jpg" alt="screenshot3" margin='0 auto']
 
 Emot/r uses IBM Watson's Natural Language Understanding to extract emotional content and overall sentiment from Reddit content. Users can use any combination of search terms, Reddit usernames, or subreddits to narrow their search. 
 
@@ -160,23 +158,23 @@ To get Emot/r up and running, please follow these steps.
 
 The idea for this app came from a conversation with a friend about natural language understanding. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
 
-[img src="./client/public/screen1.png" alt="screenshot" align="center"]
+[img src="./client/public/screen1.png" alt="screenshot" margin='0 auto']
 
 I collaborated with Career Founday UX program grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
 
-[img src="./client/public/usecases1.png" alt="usecases" align="center"]
+[img src="./client/public/usecases1.png" alt="usecases" margin='0 auto']
 
 They also conducted a small (n=5) study with Reddit users and found that nearly all subjects would prefer to use the app on a mobile device. Thus, I developed the app according to responsive design principles. 
 
-[img src="./client/public/cardsorting1.png" alt="studyscreenshot" align="center"]
+[img src="./client/public/cardsorting1.png" alt="studyscreenshot" margin='0 auto']
 
 I set up the postgres database with the following data structure. 
 
-[img src="./client/public/backend1.png" alt="database" align="center"]
+[img src="./client/public/backend1.png" alt="database" margin='0 auto']
 
 Due to the potentially large datasets involved and the required use of credentials, I decided to access Reddit data (via [pushshift api](https://github.com/pushshift/api)) and apply IBM Watson NLU analysis from Rails, instead of from the frontend. 
 
-[img src="./client/public/controller1.png" alt="backend_code" align="center"]
+[img src="./client/public/controller1.png" alt="backend_code" margin='0 auto']
 
 [p align="right"]([a href="#top"]back to top[/a])[/p]
 
