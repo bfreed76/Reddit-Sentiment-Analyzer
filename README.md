@@ -165,23 +165,23 @@ To get Emot/r up and running, please follow these steps.
 
 The idea for this app came from a conversation about natural language understanding with a friend. As a previous military crytolinguist, I've always had an interest in language, and how it frames our worldview and actions. Given all of the talk in the last few years about fake news and social media news, we thought pairing sentiment analysis with reddit posts would provide telling information about subreddits, Reddit users and Reddit content, as a whole. 
 
-<img src="./client/public/screenshot3.jpg" alt="screenshot3">
+<img src="./client/public/screen1.png" alt="screenshot">
 
 I collaborated with Career Founday UX program grad and his mentor, a seasoned UX designer. They helped me refine my user cases and user stories, and provided wireframes.
 
-<img src="./client/public/usecases1.jpg" alt="usecases">
+<img src="./client/public/usecases1.png" alt="usecases">
 
 They also conducted a small (n=5) study with Reddit users and found that nearly all subjects would prefer to use the app on a mobile device. Thus, I developed the app according to responsive design principles. 
 
-<img src="./client/public/cardsorting1.jpg" alt="studyscreenshot">
+<img src="./client/public/cardsorting1.png" alt="studyscreenshot">
 
 I set up the postgres database with the following data structure. 
 
-<img src="./client/public/backend1.jpg" alt="database">
+<img src="./client/public/backend1.png" alt="database">
 
 Due to the potentially large datasets involved and the required use of credentials, I decided to access Reddit data (via [pushshift api](https://github.com/pushshift/api)) and apply IBM Watson NLU analysis from Rails, instead of from the frontend. 
 
-<img src="./client/public/controller1.jpg" alt="backend_code">
+<img src="./client/public/controller1.png" alt="backend_code">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
