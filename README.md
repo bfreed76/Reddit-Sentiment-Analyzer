@@ -49,7 +49,9 @@
 <!-- ABOUT Emot/r -->
 ## About Emot/r
 
+<p align="center">
 <img src="./client/public/screen3.jpg" alt="screenshot3">
+</p>
 
 Emot/r uses IBM Watson's Natural Language Understanding to extract emotional content and overall sentiment from Reddit content. Users can use any combination of search terms, Reddit usernames, or subreddits to narrow their search. 
 
