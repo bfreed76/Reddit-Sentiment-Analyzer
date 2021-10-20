@@ -92,11 +92,6 @@ To get Emot/r up and running, please follow these steps.
   ```sh
   ruby -v 
   ```
-  or, if using rbenv,
-
-  ```
- rbenv version
-  ```
 
 - [IBM Watson Natural Language Understanding (NLU) account](https://www.ibm.com/cloud/watson-natural-language-understanding): follow the link to set up your free account.
   -  Once you have a cloud account, you can create a Natural Langauge Understanding project by selecting 'create resource' from your dashboard. 
