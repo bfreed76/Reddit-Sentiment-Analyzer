@@ -122,9 +122,9 @@ To get Emot/r up and running, please follow these steps.
 6. Add IBM Watson NLU credentials to .env file
    ```sh
    # ./env
-   NATURAL_LANGUAGE_UNDERSTANDING_APIKEY=<your IBM Watson API key>
-   NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=<your IBM Watson API key>
-   NATURAL_LANGUAGE_UNDERSTANDING_URL=<your IBM Watson credentails URL>
+   NATURAL_LANGUAGE_UNDERSTANDING_APIKEY=[ your IBM Watson API key ]
+   NATURAL_LANGUAGE_UNDERSTANDING_IAM_APIKEY=[ your IBM Watson API key ]
+   NATURAL_LANGUAGE_UNDERSTANDING_URL=[ your IBM Watson credentails URL ]
    NATURAL_LANGUAGE_UNDERSTANDING_AUTH_TYPE=iam
    ```
 7. Ensure that your .gitignore file includes all .env files
