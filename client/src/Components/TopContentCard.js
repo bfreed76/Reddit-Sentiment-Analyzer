@@ -2,6 +2,7 @@ import React from "react";
 import { Divider, Header, Icon, Table } from "semantic-ui-react";
 import EmoDocResults from "./EmoDocResults";
 import EmoTargResults from "./EmoTargResults";
+import { useLocation } from "react-router-dom";
 
 const TopContentCard = ({ item }) => {
   // Assigns variables to data object from backend
@@ -9,9 +10,10 @@ const TopContentCard = ({ item }) => {
   const emoDoc = item.search_results[0].emo_doc_json;
   const emoTarg = item.search_results[0].emo_search_json;
   const sentDoc = item.search_results[0].sent_doc_json;
+  const location = useLocation();
 
   // Renders search results, toggles render of 'search term' results
-
+  // debugger;
   return (
     <div>
       <Divider horizontal>
@@ -23,10 +25,21 @@ const TopContentCard = ({ item }) => {
       <Table unstackable={true}>
         <Table.Body>
           <Table.Row textAlign='center'>
-            <Table.Cell>Date:</Table.Cell>
-            <Table.Cell>
-              <strong>{item.created_at.slice(0, 10)}</strong>
-            </Table.Cell>
+            {location.pathname === "/top_content" ? (
+              <>
+                <Table.Cell>Username:</Table.Cell>
+                <Table.Cell>
+                  <strong>{item.user.username}</strong>
+                </Table.Cell>{" "}
+              </>
+            ) : (
+              <>
+                <Table.Cell>Date:</Table.Cell>
+                <Table.Cell>
+                  <strong>{item.created_at.slice(0, 10)}</strong>
+                </Table.Cell>
+              </>
+            )}
             <Table.Cell>Reddit User:</Table.Cell>
             <Table.Cell>
               <strong>{item.author.name}</strong>
@@ -61,7 +74,6 @@ const TopContentCard = ({ item }) => {
             })
           : null}
       </div>
-      <br></br>
       <br></br>
       <br></br>
     </div>
