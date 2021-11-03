@@ -33,12 +33,11 @@ const Signup = () => {
     })
       .then((r) => r.json())
       .then((user) => {
-        console.log(user);
         setUser(user);
         setLoggedin(true);
         history.push("success");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error =", err));
   };
 
   // Handles update of user profile information
@@ -57,7 +56,7 @@ const Signup = () => {
         setIsUpdating(false);
         history.push("success");
       })
-      .catch((err) => console.log("Update err = ", err));
+      .catch((err) => console.log("Error = ", err));
   };
 
   // Renders either login or signup information depending on state

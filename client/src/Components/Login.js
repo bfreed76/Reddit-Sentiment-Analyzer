@@ -24,8 +24,6 @@ const Login = () => {
     fetch("/api/login", postObj)
       .then((r) => r.json())
       .then((user) => {
-        //user true or not?!
-        console.log("USER", user)
         if (!!user.id) {
           setUser(user);
           setLoggedin(true);
@@ -35,7 +33,7 @@ const Login = () => {
           setSuccess(false);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error =", err));
   };
 
   // Renders forms with toggle for signin/signup

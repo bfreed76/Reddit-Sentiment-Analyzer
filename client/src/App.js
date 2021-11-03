@@ -28,7 +28,6 @@ const App = () => {
     fetch("/api/me")
       .then((res) => res.json())
       .then((data) => {
-        console.log("current user: ", data);
         if (!data.error) {
           setUser(data);
           setLoggedin(true);
@@ -46,12 +45,11 @@ const App = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Logged out.");
         setLoggedin(false);
         setUser({});
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error =",err));
   };
 
   // Routes to signup component

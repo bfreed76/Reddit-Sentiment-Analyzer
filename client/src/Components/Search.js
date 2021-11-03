@@ -39,7 +39,6 @@ const Search = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setloading(true);
-    console.log(pushShiftURL);
     const postObj = {
       method: "POST",
       headers: {
@@ -62,7 +61,7 @@ const Search = () => {
         });
       } else {
         res.json().then((errorData) => {
-          console.log("SERVER ERR: ", errorData.errors);
+          console.log("error = ", errorData.errors);
           setError(true);
         });
       }
