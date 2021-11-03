@@ -23,9 +23,9 @@ const TopContentCard = ({ item }) => {
       <Table unstackable={true}>
         <Table.Body>
           <Table.Row textAlign='center'>
-            <Table.Cell>Username:</Table.Cell>
+            <Table.Cell>Date:</Table.Cell>
             <Table.Cell>
-              <strong>{item.user.username}s</strong>
+              <strong>{item.created_at.slice(0, 10)}</strong>
             </Table.Cell>
             <Table.Cell>Reddit User:</Table.Cell>
             <Table.Cell>

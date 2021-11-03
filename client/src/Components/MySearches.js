@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MySearchCards from "./MySearchCards";
+import TopContentCard from "./TopContentCard";
 
 const MySearches = () => {
   const [mySearches, setMySearches] = useState([]);
@@ -25,7 +25,7 @@ const MySearches = () => {
     <div>
       {mySearches.length > 1 ? (
         mySearches.map((item, id) => {
-          return <MySearchCards key={id} item={item} />;
+          return <TopContentCard key={id} item={item} />;
         })
       ) : (
         <h3>No search results available</h3>
